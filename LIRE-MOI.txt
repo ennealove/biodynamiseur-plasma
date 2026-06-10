@@ -1,0 +1,36 @@
+========================================
+  EAU VIVANTE PLASMA — AXIS LUMEN
+  Protocole Violet-MaGrav · Juin 2026
+========================================
+
+OUVERTURE RAPIDE
+----------------
+Double-cliquer sur : ouvrir-eau-vivante.bat
+→ Ouvre automatiquement Chrome avec le site local.
+
+RACCOURCI BUREAU (optionnel)
+-----------------------------
+Clic droit sur : creer-raccourci-bureau.ps1
+→ "Exécuter avec PowerShell"
+→ Une icône "Eau Vivante Plasma" apparaît sur le bureau.
+
+FICHIER PRINCIPAL
+-----------------
+index.html — Site complet autonome (images embarquées en base64).
+Toutes les données sont dans ce seul fichier.
+Fonctionne sans connexion internet ni serveur.
+
+GALERIE BIOWELL (protégée)
+---------------------------
+Code Michael    : AxisLumen2024!
+Code Emmanuel   : PlasmaKesh2024!
+
+DÉPLOIEMENT WEB (GitHub + Render)
+-----------------------------------
+Le fichier index.html peut être poussé directement sur GitHub
+et déployé sur Render (Static Site) sans modification.
+Tous les assets sont déjà intégrés.
+
+---
+Axis Lumen · Michael & Dr Emmanuel Carrière
+Recherche expérimentale — usage non médical
