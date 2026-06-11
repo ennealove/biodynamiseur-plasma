@@ -205,7 +205,76 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
 .fcp{font-size:.7rem}
 .nav-axis{background:transparent;border:1px solid var(--border2);color:var(--crystal);font-size:.72rem;padding:.32rem .9rem;border-radius:3px;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:all .2s;margin-left:.5rem}
 .nav-axis:hover{background:var(--crystal);color:#fff}
-@media(max-width:768px){.hero-inner,.ml,.conf-grid,.stage-grid{grid-template-columns:1fr}.cg3{grid-template-columns:1fr}.nav-links a{font-size:.66rem;padding:0 .5rem}}
+/* ─── Nav hamburger (caché sur desktop) ─── */
+.nav-toggle{display:none;background:transparent;border:1px solid var(--border2);color:var(--crystal);
+  width:36px;height:36px;border-radius:4px;cursor:pointer;font-size:1.2rem;align-items:center;
+  justify-content:center;flex-shrink:0;transition:all .2s;padding:0;line-height:1}
+.nav-toggle:hover{background:var(--crystal);color:#fff}
+/* ─── Tablet (≤ 900px) ─── */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;gap:3rem}
+  .ml,.conf-grid,.stage-grid{grid-template-columns:1fr}
+  .conf-refs{position:static;display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+  .formation-grid{grid-template-columns:1fr}
+  .formation-card{position:static;top:auto}
+}
+/* ─── Mobile (≤ 768px) ─── */
+@media(max-width:768px){
+  /* Nav hamburger */
+  .nav-toggle{display:flex}
+  nav{padding:0 1.25rem}
+  .nav-links{display:none;position:fixed;top:56px;left:0;right:0;
+    background:rgba(245,250,255,.97);backdrop-filter:blur(16px);
+    flex-direction:column;padding:.5rem 0 1rem;
+    border-bottom:1px solid var(--border);z-index:99;
+    box-shadow:0 8px 20px rgba(30,139,195,.1)}
+  .nav-links.open{display:flex}
+  .nav-links a{height:44px;padding:0 1.5rem;font-size:.9rem;letter-spacing:.01em;
+    border-bottom:1px solid var(--border);border-right:none;width:100%;justify-content:flex-start}
+  .nav-links a:last-of-type,.nav-links a.nav-axis{border-bottom:none}
+  .nav-axis{margin:.5rem 1.5rem 0;align-self:flex-start;font-size:.82rem;width:calc(100% - 3rem);text-align:center}
+  /* Layout */
+  section{padding:3.5rem 1.25rem}
+  .hero-inner{text-align:center}
+  .hero-text p,.sec-lead{max-width:100%}
+  .hero-tags{justify-content:center}
+  .hero-cta{align-self:center;display:inline-flex}
+  /* Hero image */
+  .hero-visual{display:flex;justify-content:center}
+  .hero-visual > div:first-child{width:260px!important;height:260px!important}
+  /* Grids */
+  .cg3{grid-template-columns:1fr}
+  .bg2g{grid-template-columns:1fr}
+  .pca{grid-template-columns:1fr}
+  .mgrid2{grid-template-columns:1fr 1fr}
+  /* Sidebar sticky : désactivé */
+  .conf-refs{position:static}
+  /* BioWell */
+  .bw-head{flex-direction:column;align-items:flex-start;gap:1rem}
+  .bw-stats{gap:1.5rem}
+  .gg{grid-template-columns:1fr 1fr}
+  /* Touch targets ≥ 44px */
+  .cbtn,.btn-buy,.btn-preview,.msave,.auth-submit,.hero-cta{min-height:44px}
+  .gfbt{padding:.45rem .9rem;font-size:.76rem}
+  /* Texte légèrement agrandi pour lisibilité */
+  .pp,.md,.stage-c,.conf-body,.gno{font-size:.9rem}
+  .pk{font-size:.84rem}
+}
+/* ─── Petit mobile (≤ 480px) ─── */
+@media(max-width:480px){
+  nav{padding:0 1rem}
+  section{padding:2.5rem 1rem}
+  .hero-visual > div:first-child{width:200px!important;height:200px!important}
+  .gg{grid-template-columns:1fr}
+  .bw-stats{flex-wrap:wrap;gap:.8rem}
+  .mg{grid-template-columns:1fr 1fr}
+  .mgrid2{grid-template-columns:1fr}
+  .conf-refs{grid-template-columns:1fr}
+  .mbt{flex-direction:column}
+  .mcanc{width:100%;text-align:center}
+  .stage-price{font-size:2.6rem}
+  .fd{font-size:clamp(.8rem,3.5vw,1.2rem);padding:1rem 1.2rem}
+}
 /* ── FORMATION SECTION ── */
 .formation-hero{background:linear-gradient(135deg,#050e1a 0%,#0d2438 60%,#0a1e32 100%);border-radius:12px;padding:2.5rem;margin-bottom:2rem;position:relative;overflow:hidden}
 .formation-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(30,139,195,.22),transparent);pointer-events:none}
@@ -214,7 +283,6 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
 .formation-hero h3 em{color:var(--gold,#b8943c);font-style:normal}
 .formation-hero p{color:rgba(255,255,255,.72);font-size:.88rem;line-height:1.75;max-width:580px}
 .formation-grid{display:grid;grid-template-columns:1fr 340px;gap:2rem;align-items:start}
-@media(max-width:900px){.formation-grid{grid-template-columns:1fr}}
 .formation-modules{list-style:none;padding:0;margin:0}
 .formation-modules li{display:flex;gap:.9rem;align-items:flex-start;padding:.75rem 0;border-bottom:1px solid var(--border)}
 .formation-modules li:last-child{border-bottom:none}
@@ -247,6 +315,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
     <a href="#formule">Formule &phi;&sup2;&deg;</a><a href="#conference">Conf&eacute;rence</a><a href="#stage">Stage</a><a href="#formation">Formation</a><a href="#biowell">Biowell</a>
     <a href="https://axis-lumen.fr" target="_blank" class="nav-axis">Axis Lumen ↗</a>
   </div>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">&#9776;</button>
 </nav>
 
 <section id="hero">
@@ -263,7 +332,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
       </div>
       <a href="#conference" class="hero-cta">Lire le parcours &rarr;</a>
     </div>
-    <div style="display:flex;align-items:center;justify-content:center;position:relative">
+    <div class="hero-visual" style="display:flex;align-items:center;justify-content:center;position:relative">
       <div style="width:380px;height:380px;border-radius:50%;overflow:hidden;box-shadow:0 12px 64px rgba(30,139,195,.35),0 0 120px rgba(184,148,60,.12);border:2px solid rgba(184,148,60,.25);flex-shrink:0;position:relative">
         <img id="hero-img" src="" alt="Axis Lumen" style="width:100%;height:100%;object-fit:cover">
       </div>
@@ -974,6 +1043,29 @@ function updateStats(){
 updateStats();
 const navSecs=['hero','pionniers','machine','protocole','formule','conference','stage','formation','biowell'];
 window.addEventListener('scroll',()=>{let cur='';navSecs.forEach(id=>{const el=document.getElementById(id);if(el&&window.scrollY>=el.offsetTop-80)cur=id;});document.querySelectorAll('.nav-links a').forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});});
+// ─── Menu hamburger mobile ───
+(function(){
+  var btn=document.getElementById('nav-toggle');
+  var links=document.querySelector('.nav-links');
+  if(!btn||!links)return;
+  btn.addEventListener('click',function(){
+    var open=links.classList.toggle('open');
+    btn.textContent=open?'✕':'☰';
+    btn.setAttribute('aria-expanded',open);
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      links.classList.remove('open');
+      btn.textContent='☰';
+    });
+  });
+  document.addEventListener('click',function(e){
+    if(!btn.contains(e.target)&&!links.contains(e.target)){
+      links.classList.remove('open');
+      btn.textContent='☰';
+    }
+  });
+})();
 function openAxisLumen(){const w=window.open('file:///C:/Users/chauv/Documents/axis-lumen-deploy/index.html','_blank');if(!w||w.closed){const d=document.createElement('div');d.style.cssText='position:fixed;top:70px;right:1.5rem;background:var(--ink);color:white;padding:1rem 1.5rem;border-radius:8px;font-size:.8rem;z-index:500;max-width:320px;line-height:1.7;box-shadow:0 4px 20px rgba(0,0,0,.3)';d.innerHTML='<strong style="color:var(--crystal-p)">Axis Lumen</strong><br><code style="font-size:.72rem;color:var(--teal-l)">C:\\Users\\chauv\\Documents\\axis-lumen-deploy</code><br><button onclick="this.parentNode.remove()" style="margin-top:.5rem;background:transparent;border:1px solid rgba(255,255,255,.3);color:white;font-size:.7rem;padding:.2rem .6rem;cursor:pointer;border-radius:3px">Fermer</button>';document.body.appendChild(d);setTimeout(()=>{if(d.parentNode)d.remove();},6000);}}
 const AUTH_CODES={michael:btoa('Michael:AxisLumen2024!'),emmanuel:btoa('Emmanuel:PlasmaKesh2024!')};
 let currentUser=null;
