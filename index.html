@@ -475,6 +475,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
   <div class="container">
     <div class="eyebrow">Galerie priv&eacute;e</div>
     <h2 class="sec-title">Mesures<br><em>Biowell GDV</em></h2>
+    <div style="margin:-1rem 0 2rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
+      <a href="Rapport-Biowell-Eau-Vivante-Plasma.docx" download style="display:inline-flex;align-items:center;gap:.6rem;background:var(--crystal);color:#fff;padding:.65rem 1.4rem;border-radius:5px;text-decoration:none;font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;box-shadow:0 3px 12px rgba(30,139,195,.25)">⬇ Télécharger le rapport Word</a>
+      <span style="font-size:.78rem;color:var(--muted)">Rapport comparatif Biowell GDV · Avant / Après protocole · 11 sessions · Juin 2026</span>
+    </div>
     <p class="sec-lead">Documentation photographique des captures GDV-Kirlian. Acc&egrave;s r&eacute;serv&eacute; aux participants des stages Axis Lumen.</p>
     <div class="divider"></div>
     <div class="bw-head">
@@ -705,7 +709,7 @@ const PS=[
 ];
 function buildProto(){
   const tl=document.getElementById('proto-tl');
-  const imgMap2={1:['distillateur'],2:['bouteille'],4:['bocal','tige'],5:['kirlian'],6:['kirlian']};
+  const imgMap2={1:['distillateur'],2:['bouteille'],4:['bocal','tige'],5:['eauInforme','kirlian'],6:['kirlian']};
   PS.forEach((s,i)=>{
     const imgKey=imgMap2[s.n];
     const imgs=imgKey?(Array.isArray(imgKey)?imgKey:[imgKey]):[];
