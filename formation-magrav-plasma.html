@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Formation Biodynamiseur Plasmatique — Axis Lumen</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+:root{
+  --crystal:#1e8bc3;--crystal2:#166fa0;--gold:#b8943c;--gold2:#d4af5a;
+  --ink:#0d2438;--ink2:#1a3a52;--bg:#f5faff;--card:#fff;
+  --border:rgba(30,139,195,.15);--shadow:0 2px 16px rgba(13,36,56,.08);
+  --green:#2ecc71;--orange:#e67e22;--red:#e74c3c;--purple:#8e44ad;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.7}
+.nav{position:sticky;top:0;z-index:100;background:rgba(13,36,56,.97);backdrop-filter:blur(12px);
+  padding:.8rem 2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.nav-logo{font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:.1em;white-space:nowrap}
+.nav a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.78rem;letter-spacing:.04em;
+  padding:.3rem .6rem;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav a:hover{background:rgba(255,255,255,.1);color:#fff}
+.hero{background:linear-gradient(135deg,#050e1a 0%,#0d2438 50%,#0a1e32 100%);
+  padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(30,139,195,.25),transparent);pointer-events:none}
+.hero-badge{display:inline-block;border:1px solid rgba(184,148,60,.5);color:var(--gold);
+  font-size:.7rem;letter-spacing:.25em;padding:.3rem 1rem;border-radius:2rem;margin-bottom:1.5rem;text-transform:uppercase}
+.hero h1{font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,3rem);color:#fff;line-height:1.2;margin-bottom:1rem}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,.7);max-width:600px;margin:0 auto 2rem;line-height:1.8}
+.hero-tags{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.tag{background:rgba(30,139,195,.15);border:1px solid rgba(30,139,195,.3);color:rgba(255,255,255,.8);
+  font-size:.72rem;padding:.25rem .8rem;border-radius:2rem;letter-spacing:.05em}
+.container{max-width:900px;margin:0 auto;padding:0 1.5rem}
+.mod-header{padding:3rem 0 1.5rem}
+.mod-num{font-size:.7rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:.4rem}
+.mod-title{font-family:'Cinzel',serif;font-size:clamp(1.4rem,3vw,2rem);color:var(--ink)}
+.mod-title em{color:var(--crystal);font-style:normal}
+.mod-intro{font-size:1rem;color:var(--ink2);max-width:680px;margin:.8rem 0 0;line-height:1.8}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:1.8rem;margin-bottom:1.5rem;box-shadow:var(--shadow)}
+.card h3{font-family:'Cinzel',serif;font-size:1rem;color:var(--crystal);margin-bottom:1rem;
+  display:flex;align-items:center;gap:.5rem}
+.card h3 .icon{font-size:1.3rem}
+.card p{color:var(--ink2);font-size:.93rem;line-height:1.8;margin-bottom:.8rem}
+.card p:last-child{margin-bottom:0}
+.analogy{background:linear-gradient(135deg,rgba(46,204,113,.06),rgba(30,139,195,.06));
+  border:1px solid rgba(46,204,113,.25);border-radius:8px;padding:1.2rem 1.5rem;margin:1rem 0}
+.analogy-title{font-size:.7rem;letter-spacing:.2em;color:var(--green);text-transform:uppercase;font-weight:600;margin-bottom:.5rem}
+.analogy p{font-size:.88rem;color:var(--ink2);line-height:1.75;margin:0}
+.eq-box{background:rgba(13,36,56,.04);border-left:3px solid var(--crystal);
+  border-radius:0 8px 8px 0;padding:1.2rem 1.5rem;margin:1rem 0;font-family:monospace}
+.eq-title{font-size:.68rem;letter-spacing:.2em;color:var(--crystal);text-transform:uppercase;font-weight:600;margin-bottom:.6rem}
+.eq{font-size:1.05rem;color:var(--ink);font-weight:600;margin-bottom:.4rem}
+.eq-explain{font-size:.82rem;color:var(--ink2);line-height:1.7;font-family:'Inter',sans-serif}
+.tbl{width:100%;border-collapse:collapse;font-size:.85rem;margin:1rem 0}
+.tbl th{background:rgba(30,139,195,.08);color:var(--crystal);padding:.6rem .9rem;
+  text-align:left;font-weight:600;font-size:.78rem;letter-spacing:.05em;border-bottom:2px solid var(--border)}
+.tbl td{padding:.55rem .9rem;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:rgba(30,139,195,.03)}
+.steps{counter-reset:step;list-style:none;padding:0;margin:.8rem 0}
+.steps li{counter-increment:step;display:flex;gap:1rem;margin-bottom:1rem;align-items:flex-start}
+.steps li::before{content:counter(step);min-width:28px;height:28px;background:var(--crystal);color:#fff;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;margin-top:.1rem}
+.steps li span{font-size:.9rem;color:var(--ink2);line-height:1.75}
+.rule{background:rgba(231,76,60,.06);border:1px solid rgba(231,76,60,.2);border-radius:8px;
+  padding:1rem 1.4rem;margin:.8rem 0}
+.rule-title{font-size:.7rem;letter-spacing:.2em;color:var(--red);text-transform:uppercase;font-weight:700;margin-bottom:.4rem}
+.rule p{font-size:.88rem;color:#5a1010;line-height:1.7;margin:0}
+.tip{background:rgba(184,148,60,.06);border:1px solid rgba(184,148,60,.25);border-radius:8px;
+  padding:1rem 1.4rem;margin:.8rem 0}
+.tip-title{font-size:.7rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:.4rem}
+.tip p{font-size:.88rem;color:var(--ink2);line-height:1.7;margin:0}
+.safety{background:linear-gradient(135deg,rgba(142,68,173,.06),rgba(30,139,195,.06));
+  border:2px solid rgba(142,68,173,.3);border-radius:8px;padding:1.4rem 1.6rem;margin:1rem 0}
+.safety-title{font-size:.75rem;letter-spacing:.2em;color:var(--purple);text-transform:uppercase;font-weight:700;margin-bottom:.8rem}
+.safety p{font-size:.9rem;color:var(--ink2);line-height:1.8;margin-bottom:.5rem}
+.safety p:last-child{margin-bottom:0}
+.gans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1rem 0}
+.gans-card{border:1px solid var(--border);border-radius:8px;padding:1.2rem;text-align:center}
+.gans-name{font-weight:700;font-size:1.1rem;margin-bottom:.3rem}
+.gans-type{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.6rem}
+.gans-body{font-size:.8rem;color:var(--ink2);line-height:1.6}
+.gans-card.grav{border-color:rgba(30,139,195,.3);background:rgba(30,139,195,.04)}
+.gans-card.grav .gans-name{color:var(--crystal)}
+.gans-card.grav .gans-type{color:var(--crystal)}
+.gans-card.mag{border-color:rgba(184,148,60,.3);background:rgba(184,148,60,.04)}
+.gans-card.mag .gans-name{color:var(--gold)}
+.gans-card.mag .gans-type{color:var(--gold)}
+.bobine-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin:1rem 0}
+.bobine-card{border:1px solid var(--border);border-radius:8px;padding:1.2rem;background:var(--card)}
+.bobine-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.4rem}
+.bobine-spec{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:.3rem}
+.bobine-detail{font-size:.8rem;color:var(--ink2);line-height:1.6}
+.dir-horaire{background:rgba(184,148,60,.12);color:#7a5c18;border:1px solid rgba(184,148,60,.3);
+  font-size:.68rem;padding:.15rem .55rem;border-radius:1rem;font-weight:700;letter-spacing:.05em;display:inline-block;margin-top:.3rem}
+.dir-anti{background:rgba(30,139,195,.12);color:#0d4f7a;border:1px solid rgba(30,139,195,.3);
+  font-size:.68rem;padding:.15rem .55rem;border-radius:1rem;font-weight:700;letter-spacing:.05em;display:inline-block;margin-top:.3rem}
+.divider{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.timeline{list-style:none;padding:0;margin:1rem 0;position:relative}
+.timeline::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:2px;background:var(--border)}
+.timeline li{padding:.8rem 0 .8rem 3rem;position:relative}
+.timeline li::before{content:attr(data-day);position:absolute;left:0;top:.7rem;
+  width:34px;height:34px;background:var(--crystal);color:#fff;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;z-index:1}
+.timeline li strong{display:block;color:var(--ink);font-size:.9rem;margin-bottom:.2rem}
+.timeline li span{font-size:.85rem;color:var(--ink2);line-height:1.65}
+footer{background:var(--ink);color:rgba(255,255,255,.6);text-align:center;padding:2rem;font-size:.8rem;margin-top:4rem}
+footer strong{color:var(--gold)}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--crystal));
+  width:0%;z-index:200;transition:width .1s}
+@media print{.nav,.progress-bar{display:none}.hero{padding:2rem}.mod-header{padding:1rem 0}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="pb"></div>
+
+<nav class="nav">
+  <span class="nav-logo">&#x2B21; AXIS LUMEN</span>
+  <a href="#intro">Introduction</a>
+  <a href="#module1">1 &middot; Physique</a>
+  <a href="#module2">2 &middot; Nano</a>
+  <a href="#module3">3 &middot; Bobines</a>
+  <a href="#module4">4 &middot; Plasma</a>
+  <a href="#module5">5 &middot; Assemblage</a>
+  <a href="#module6">6 &middot; S&eacute;curit&eacute;</a>
+  <a href="#module7">7 &middot; Activation</a>
+  <a href="#module8">8 &middot; Biodynamiseur</a>
+</nav>
+
+<div class="hero" id="intro">
+  <div class="container">
+    <div class="hero-badge">Formation compl&egrave;te &middot; Axis Lumen 2026</div>
+    <h1>Construire un <em>Biodynamiseur</em><br>Plasmatique</h1>
+    <p class="hero-sub">Du plasma &agrave; l&rsquo;eau vivante &mdash; comprendre chaque &eacute;tape, des &eacute;quations au r&eacute;sultat concret, accessible d&egrave;s 12 ans. Protocole Marcel Violet revisit&eacute; par Axis Lumen.</p>
+    <div class="hero-tags">
+      <span class="tag">Protocole Marcel Violet</span>
+      <span class="tag">Science du plasma</span>
+      <span class="tag">Nano-rev&ecirc;tement cuivre</span>
+      <span class="tag">Cire d&rsquo;abeille &middot; Condensateurs</span>
+      <span class="tag">Biodynamiseur Plasmatique &middot; Axis Lumen</span>
+      <span class="tag">Formateur : Michael Chauvet</span>
+    </div>
+  </div>
+</div>
+
+<!-- INTRODUCTION -->
+<div class="container">
+  <div class="mod-header">
+    <div class="mod-num">Introduction</div>
+    <div class="mod-title">Avant de construire :<br><em>comprendre ce qu&rsquo;on fait</em></div>
+    <p class="mod-intro">Cette formation t&rsquo;apprendra &agrave; construire un <strong>Biodynamiseur Plasmatique</strong> &mdash; un appareil qui structure l&rsquo;eau gr&acirc;ce aux champs plasmatiques. Elle s&rsquo;appuie sur le travail du chercheur fran&ccedil;ais <strong>Marcel Violet</strong> (1886&ndash;1973) et sur les avanc&eacute;es contemporaines de la science du plasma.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F33F;</span> Marcel Violet &mdash; le pionnier</h3>
+    <p><strong>Marcel Violet</strong> &eacute;tait ing&eacute;nieur fran&ccedil;ais et apiculteur passionn&eacute;. En observant les propri&eacute;t&eacute;s exceptionnelles de la gel&eacute;e royale et du miel, il d&eacute;veloppa un principe r&eacute;volutionnaire : certains rayonnements cosmiques, convenablement capt&eacute;s et concentr&eacute;s, peuvent modifier les propri&eacute;t&eacute;s biologiques de l&rsquo;eau.</p>
+    <p>Dans les ann&eacute;es 1950&ndash;1970, il construisit des appareils utilisant des <strong>condensateurs isol&eacute;s dans la cire d&rsquo;abeille</strong> &mdash; un isolant naturel &agrave; tr&egrave;s haute r&eacute;sistance di&eacute;lectrique &mdash; pour capter ces rayonnements et les transmettre &agrave; l&rsquo;eau. Ses r&eacute;sultats sur la vitalit&eacute; des plantes et des animaux furent document&eacute;s mais longtemps ignor&eacute;s par la science officielle.</p>
+    <div class="analogy">
+      <div class="analogy-title">&#x1F9D2; Pour un enfant de 12 ans</div>
+      <p>Imagine que l&rsquo;univers est une radio qui &eacute;met des millions de fr&eacute;quences en permanence. Marcel Violet a fabriqu&eacute; une antenne sp&eacute;ciale &mdash; avec de la cire d&rsquo;abeille comme filtre &mdash; capable de capter les bonnes fr&eacute;quences et de les &laquo; enregistrer &raquo; dans l&rsquo;eau. L&rsquo;eau devient alors comme une &eacute;ponge &agrave; &eacute;nergie.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F52C;</span> La lign&eacute;e des pionniers</h3>
+    <table class="tbl">
+      <tr><th>Pionnier</th><th>Apport essentiel</th><th>Int&eacute;gr&eacute; dans notre appareil ?</th></tr>
+      <tr><td>Marcel Violet</td><td>Condensateurs cire d&rsquo;abeille, captage cosmique</td><td>&#x2705; Oui &mdash; condensateurs cire</td></tr>
+      <tr><td>Viktor Schauberger</td><td>Vortex, eau vivante, spirale implosive</td><td>&#x2705; Oui &mdash; protocole vortex</td></tr>
+      <tr><td>L.C. Vincent</td><td>Bio&eacute;lectronique de l&rsquo;eau (pH, rH2, r&eacute;sistivit&eacute;)</td><td>&#x2705; Oui &mdash; mesures Biowell</td></tr>
+      <tr><td>Nicolas Tesla</td><td>Champs magn&eacute;tiques, &eacute;nergie libre, moteur rotatif</td><td>&#x2705; Oui &mdash; principe de captage</td></tr>
+      <tr><td>Science du plasma</td><td>Nano-rev&ecirc;tement cuivre, champs plasmatiques</td><td>&#x2705; Oui &mdash; bobines nano</td></tr>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- MODULE 1 -->
+<div class="container" id="module1">
+  <div class="mod-header">
+    <div class="mod-num">Module 1</div>
+    <div class="mod-title">La Physique du Plasma &mdash;<br><em>les &eacute;quations qui expliquent tout</em></div>
+    <p class="mod-intro">Ce module explique pourquoi l&rsquo;appareil fonctionne. On n&rsquo;&eacute;lude rien &mdash; les &eacute;quations sont l&agrave;, expliqu&eacute;es simplement. Si tu comprends ce module, tu comprends la technologie en profondeur.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F33E;</span> Qu&rsquo;est-ce qu&rsquo;un champ plasmatique ?</h3>
+    <p>Les champs plasmatiques sont partout dans l&rsquo;univers, &agrave; toutes les dimensions : galaxies, syst&egrave;mes solaires, plan&egrave;tes, mais aussi cellules et atomes. <strong>Ils sont &agrave; l&rsquo;origine de tout &eacute;tat de la mati&egrave;re.</strong></p>
+    <p>Dans une mer de rayons plasmatiques, des paires de rayons tr&egrave;s proches convergent et <strong>s&rsquo;enroulent l&rsquo;un autour de l&rsquo;autre</strong>. Cet enroulement cr&eacute;e une boule d&rsquo;&eacute;nergie concentr&eacute;e &mdash; le plasma &mdash; qui g&eacute;n&egrave;re deux forces compl&eacute;mentaires :</p>
+    <div class="gans-grid" style="grid-template-columns:1fr 1fr;margin:1rem 0">
+      <div class="gans-card grav">
+        <div class="gans-name">Gravitationnel</div>
+        <div class="gans-type">Attractif &middot; Prend</div>
+        <div class="gans-body">Attire l&rsquo;&eacute;nergie vers lui. Densit&eacute; &eacute;lev&eacute;e.</div>
+      </div>
+      <div class="gans-card mag">
+        <div class="gans-name">Magn&eacute;tique</div>
+        <div class="gans-type">R&eacute;pulsif &middot; Donne</div>
+        <div class="gans-body">Rayonne l&rsquo;&eacute;nergie vers l&rsquo;ext&eacute;rieur. L&eacute;ger, expansif.</div>
+      </div>
+    </div>
+    <p>Notre Biodynamiseur Plasmatique cr&eacute;e ces deux types de champs simultan&eacute;ment, et leur interaction g&eacute;n&egrave;re un <strong>flux plasmatique continu</strong> que l&rsquo;eau absorbe naturellement.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x2697;&#xFE0F;</span> L&rsquo;&eacute;quation cl&eacute; : le rapport &omega; (surface/volume)</h3>
+    <p>C&rsquo;est l&rsquo;&eacute;quation la plus importante de toute la technologie. Elle explique pourquoi les particules nano-solides ont autant d&rsquo;&eacute;nergie.</p>
+    <div class="eq-box">
+      <div class="eq-title">Rapport surface / volume &mdash; &omega; (omega)</div>
+      <div class="eq">&omega; = S / V</div>
+      <div class="eq-explain">
+        Pour une sph&egrave;re de rayon r :<br>
+        &mdash; Surface : <strong>S = 4&pi;r&sup2;</strong><br>
+        &mdash; Volume : <strong>V = (4/3)&pi;r&sup3;</strong><br><br>
+        Donc : <strong>&omega; = 4&pi;r&sup2; &divide; (4/3)&pi;r&sup3; = 3/r</strong><br><br>
+        Ce qui veut dire : <strong>plus r est petit &rarr; plus &omega; est grand &rarr; plus il y a d&rsquo;&eacute;nergie concentr&eacute;e.</strong><br><br>
+        Les particules nano-revêtues sont des millions de fois plus petites qu&rsquo;un atome de cuivre ordinaire &rarr; leur &eacute;nergie est des millions de fois plus concentr&eacute;e.
+      </div>
+    </div>
+    <div class="analogy">
+      <div class="analogy-title">&#x1F9D2; Exemple avec des ballons</div>
+      <p>Prends un gros ballon de foot et un tout petit ballon de ping-pong. Le petit ballon a une peau (surface) &eacute;norme par rapport &agrave; son volume interne &mdash; il est sous plus de tension. Dans le monde des atomes, les particules nanom&eacute;triques (ultra-petites) sont sous une tension &eacute;nerg&eacute;tique consid&eacute;rable : c&rsquo;est leur &laquo; pression interne &raquo; qui leur donne du pouvoir.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F4D0;</span> Les masses atomiques &mdash; la cl&eacute; du plasma CO&sup2;</h3>
+    <div class="eq-box">
+      <div class="eq-title">L&rsquo;&eacute;quation fondamentale du plasma CO&sup2;</div>
+      <div class="eq">Zn(65) &minus; Cu_nano(59) = 6 = masse atomique du Carbone (C)</div>
+      <div class="eq-explain">
+        Zinc (masse 65) + Cuivre nano-rev&ecirc;tu (masse 59) en vis-&agrave;-vis dans eau sal&eacute;e.<br>
+        La diff&eacute;rence de champ entre eux = exactement la masse du Carbone (6).<br>
+        Ce champ <strong>attire le carbone de l&rsquo;atmosph&egrave;re</strong>.<br>
+        Carbone + Oxyg&egrave;ne dissous dans l&rsquo;eau = <strong>pr&eacute;cipit&eacute; nano-solide de CO&sup2;</strong>.<br><br>
+        C&rsquo;est ce plasma concentr&eacute; qui alimente les tuyaux du Biodynamiseur.
+      </div>
+    </div>
+    <table class="tbl">
+      <tr><th>&Eacute;l&eacute;ment</th><th>Masse atomique</th><th>R&ocirc;le dans l&rsquo;appareil</th></tr>
+      <tr><td>Hydrog&egrave;ne (H)</td><td>1</td><td>Plus l&eacute;ger &mdash; champ magn&eacute;tique (donne)</td></tr>
+      <tr><td>Carbone (C)</td><td>12</td><td>Forme le nano-rev&ecirc;tement des bobines</td></tr>
+      <tr><td>Azote (N)</td><td>14</td><td>Composant COHN &mdash; lien corps humain</td></tr>
+      <tr><td>Oxyg&egrave;ne (O)</td><td>16</td><td>Composant COHN &mdash; lien corps humain</td></tr>
+      <tr><td>Cuivre pur (Cu)</td><td>64</td><td>Base des bobines avant traitement</td></tr>
+      <tr><td>Cuivre nano-rev&ecirc;tu</td><td>59</td><td>Bobines apr&egrave;s nano-rev&ecirc;tement</td></tr>
+      <tr><td>Zinc (Zn)</td><td>65</td><td>Plaque vis-&agrave;-vis dans les setups plasma</td></tr>
+    </table>
+    <div class="tip">
+      <div class="tip-title">&#x2726; Le lien avec le corps humain</div>
+      <p>C + O + H + N repr&eacute;sentent <strong>96,2% de la constitution du corps humain</strong>. Les plasmas cr&eacute;&eacute;s &agrave; partir de ces &eacute;l&eacute;ments sont en r&eacute;sonance naturelle avec notre biologie &mdash; c&rsquo;est pourquoi l&rsquo;eau structur&eacute;e par le Biodynamiseur Plasmatique est si bien assimil&eacute;e.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F522;</span> Les ordres de grandeur &mdash; comprendre les sauts d&rsquo;&eacute;nergie</h3>
+    <div class="eq-box">
+      <div class="eq-title">R&egrave;gle des ordres de grandeur</div>
+      <div class="eq">1 ordre de grandeur = &times; 10 en &eacute;nergie</div>
+      <div class="eq-explain">
+        &Eacute;tat mati&egrave;re (cuivre brut) = E&#x2080;<br>
+        &Eacute;tat nano (cuivre rev&ecirc;tu) = E&#x2080; &times; 10<br>
+        &Eacute;tat plasma (champs) = E&#x2080; &times; 100<br><br>
+        <strong>Chaque passage d&rsquo;un &eacute;tat &agrave; l&rsquo;autre multiplie l&rsquo;&eacute;nergie par au moins 10.</strong><br>
+        Le nano-rev&ecirc;tement transforme du cuivre ordinaire en antenne plasmatique.
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- MODULE 2 -->
+<div class="container" id="module2">
+  <div class="mod-header">
+    <div class="mod-num">Module 2</div>
+    <div class="mod-title">Le Nano-Rev&ecirc;tement &mdash;<br><em>fabriquer l&rsquo;autoroute des &eacute;lectrons</em></div>
+    <p class="mod-intro">Avant de construire quoi que ce soit, il faut pr&eacute;parer le cuivre. Cette op&eacute;ration d&eacute;pose des couches monoatomiques de carbone sur les bobines &mdash; entre 30&thinsp;000 et 60&thinsp;000 couches superpos&eacute;es. R&eacute;sultat : un cuivre quasi-supraconducteur qui g&eacute;n&egrave;re ses propres champs plasmatiques.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x26A0;&#xFE0F;</span> S&eacute;curit&eacute; absolue &mdash; PROTECTIONS OBLIGATOIRES</h3>
+    <div class="rule">
+      <div class="rule-title">&#x26A0;&#xFE0F; R&Egrave;GLE DE S&Eacute;CURIT&Eacute; &mdash; SANS EXCEPTION</div>
+      <p>La soude caustique (hydroxyde de sodium) est corrosive. Une goutte sur la peau ou dans les yeux provoque des br&ucirc;lures graves. Les &eacute;quipements suivants sont <strong>obligatoires sans exception</strong> :<br><br>
+      &#x2713; Gants &eacute;pais de chimiste<br>
+      &#x2713; Lunettes de protection enveloppantes<br>
+      &#x2713; Masque respiratoire<br>
+      &#x2713; Tablier ou blouse de protection<br>
+      &#x2713; Zone ventil&eacute;e uniquement</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F52C;</span> Qu&rsquo;est-ce que le nano-rev&ecirc;tement ?</h3>
+    <p>Lors du traitement &agrave; la soude, la surface du cuivre est transform&eacute;e : les atomes de carbone se d&eacute;posent en couches mono-atomiques, chacune orient&eacute;e dans le m&ecirc;me sens apr&egrave;s polarisation. Ces cristaux de carbone forment un <strong>treillis semi-conducteur</strong> aux propri&eacute;t&eacute;s exceptionnelles.</p>
+    <table class="tbl">
+      <tr><th>M&eacute;thode</th><th>Couches carbone</th><th>Qualit&eacute;</th><th>&Agrave; utiliser ?</th></tr>
+      <tr><td>Flamme (chalumeau)</td><td>~35&thinsp;000</td><td>Fragile, al&eacute;atoire</td><td>&#x274C; D&eacute;conseill&eacute;</td></tr>
+      <tr><td>Soude froide</td><td>~60&thinsp;000</td><td>Solide, homog&egrave;ne</td><td>&#x2705; Recommand&eacute;</td></tr>
+      <tr><td>Soude chaude</td><td>&gt; 60&thinsp;000</td><td>Optimal</td><td>&#x2705; Recommand&eacute;</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F9CA;</span> Protocole soude froide &mdash; &eacute;tape par &eacute;tape</h3>
+    <ol class="steps">
+      <li><span><strong>Pr&eacute;parer le bac :</strong> 1 cm de granul&eacute;s de soude pure au fond d&rsquo;un bac plastique. Grillage &laquo; poulailler &raquo; au-dessus &mdash; les pi&egrave;ces reposent dessus sans toucher la soude pure.</span></li>
+      <li><span><strong>Mise en eau :</strong> Verser eau &agrave; temp&eacute;rature ambiante jusqu&rsquo;&agrave; immersion compl&egrave;te. La soude se dissout, l&rsquo;eau chauffe (r&eacute;action exothermique), puis se stabilise.</span></li>
+      <li><span><strong>Trempage 1 :</strong> Immerger les pi&egrave;ces sans qu&rsquo;elles se touchent. Fermer. Dur&eacute;e minimum : <strong>48 &agrave; 72 heures.</strong></span></li>
+      <li><span><strong>Trempage 2 (bac sec) :</strong> Transvaser les pi&egrave;ces (sans les &eacute;goutter) dans un second bac sec. Chaleur ou soleil. Plusieurs jours suppl&eacute;mentaires.</span></li>
+      <li><span><strong>Polarisation :</strong> Multim&egrave;tre sur 200&thinsp;mV continu. Borne noire = fil gravitationnel, borne rouge = fil magn&eacute;tique. Tenir 10 secondes jusqu&rsquo;&agrave; stabilisation. <strong>R&eacute;p&eacute;ter toutes les 6 heures pendant 3 jours.</strong></span></li>
+      <li><span><strong>Rin&ccedil;age critique :</strong> <strong>10 &agrave; 12 rin&ccedil;ages</strong> &agrave; l&rsquo;eau distill&eacute;e. La soude r&eacute;siduelle + eau sal&eacute;e = d&eacute;struction du plasma. Ne jamais sauter cette &eacute;tape.</span></li>
+    </ol>
+    <div class="eq-box">
+      <div class="eq-title">Pourquoi 200 mV alignent les cristaux</div>
+      <div class="eq">200 mV pendant 10s &rarr; orientation unidirectionnelle des cristaux de carbone</div>
+      <div class="eq-explain">Sans polarisation, les cristaux sont d&eacute;pos&eacute;s dans tous les sens &mdash; les champs se neutralisent. Le courant de 200 mV crée un axe pr&eacute;f&eacute;rentiel et aligne tous les cristaux dans le m&ecirc;me sens. Les champs s&rsquo;additionnent. R&eacute;sultat : l&rsquo;&eacute;nergie circule sans r&eacute;sistance &mdash; la supraconductivit&eacute; &agrave; temp&eacute;rature ambiante.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F4A7;</span> L&rsquo;eau &mdash; le r&eacute;cepteur ultime</h3>
+    <table class="tbl">
+      <tr><th>Type d&rsquo;eau</th><th>Utilisable ?</th><th>Raison</th></tr>
+      <tr><td>Eau du robinet</td><td>&#x274C; Non</td><td>Calcaire, nitrates, fluorures &mdash; parasitent le plasma</td></tr>
+      <tr><td>Eau de pluie</td><td>&#x274C; Non</td><td>Acide, sulfates, polluants atmosph&eacute;riques</td></tr>
+      <tr><td>Eau osmos&eacute;e</td><td>&#x26A0;&#xFE0F; Nano seulement</td><td>Si filtre parfaitement entretenu</td></tr>
+      <tr><td><strong>Eau distill&eacute;e de laboratoire</strong></td><td>&#x2705; Seule autoris&eacute;e pour plasma</td><td>Mol&eacute;cules H&sup2;O pures &mdash; ardoise vierge id&eacute;ale</td></tr>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- MODULE 3 -->
+<div class="container" id="module3">
+  <div class="mod-header">
+    <div class="mod-num">Module 3</div>
+    <div class="mod-title">Fabriquer les 15 Bobines &mdash;<br><em>le c&oelig;ur du Biodynamiseur</em></div>
+    <p class="mod-intro">Les 15 bobines sont l&rsquo;ossature plasmatique de l&rsquo;appareil. Deux r&egrave;gles absolues gouvernent ce module : les <strong>bobines externes tournent en sens HORAIRE</strong>, les <strong>bobines internes en sens ANTIHORAIRE</strong>. Les nombres de spires (144 et 72) sont sp&eacute;cifiques au protocole Axis Lumen.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F522;</span> Pourquoi 144 et 72 ? &mdash; la signification des nombres</h3>
+    <div class="eq-box">
+      <div class="eq-title">Les nombres du protocole Axis Lumen</div>
+      <div class="eq">144 = F&#x2081;&#x2082; (12&egrave; nombre de Fibonacci) &nbsp;&middot;&nbsp; 72 = 144 &divide; 2 &nbsp;&middot;&nbsp; 27 = 3&sup3;</div>
+      <div class="eq-explain">
+        <strong>144</strong> est un nombre de Fibonacci (suite : 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, <u>144</u>&hellip;). Cette suite reproduit la croissance en spirale du vivant (coquillages, galaxies, plantes). Bobiner 144 spires crée une géométrie en résonance avec le nombre d&rsquo;or &phi; = 1,618.<br><br>
+        <strong>72</strong> = 144/2 : relation harmonique parfaite &mdash; chaque bobine interne est &agrave; l&rsquo;octave de son externe.<br><br>
+        <strong>27</strong> = 3&sup3; : r&eacute;sonance cubique pour les condensateurs.
+      </div>
+    </div>
+    <div class="analogy">
+      <div class="analogy-title">&#x1F9D2; Image pour 12 ans</div>
+      <p>144 est dans la nature partout : les graines d&rsquo;un tournesol, les &eacute;cailles d&rsquo;une pomme de pin, les branches d&rsquo;un arbre. Utiliser ce nombre pour nos bobines, c&rsquo;est accorder notre appareil sur la m&ecirc;me note que la nature &mdash; et tout r&eacute;sonne mieux.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x2195;&#xFE0F;</span> Les deux sens de bobinage &mdash; pourquoi c&rsquo;est crucial</h3>
+    <p>Les bobines <strong>externes</strong> et <strong>internes</strong> tournent en sens <strong>oppos&eacute;s</strong>. Ce n&rsquo;est pas un hasard :</p>
+    <div class="eq-box">
+      <div class="eq-title">Principe de la contre-rotation</div>
+      <div class="eq">Externe HORAIRE &#x21BB; &times; Interne ANTIHORAIRE &#x21BA; = Torsion toro&iuml;dale</div>
+      <div class="eq-explain">
+        Quand deux bobines tournent en sens oppos&eacute;s l&rsquo;une dans l&rsquo;autre, leurs champs cr&eacute;ent une structure toro&iuml;dale (en forme de beignet) &mdash; la g&eacute;om&eacute;trie naturelle du plasma, des atomes et des galaxies.<br><br>
+        Ce toro&iuml;de <strong>concentre l&rsquo;&eacute;nergie en son centre</strong> et g&eacute;n&egrave;re un flux circulant entre les bobines &mdash; c&rsquo;est ce flux que l&rsquo;eau absorbe naturellement.
+      </div>
+    </div>
+    <div class="analogy">
+      <div class="analogy-title">&#x1F9D2; Image pour 12 ans</div>
+      <p>Mets tes deux mains face &agrave; face et fais tourner les doigts de la main droite vers toi, et ceux de la main gauche loin de toi. L&rsquo;air entre tes mains tourne en spirale &mdash; c&rsquo;est le toro&iuml;de. C&rsquo;est exactement ce que font les deux bobines en sens oppos&eacute;s : elles cr&eacute;ent un tourbillon d&rsquo;&eacute;nergie au milieu.</p>
+    </div>
+    <table class="tbl">
+      <tr><th>Bobine</th><th>Position</th><th>Sens</th><th>Champ g&eacute;n&eacute;r&eacute;</th></tr>
+      <tr><td>A (144 sp. &Oslash;12)</td><td>Externe visible</td><td style="color:var(--gold);font-weight:700">&#x21BB; HORAIRE</td><td>Gravitationnel (attire)</td></tr>
+      <tr><td>B (72 sp. &Oslash;12)</td><td>Externe visible</td><td style="color:var(--gold);font-weight:700">&#x21BB; HORAIRE</td><td>Gravitationnel (attire)</td></tr>
+      <tr><td>C (144 sp. &Oslash;8)</td><td>Interne cach&eacute;e</td><td style="color:var(--crystal);font-weight:700">&#x21BA; ANTIHORAIRE</td><td>Magn&eacute;tique (rayonne)</td></tr>
+      <tr><td>D (72 sp. &Oslash;8)</td><td>Interne cach&eacute;e</td><td style="color:var(--crystal);font-weight:700">&#x21BA; ANTIHORAIRE</td><td>Magn&eacute;tique (rayonne)</td></tr>
+      <tr><td>Condensateur (27 sp. &Oslash;12)</td><td>Centrale</td><td style="color:var(--gold);font-weight:700">&#x21BB; HORAIRE</td><td>Accumulation cyclique</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F4CA;</span> Les 5 types de bobines &mdash; sp&eacute;cifications compl&egrave;tes</h3>
+    <div class="bobine-grid">
+      <div class="bobine-card">
+        <div class="bobine-label">Bobine A &middot; &times;3 &middot; EXTERNE</div>
+        <div class="bobine-spec">144 spires &middot; &Oslash; 12 mm</div>
+        <div class="bobine-detail">Gravitationnelles &mdash; couronne visible ext&eacute;rieure<br>
+        <span class="dir-horaire">&#x21BB; Sens HORAIRE</span></div>
+      </div>
+      <div class="bobine-card">
+        <div class="bobine-label">Bobine B &middot; &times;3 &middot; EXTERNE</div>
+        <div class="bobine-spec">72 spires &middot; &Oslash; 12 mm</div>
+        <div class="bobine-detail">Gravitationnelles &mdash; couronne visible int&eacute;rieure<br>
+        <span class="dir-horaire">&#x21BB; Sens HORAIRE</span></div>
+      </div>
+      <div class="bobine-card">
+        <div class="bobine-label">Bobine C &middot; &times;3 &middot; INTERNE</div>
+        <div class="bobine-spec">144 spires &middot; &Oslash; 8 mm</div>
+        <div class="bobine-detail">Magn&eacute;tiques &mdash; invisibles, introduites dans A<br>
+        <span class="dir-anti">&#x21BA; Sens ANTIHORAIRE</span></div>
+      </div>
+      <div class="bobine-card">
+        <div class="bobine-label">Bobine D &middot; &times;3 &middot; INTERNE</div>
+        <div class="bobine-spec">72 spires &middot; &Oslash; 8 mm</div>
+        <div class="bobine-detail">Magn&eacute;tiques &mdash; invisibles, introduites dans B<br>
+        <span class="dir-anti">&#x21BA; Sens ANTIHORAIRE</span></div>
+      </div>
+      <div class="bobine-card">
+        <div class="bobine-label">Condensateurs &middot; &times;3</div>
+        <div class="bobine-spec">27 spires &middot; &Oslash; 12 mm</div>
+        <div class="bobine-detail">Accumulatrices &mdash; isol&eacute;es en cire d&rsquo;abeille<br>
+        <span class="dir-horaire">&#x21BB; Sens HORAIRE</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F527;</span> Mat&eacute;riel et technique de bobinage</h3>
+    <table class="tbl">
+      <tr><th>Outil</th><th>Usage</th></tr>
+      <tr><td>Fil &eacute;lectrique 2,5 mm&sup2; (qualit&eacute; fran&ccedil;aise)</td><td>Corps des bobines</td></tr>
+      <tr><td>Visseuse-d&eacute;visseuse (mandrin 13 mm)</td><td>Enroulement m&eacute;canis&eacute;</td></tr>
+      <tr><td>Tuyau cuivre &Oslash; 12 mm ext.</td><td>Gabarit bobines externes (A, B, condensateur)</td></tr>
+      <tr><td>Tuyau cuivre &Oslash; 8 mm ext.</td><td>Gabarit bobines internes (C, D)</td></tr>
+      <tr><td>B&acirc;ti bois perc&eacute; mobile</td><td>Support de bobinage &mdash; doit se d&eacute;placer librement</td></tr>
+      <tr><td>Gants de protection</td><td>Obligatoires en permanence d&egrave;s le d&eacute;ballage</td></tr>
+    </table>
+    <div class="rule">
+      <div class="rule-title">&#x26A0;&#xFE0F; R&Egrave;GLE ABSOLUE &mdash; GANTS EN PERMANENCE</div>
+      <p>Toute trace de sueur ou de salissure sur le cuivre neuf rend la pi&egrave;ce d&eacute;finitivement inutilisable. Le cuivre contamin&eacute; ne peut pas &ecirc;tre nano-rev&ecirc;tu correctement. PORT DE GANTS SANS EXCEPTION.</p>
+    </div>
+    <ol class="steps">
+      <li><span><strong>D&eacute;nuder le fil :</strong> Pour 144 spires, pr&eacute;parer 8&ndash;10 m. Laisser 20&ndash;30 cm de queue &agrave; chaque extr&eacute;mit&eacute;.</span></li>
+      <li><span><strong>Fixer le sens AVANT de commencer :</strong> Bobines A/B/Condensateurs &rarr; d&eacute;marrer vers la DROITE (horaire &#x21BB;). Bobines C/D &rarr; d&eacute;marrer vers la GAUCHE (antihoraire &#x21BA;). Ne jamais changer de sens.</span></li>
+      <li><span><strong>Bobiner :</strong> Visseuse &agrave; vitesse lente, b&acirc;ti libre de se d&eacute;placer. Pour les bobines internes, inverser la direction de la visseuse.</span></li>
+      <li><span><strong>Correction ressort :</strong> Ajouter 2 tours de surplus (compter 146 pour avoir 144, 74 pour avoir 72). La bobine se d&eacute;tend l&eacute;g&egrave;rement &agrave; la r&eacute;cup&eacute;ration.</span></li>
+    </ol>
+    <div class="tip">
+      <div class="tip-title">&#x2726; V&eacute;rification du sens apr&egrave;s bobinage</div>
+      <p>Regardez la bobine de face. Le fil part-il vers la droite ? &rarr; HORAIRE &#x2713; (A, B, condensateur). Vers la gauche ? &rarr; ANTIHORAIRE &#x2713; (C, D). Si vous vous trompez, la bobine est &agrave; refaire &mdash; deux bobines de m&ecirc;me sens dans une paire ne cr&eacute;ent pas de toro&iuml;de.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F517;</span> Assemblage des couronnes</h3>
+    <ol class="steps">
+      <li><span>Introduire la bobine interne &Oslash; 8 mm (antihoraire) dans l&rsquo;externe &Oslash; 12 mm (horaire) correspondante.</span></li>
+      <li><span>&Agrave; une extr&eacute;mit&eacute; : <strong>torsader les fils ensemble (5 &agrave; 6 tours)</strong>. Couper le surplus &agrave; 1,5 cm.</span></li>
+      <li><span>Rabattre en double boucle (forme c&oelig;ur). Connexion crois&eacute;e : longue externe &harr; courte interne.</span></li>
+      <li><span>Laisser <strong>1,5 cm minimum d&rsquo;espace</strong> entre les deux couronnes &agrave; l&rsquo;assemblage.</span></li>
+    </ol>
+    <div class="rule">
+      <div class="rule-title">&#x26A0;&#xFE0F; Connexions : cuivre/cuivre uniquement &mdash; aucune soudure</div>
+      <p>La soudure (y compris l&rsquo;&eacute;tain ou le plomb) introduit des m&eacute;taux parasites qui perturbent les champs plasmatiques. Toutes les connexions sont des torsades cuivre/cuivre pur.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- MODULE 4 -->
+<div class="container" id="module4">
+  <div class="mod-header">
+    <div class="mod-num">Module 4</div>
+    <div class="mod-title">Les Plasmas et les Condensateurs &mdash;<br><em>le carburant et le c&oelig;ur battant</em></div>
+    <p class="mod-intro">Les plasmas en &eacute;tat nano-solide constituent le &laquo; carburant &raquo; de l&rsquo;appareil. Les condensateurs isol&eacute;s dans la cire d&rsquo;abeille, selon le protocole Marcel Violet, sont le &laquo; c&oelig;ur battant &raquo; &mdash; ils accumulent et lib&egrave;rent l&rsquo;&eacute;nergie de fa&ccedil;on cyclique.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F321;&#xFE0F;</span> Les 4 plasmas fondamentaux</h3>
+    <p>GaNS = Gaz &agrave; l&rsquo;&eacute;tat Nano Solide. C&rsquo;est le <strong>4&egrave; &eacute;tat de la mati&egrave;re</strong> (apr&egrave;s solide, liquide, gazeux). Chaque particule de GaNS est une boule d&rsquo;&eacute;nergie auto-entretenue.</p>
+    <div class="gans-grid">
+      <div class="gans-card grav">
+        <div class="gans-name">CO&sup2;</div>
+        <div class="gans-type">Gravitationnel</div>
+        <div class="gans-body"><strong>Syst&egrave;me nerveux</strong><br>&Eacute;quilibre nerveux. Cu nano + Zn dans eau sal&eacute;e.</div>
+      </div>
+      <div class="gans-card grav">
+        <div class="gans-name">ZnO</div>
+        <div class="gans-type">Gravitationnel</div>
+        <div class="gans-body"><strong>&Eacute;motions</strong><br>&Eacute;quilibre &eacute;motionnel. Zn seul.</div>
+      </div>
+      <div class="gans-card mag">
+        <div class="gans-name">CuO</div>
+        <div class="gans-type">Magn&eacute;tique</div>
+        <div class="gans-body"><strong>Lymphe, muscles</strong><br>Nettoyage, renforcement. Cu nano seul.</div>
+      </div>
+      <div class="gans-card mag">
+        <div class="gans-name">CH&sup3;</div>
+        <div class="gans-type">Magn&eacute;tique</div>
+        <div class="gans-body"><strong>Sang, &eacute;nergie</strong><br>Renforcement &eacute;nerg&eacute;tique global.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F41D;</span> Les condensateurs en cire d&rsquo;abeille &mdash; protocole Marcel Violet</h3>
+    <p>C&rsquo;est l&rsquo;&eacute;l&eacute;ment signature du Biodynamiseur Plasmatique Axis Lumen. Les 3 condensateurs (27 spires chacun) sont enti&egrave;rement <strong>enrob&eacute;s dans de la cire d&rsquo;abeille pure</strong>.</p>
+    <div class="eq-box">
+      <div class="eq-title">Pourquoi la cire d&rsquo;abeille ?</div>
+      <div class="eq">Cire d&rsquo;abeille pure : r&eacute;sistance di&eacute;lectrique = OL (infinie &agrave; mesure)</div>
+      <div class="eq-explain">
+        Marcel Violet avait d&eacute;couvert que la cire d&rsquo;abeille pr&eacute;sente une r&eacute;sistance di&eacute;lectrique remarquable &mdash; mesur&eacute;e aux bornes d&rsquo;un condensateur enrob&eacute;, l&rsquo;ohm&egrave;tre indique r&eacute;sistance <strong>infinie</strong>.<br><br>
+        Mais surtout, la cire d&rsquo;abeille est un produit du vivant avec une structure cristalline hexagonale &mdash; le m&ecirc;me nombre 6 que dans la mol&eacute;cule CO&sup2;, que dans les alv&eacute;oles de la ruche. Elle agit comme un <strong>amplificateur et filtre cosmique naturel</strong>. Les fr&eacute;quences de vie des colonies d&rsquo;abeilles sont m&eacute;moris&eacute;es dans la cire.
+      </div>
+    </div>
+    <div class="analogy">
+      <div class="analogy-title">&#x1F9D2; Image pour 12 ans</div>
+      <p>La cire d&rsquo;abeille est comme un bocal magique. La bobine &agrave; l&rsquo;int&eacute;rieur est isol&eacute;e des parasites &eacute;lectriques &mdash; mais les rayonnements cosmiques traversent la cire comme la lumi&egrave;re traverse le verre. C&rsquo;est un sous-marin avec des hublots : les &eacute;l&eacute;ments perturbateurs restent dehors, l&rsquo;&eacute;nergie cosmique entre.</p>
+    </div>
+    <ol class="steps">
+      <li><span><strong>Faire fondre la cire d&rsquo;abeille pure</strong> au bain-marie &agrave; 65&deg;C. Jamais de feu direct (inflammable).</span></li>
+      <li><span><strong>V&eacute;rifier avant enrobage :</strong> Mesurer la r&eacute;sistance aux bornes &mdash; doit afficher OL (infini). Si une r&eacute;sistance mesurable appara&icirc;t, la bobine est d&eacute;fectueuse.</span></li>
+      <li><span><strong>Immerger lentement</strong> dans la cire liquide. Tourner pour &eacute;liminer toutes les bulles d&rsquo;air &mdash; les bulles cr&eacute;ent des cavit&eacute;s qui perturbent le champ.</span></li>
+      <li><span><strong>Laisser refroidir</strong> &agrave; l&rsquo;air libre, &agrave; plat. Pas &agrave; l&rsquo;eau &mdash; choc thermique = fissures.</span></li>
+      <li><span><strong>V&eacute;rifier apr&egrave;s refroidissement :</strong> R&eacute;sistance toujours infinie (OL). Si une r&eacute;sistance apparaît, l&rsquo;enrobage a une fissure &mdash; refaire.</span></li>
+      <li><span><strong>Lier les 3 condensateurs</strong> (collier nylon) : fils gravitationnels d&rsquo;un c&ocirc;t&eacute;, fils magn&eacute;tiques de l&rsquo;autre.</span></li>
+    </ol>
+    <div class="tip">
+      <div class="tip-title">&#x2726; Qualit&eacute; de la cire</div>
+      <p>Utiliser uniquement de la cire d&rsquo;abeille pure, de ruche artisanale ou apiculteur de confiance. La cire industrielle blanchie a perdu ses propri&eacute;t&eacute;s di&eacute;lectriques et &eacute;nerg&eacute;tiques. La couleur doit &ecirc;tre jaune/ambr&eacute;e naturelle.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F9EA;</span> Les tuyaux plasmatiques du Biodynamiseur</h3>
+    <table class="tbl">
+      <tr><th>Position</th><th>Tuyau</th><th>Plasma contenu</th></tr>
+      <tr><td>Bobine externe (magn&eacute;tique)</td><td>6 mm &times; 335 mm &times; 3</td><td>CH&sup3;</td></tr>
+      <tr><td>Bobine interne</td><td>6 mm &times; 195 mm &times; 3</td><td>CuO</td></tr>
+      <tr><td>Entre couronnes (&eacute;tages 1&amp;2)</td><td>10 mm &times; 80/90 mm</td><td>CO&sup2;</td></tr>
+      <tr><td>Entre couronnes (&eacute;tage 3)</td><td>10 mm &times; 260 mm</td><td>CO&sup2;</td></tr>
+      <tr><td>R&eacute;servoir central</td><td>cylindre 12 ml</td><td>50% CO&sup2; + 25% CH&sup3; + 25% CuO</td></tr>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- MODULE 5 -->
+<div class="container" id="module5">
+  <div class="mod-header">
+    <div class="mod-num">Module 5</div>
+    <div class="mod-title">Assemblage du Biodynamiseur &mdash;<br><em>naissance de l&rsquo;unit&eacute;</em></div>
+    <p class="mod-intro">L&rsquo;assemblage suit un ordre pr&eacute;cis en 9 op&eacute;rations. Prendre son temps, v&eacute;rifier chaque &eacute;tape.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F528;</span> Vue d&rsquo;ensemble &mdash; les 9 op&eacute;rations</h3>
+    <ol class="steps">
+      <li><span><strong>D&eacute;nuder les fils</strong> &mdash; gants obligatoires, pr&eacute;parer les queues (20&ndash;30 cm).</span></li>
+      <li><span><strong>Bobiner les 15 bobines</strong> &mdash; externes en HORAIRE, internes en ANTIHORAIRE, condensateurs en HORAIRE. Spires exactes (+ correction ressort).</span></li>
+      <li><span><strong>Nano-rev&ecirc;tement</strong> &mdash; soude froide/chaude, polarisation 200 mV toutes les 6h pendant 3j, rin&ccedil;age &times;12.</span></li>
+      <li><span><strong>Assembler les couronnes</strong> &mdash; embo&icirc;ter interne/externe, torsader les connexions crois&eacute;es.</span></li>
+      <li><span><strong>Pr&eacute;parer les tuyaux plasma</strong> &mdash; remplir &agrave; la seringue, boucher &agrave; la colle aux deux extr&eacute;mit&eacute;s.</span></li>
+      <li><span><strong>Enrober les condensateurs en cire d&rsquo;abeille</strong> &mdash; bain-marie, sans bulles, v&eacute;rification r&eacute;sistance infinie avant et apr&egrave;s.</span></li>
+      <li><span><strong>Int&eacute;grer les 3 &eacute;tages</strong> &mdash; tige fileta&eacute;e + &eacute;crous nylon + socle bois + plateaux ajour&eacute;s.</span></li>
+      <li><span><strong>Connexions des &eacute;tages</strong> &mdash; marquer gravitationnel (scotch bleu) et magn&eacute;tique (scotch rouge). Torsades cuivre/cuivre.</span></li>
+      <li><span><strong>C&acirc;blage &eacute;lectrique</strong> &mdash; interrupteur + connexions phase (voir Module 6).</span></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F3DB;&#xFE0F;</span> Pourquoi cette architecture ?</h3>
+    <table class="tbl">
+      <tr><th>&Eacute;l&eacute;ment</th><th>Raison de conception</th></tr>
+      <tr><td>Bobines en spirale (toro&iuml;de)</td><td>Maximum de surface de captage dans un volume minimum &mdash; &omega; maximal</td></tr>
+      <tr><td>Sens oppos&eacute;s (horaire/antihoraire)</td><td>Cr&eacute;e la torsion toro&iuml;dale &mdash; g&eacute;om&eacute;trie naturelle du plasma</td></tr>
+      <tr><td>Plateaux ajour&eacute;s</td><td>Libre circulation des flux entre les 3 &eacute;tages</td></tr>
+      <tr><td>Condensateurs en cire d&rsquo;abeille</td><td>Protocole Marcel Violet &mdash; captage cosmique, r&eacute;sistance infinie</td></tr>
+      <tr><td>Pas de m&eacute;tal hors cuivre</td><td>Tout autre m&eacute;tal perturbe les champs &mdash; colliers nylon, &eacute;crous nylon</td></tr>
+      <tr><td>3 &eacute;tages</td><td>Tridimensionnalit&eacute; du champ &mdash; stable, auto-entretenu</td></tr>
+    </table>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- MODULE 6 -->
+<div class="container" id="module6">
+  <div class="mod-header">
+    <div class="mod-num">Module 6</div>
+    <div class="mod-title">S&eacute;curit&eacute; de l&rsquo;Utilisateur &mdash;<br><em>les deux protections indispensables</em></div>
+    <p class="mod-intro">Le Biodynamiseur Plasmatique Axis Lumen int&egrave;gre deux dispositifs de s&eacute;curit&eacute; sp&eacute;cifiques qui prot&egrave;gent l&rsquo;utilisateur lors de la mise en route et durant l&rsquo;utilisation quotidienne.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F534;</span> S&eacute;curit&eacute; 1 &mdash; L&rsquo;interrupteur de mise en route</h3>
+    <div class="safety">
+      <div class="safety-title">&#x1F6E1;&#xFE0F; Protection &eacute;lectrique &mdash; Activation consciente</div>
+      <p><strong>Un interrupteur est install&eacute; sur la phase du circuit</strong>, entre la prise secteur et l&rsquo;entr&eacute;e du Biodynamiseur. Il permet :</p>
+      <p>&#x2713; Une <strong>coupure totale du courant</strong> avant toute manipulation de l&rsquo;appareil, des tuyaux plasma, ou des connexions<br>
+      &#x2713; Une <strong>activation consciente et intentionnelle</strong> du champ &mdash; dans la logique plasma, le moment d&rsquo;intention lors de la mise en route est fondateur pour la qualit&eacute; du champ &eacute;mis<br>
+      &#x2713; Une <strong>mise hors tension rapide</strong> en cas d&rsquo;urgence ou d&rsquo;anomalie</p>
+    </div>
+    <ol class="steps">
+      <li><span><strong>Choisir l&rsquo;interrupteur :</strong> Va-et-vient standard (250 V / 10 A minimum). Format bo&icirc;tier DIN pour la robustesse.</span></li>
+      <li><span><strong>Positionner :</strong> Sur le fil de phase (rep&eacute;r&eacute; au voltm&egrave;tre), &agrave; port&eacute;e de main depuis le lieu d&rsquo;utilisation.</span></li>
+      <li><span><strong>C&acirc;blage :</strong> Phase entr&eacute;e &rarr; interrupteur &rarr; Phase entr&eacute;e Biodynamiseur. Neutre et Terre passent sans interruption.</span></li>
+      <li><span><strong>&Eacute;tiqueter :</strong> Marquer clairement ON/OFF sur l&rsquo;interrupteur.</span></li>
+    </ol>
+    <div class="rule">
+      <div class="rule-title">&#x26A0;&#xFE0F; R&egrave;gle absolue &mdash; Interrupteur OUVERT avant manipulation</div>
+      <p>L&rsquo;interrupteur doit &ecirc;tre en position OUVERTE (courant coup&eacute;) avant toute manipulation physique : d&eacute;placement de l&rsquo;appareil, remplacement de tuyaux, nettoyage. Ne jamais toucher les connexions sous tension.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1FAD9;</span> S&eacute;curit&eacute; 2 &mdash; L&rsquo;isolant de bouteille</h3>
+    <div class="safety">
+      <div class="safety-title">&#x1F6E1;&#xFE0F; Protection de l&rsquo;usager &mdash; Isolation galvanique</div>
+      <p>La bouteille d&rsquo;eau &agrave; dynamiser <strong>ne doit jamais &ecirc;tre en contact galvanique</strong> avec une partie m&eacute;tallique de l&rsquo;appareil. Un isolant est plac&eacute; entre la bouteille et l&rsquo;appareil :</p>
+      <p>&#x2713; <strong>Protection contre tout micro-courant</strong> pouvant traverser l&rsquo;eau vers l&rsquo;usager<br>
+      &#x2713; <strong>Puret&eacute; du champ re&ccedil;u par l&rsquo;eau</strong> &mdash; seul le champ rayonn&eacute; agit, pas de courant galvanique<br>
+      &#x2713; Principe fondamental de Marcel Violet : <em>&laquo; L&rsquo;eau est dans le champ rayonn&eacute;, pas dans le circuit &eacute;lectrique. &raquo;</em></p>
+    </div>
+    <table class="tbl">
+      <tr><th>Mat&eacute;riau isolant</th><th>Efficacit&eacute;</th><th>Pratique</th></tr>
+      <tr><td>Li&egrave;ge naturel</td><td>&#x2705; Bon isolant, poreux</td><td>Dessous de bouteille &mdash; &eacute;conomique</td></tr>
+      <tr><td>Bois sec (ch&ecirc;ne, h&ecirc;tre)</td><td>&#x2705; Tr&egrave;s bon isolant naturel</td><td>Support plateau ou dessous</td></tr>
+      <tr><td>Verre &eacute;pais</td><td>&#x2705; Isolant parfait</td><td>Coupelle ou plateau verre</td></tr>
+      <tr><td>C&eacute;ramique &eacute;maill&eacute;e</td><td>&#x2705; Excellent</td><td>Coupelle c&eacute;ramique</td></tr>
+      <tr><td>Plastique</td><td>&#x26A0;&#xFE0F; Acceptable, perturbe l&eacute;g&egrave;rement le champ</td><td>Dernier recours uniquement</td></tr>
+      <tr><td>M&eacute;tal (acier, aluminium)</td><td>&#x274C; Conducteur &mdash; interdit</td><td>Jamais en contact avec la bouteille</td></tr>
+    </table>
+    <div class="tip">
+      <div class="tip-title">&#x2726; Solution recommand&eacute;e Axis Lumen</div>
+      <p>Un dessous de bouteille en li&egrave;ge naturel (&eacute;paisseur 5 mm minimum) ou une coupelle en bois brut non trait&eacute;. La bouteille en verre pos&eacute;e sur le li&egrave;ge est compl&egrave;tement isol&eacute;e galvaniquement tout en restant dans le champ rayonn&eacute; de l&rsquo;appareil.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F50C;</span> Connexions &eacute;lectriques &mdash; d&eacute;tection de la phase</h3>
+    <ol class="steps">
+      <li><span>R&eacute;gler le voltm&egrave;tre sur &laquo; alternatif 600 V &raquo;. En France, la phase est &agrave; droite sur une prise standard.</span></li>
+      <li><span>V&eacute;rifier : Terre-Neutre = 0 V &middot; Terre-Phase = ~230 V. Inverser si n&eacute;cessaire.</span></li>
+      <li><span>Couper le c&acirc;ble de multiprise au milieu. Identifier le fil de phase au voltm&egrave;tre (230 V = phase trouv&eacute;e).</span></li>
+      <li><span>Phase &rarr; Interrupteur &rarr; ENTR&Eacute;E Biodynamiseur &rarr; SORTIE (appareil aliment&eacute;).<br>Neutre/Neutre directs. Terre/Terre directs.</span></li>
+      <li><span>Bloquer chaque raccord : ruban adh&eacute;sif &eacute;lectricien + collier nylon. Passe-fil sous le socle.</span></li>
+    </ol>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- MODULE 7 -->
+<div class="container" id="module7">
+  <div class="mod-header">
+    <div class="mod-num">Module 7</div>
+    <div class="mod-title">Activation du Biodynamiseur &mdash;<br><em>naissance d&rsquo;une entit&eacute; vivante</em></div>
+    <p class="mod-intro">Le Biodynamiseur Plasmatique n&rsquo;est pas une machine ordinaire. Son activation suit des phases de d&eacute;veloppement biologiques &mdash; comme tout &ecirc;tre vivant.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F476;</span> Les 3 &eacute;tapes de d&eacute;veloppement</h3>
+    <ul class="timeline">
+      <li data-day="1-3">
+        <strong>Phase 1 &mdash; Acclimatation (3 jours sans courant)</strong>
+        <span>Poser l&rsquo;appareil dans son lieu de vie, <strong>interrupteur ouvert (courant coup&eacute;)</strong>. L&rsquo;appareil s&rsquo;habitue &agrave; son environnement et aux champs des personnes pr&eacute;sentes. Cette phase est &agrave; recommencer &agrave; chaque d&eacute;m&eacute;nagement.</span>
+      </li>
+      <li data-day="21">
+        <strong>Phase 2 &mdash; D&eacute;veloppement (21 jours continus)</strong>
+        <span>Brancher un r&eacute;frig&eacute;rateur sur la SORTIE du Biodynamiseur. Fermer l&rsquo;interrupteur (courant activ&eacute;). <strong>Ce cycle de 21 jours ne doit pas &ecirc;tre interrompu.</strong> Le r&eacute;frig&eacute;rateur (cycle thermique constant) aide l&rsquo;appareil &agrave; s&rsquo;accorder sur son propre rythme. Les condensateurs en cire d&rsquo;abeille accumulent et lib&egrave;rent l&rsquo;&eacute;nergie comme un c&oelig;ur qui bat.</span>
+      </li>
+      <li data-day="&#x221E;">
+        <strong>Phase 3 &mdash; Fonctionnement nominal</strong>
+        <span>L&rsquo;appareil fonctionne de fa&ccedil;on autonome. Il &eacute;met un champ plasmatique continu qui enrobe tout l&rsquo;espace de vie. Plantes, animaux, personnes en b&eacute;n&eacute;ficient. La consommation &eacute;lectrique des appareils raccord&eacute;s diminue graduellement.</span>
+      </li>
+    </ul>
+    <div class="tip">
+      <div class="tip-title">&#x2726; Le cycle 21 jours est unique</div>
+      <p>Il ne se refait qu&rsquo;une seule fois dans la vie de l&rsquo;appareil. Si on le d&eacute;place, seuls les 3 jours d&rsquo;acclimatation sont &agrave; refaire. D&eacute;connecter bri&egrave;vement pour maintenance ne n&eacute;cessite pas de recommencer.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F4AC;</span> L&rsquo;intention &mdash; l&rsquo;ingr&eacute;dient invisible</h3>
+    <p>L&rsquo;appareil r&eacute;pond &agrave; l&rsquo;intention de son utilisateur. Le protocole d&rsquo;activation recommande :</p>
+    <ul style="margin:.5rem 0 .5rem 1.5rem;color:var(--ink2);font-size:.9rem;line-height:2">
+      <li>Parler &agrave; l&rsquo;appareil lors de la premi&egrave;re activation (pr&eacute;senter les membres du foyer)</li>
+      <li>Le placer dans une pi&egrave;ce de vie commune &mdash; pas dans un placard ou un recoin</li>
+      <li>&Eacute;loigner des compteurs &eacute;lectriques (minimum 1,5 m) et des &eacute;crans &agrave; fort rayonnement</li>
+      <li>Ne pas exposer au soleil direct (d&eacute;gradation de la cire d&rsquo;abeille)</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- MODULE 8 -->
+<div class="container" id="module8">
+  <div class="mod-header">
+    <div class="mod-num">Module 8</div>
+    <div class="mod-title">Le Biodynamiseur d&rsquo;Eau Vivante &mdash;<br><em>le Protocole Violet &middot; Axis Lumen &phi;&sup2;&deg;</em></div>
+    <p class="mod-intro">Le Biodynamiseur Plasmatique est la source. Le protocole d&rsquo;eau en est l&rsquo;application principale. En 6 &eacute;tapes document&eacute;es et mesur&eacute;es, l&rsquo;eau passe d&rsquo;un &eacute;tat ordinaire &agrave; une eau structur&eacute;e de haute coh&eacute;rence &eacute;nerg&eacute;tique.</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F4CB;</span> Le Protocole Violet &middot; Axis Lumen &phi;&sup2;&deg; &mdash; les 6 &eacute;tapes</h3>
+    <table class="tbl">
+      <tr><th>&Eacute;tape</th><th>Dur&eacute;e</th><th>Action</th><th>Mesure</th></tr>
+      <tr><td>1 &mdash; Distillation</td><td>3&ndash;4 h</td><td>Distiller l&rsquo;eau du robinet</td><td>Biowell n&deg;0 (r&eacute;f&eacute;rence eau brute)</td></tr>
+      <tr><td>2 &mdash; Structuration</td><td>24&ndash;72 h</td><td>Bouteille dans le champ du Biodynamiseur &mdash; sur isolant (li&egrave;ge/bois/verre)</td><td>Biowell n&deg;1</td></tr>
+      <tr><td>3 &mdash; Plasma</td><td>2&ndash;4 h</td><td>Contact avec eau de plasma CO&sup2;/CuO/CH&sup3;</td><td>Biowell n&deg;2</td></tr>
+      <tr><td>4 &mdash; Tige d&rsquo;argent</td><td>20&ndash;60 min</td><td>Tige nano-rev&ecirc;tue dans l&rsquo;eau</td><td>Biowell n&deg;3</td></tr>
+      <tr><td>5 &mdash; Information fr&eacute;quentielle</td><td>20&ndash;60 min</td><td>Antenne scalaire Aplicum OU PEMF Spooky&sup2;</td><td>Biowell n&deg;4</td></tr>
+      <tr><td>6 &mdash; Mesure finale</td><td>15 min</td><td>Biowell complet. Consommer dans les 4 h.</td><td>Biowell n&deg;5 + n&deg;6</td></tr>
+    </table>
+    <div class="rule">
+      <div class="rule-title">&#x26A0;&#xFE0F; Rappel s&eacute;curit&eacute; &mdash; isolant obligatoire &agrave; l&rsquo;&eacute;tape 2</div>
+      <p>La bouteille est pos&eacute;e sur l&rsquo;isolant (li&egrave;ge, bois, verre, c&eacute;ramique). Jamais en contact direct avec une partie m&eacute;tallique. L&rsquo;interrupteur reste ferm&eacute; (courant actif) pendant la structuration &mdash; ne pas ouvrir le circuit.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F4E1;</span> &Eacute;tape 5 &mdash; Information fr&eacute;quentielle : deux m&eacute;thodes</h3>
+    <div class="gans-grid">
+      <div class="gans-card grav" style="text-align:left;padding:1.4rem">
+        <div class="gans-name">&#x1F535; Antenne scalaire Aplicum</div>
+        <div class="gans-type">M&eacute;thode 1 &middot; Ondes scalaires</div>
+        <div class="gans-body" style="margin-top:.6rem">Bouteille pos&eacute;e sur le bo&icirc;tier Aplicum (lumi&egrave;re bleue-violette). Ondes scalaires longitudinales qui p&eacute;n&egrave;trent l&rsquo;eau sans att&eacute;nuation. Dur&eacute;e : 20&ndash;60 min selon formule &phi;&sup2;&deg;.</div>
+      </div>
+      <div class="gans-card mag" style="text-align:left;padding:1.4rem">
+        <div class="gans-name">&#x1F7E4; PEMF Spooky&sup2;</div>
+        <div class="gans-type">M&eacute;thode 2 &middot; Champ magn&eacute;tique puls&eacute;</div>
+        <div class="gans-body" style="margin-top:.6rem">Bobine PEMF Spooky&sup2; (anneau) pos&eacute;e sous la bouteille sur son isolant. Impulsions magn&eacute;tiques programm&eacute;es selon les fr&eacute;quences &phi;&sup2;&deg; calcul&eacute;es individuellement.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F9EE;</span> La Formule &phi;&sup2;&deg; &mdash; le calcul fr&eacute;quentiel individuel</h3>
+    <div class="eq-box">
+      <div class="eq-title">Formule Axis Lumen &phi;&sup2;&deg;</div>
+      <div class="eq">f_cible = f_base &times; &phi;<sup>n</sup></div>
+      <div class="eq-explain">
+        &phi; = (1 + &radic;5) / 2 &asymp; 1,618 (nombre d&rsquo;or)<br>
+        n = niveau de correction calcul&eacute; depuis les mesures Biowell<br><br>
+        Le nombre d&rsquo;or &phi; appara&icirc;t dans les spirales des coquillages, les graines de tournesol, les proportions du corps humain. Aligner les fr&eacute;quences sur &phi;, c&rsquo;est <strong>accorder les champs &eacute;mis avec la g&eacute;om&eacute;trie naturelle du vivant</strong>.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F4CA;</span> R&eacute;sultats document&eacute;s &mdash; Biowell GDV</h3>
+    <p>Sur 11 sessions document&eacute;es par Axis Lumen (mai&ndash;juin 2026) :</p>
+    <table class="tbl">
+      <tr><th>Indicateur</th><th>Avant protocole</th><th>Apr&egrave;s protocole</th><th>Variation</th></tr>
+      <tr><td>Stress</td><td>3,46</td><td>2,91</td><td style="color:var(--green)">&minus;16% &#x2198; (am&eacute;lioration)</td></tr>
+      <tr><td>&Eacute;nergie CE</td><td>2,00</td><td>2,16</td><td style="color:var(--green)">+8% &#x2197;</td></tr>
+      <tr><td>Alignement</td><td>85,87%</td><td>87,49%</td><td style="color:var(--green)">+1,62% &#x2197;</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon">&#x1F393;</span> Synth&egrave;se &mdash; ce que vous avez appris</h3>
+    <table class="tbl">
+      <tr><th>Module</th><th>Comp&eacute;tence acquise</th></tr>
+      <tr><td>Introduction</td><td>Histoire du protocole Marcel Violet, lign&eacute;e des pionniers</td></tr>
+      <tr><td>1 &mdash; Physique</td><td>Champs plasmatiques, &omega;=S/V=3/r, masses atomiques, ordres de grandeur, COHN 96,2%</td></tr>
+      <tr><td>2 &mdash; Nano</td><td>Nano-rev&ecirc;tement soude, polarisation 200 mV, rin&ccedil;age &times;12, eau distill&eacute;e</td></tr>
+      <tr><td>3 &mdash; Bobines</td><td>144/72/27 spires &middot; HORAIRE (ext.) / ANTIHORAIRE (int.) &middot; torsion toro&iuml;dale</td></tr>
+      <tr><td>4 &mdash; Plasmas</td><td>4 GaNS fondamentaux &middot; condensateurs en cire d&rsquo;abeille (protocole Violet)</td></tr>
+      <tr><td>5 &mdash; Assemblage</td><td>9 op&eacute;rations, architecture, r&egrave;gle cuivre/cuivre</td></tr>
+      <tr><td>6 &mdash; S&eacute;curit&eacute;</td><td>Interrupteur + isolant bouteille &middot; c&acirc;blage phase &middot; protections usager</td></tr>
+      <tr><td>7 &mdash; Activation</td><td>3 jours + 21 jours &middot; intention &middot; lieu de vie</td></tr>
+      <tr><td>8 &mdash; Biodynamiseur</td><td>Protocole Violet &middot; Axis Lumen &phi;&sup2;&deg; en 6 &eacute;tapes &middot; Aplicum &middot; PEMF &middot; Biowell</td></tr>
+    </table>
+    <div class="tip">
+      <div class="tip-title">&#x2726; Autorisation de transmission</div>
+      <p>Ce certificat de formation vous autorise &agrave; pratiquer le Protocole Violet &middot; Axis Lumen &phi;&sup2;&deg; et &agrave; le transmettre &agrave; titre personnel ou professionnel. L&rsquo;eau que vous dynamisez porte vos champs autant que ceux de l&rsquo;appareil.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>Axis Lumen &middot; Michael Chauvet</strong><br>
+  7 l&rsquo;Aigrie, 44170 Abbaretz &middot; chauvetmichael@live.fr &middot; 06 86 53 33 17 &middot; axis-lumen.fr<br><br>
+  Protocole Marcel Violet revisit&eacute; &middot; Bio&eacute;lectronique L.C. Vincent &middot; Vortex V. Schauberger &middot; Science du plasma<br>
+  Contenu p&eacute;dagogique exclusif Axis Lumen 2026 &mdash; Tous droits r&eacute;serv&eacute;s.<br><br>
+  <span style="opacity:.5;font-size:.75rem">Usage p&eacute;dagogique et exp&eacute;rimental uniquement &mdash; non m&eacute;dical</span>
+</footer>
+
+<script>
+window.addEventListener('scroll',function(){
+  var h=document.documentElement;
+  var pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('pb').style.width=pct+'%';
+});
+</script>
+</body>
+</html>
