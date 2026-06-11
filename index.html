@@ -206,6 +206,37 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
 .nav-axis{background:transparent;border:1px solid var(--border2);color:var(--crystal);font-size:.72rem;padding:.32rem .9rem;border-radius:3px;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:all .2s;margin-left:.5rem}
 .nav-axis:hover{background:var(--crystal);color:#fff}
 @media(max-width:768px){.hero-inner,.ml,.conf-grid,.stage-grid{grid-template-columns:1fr}.cg3{grid-template-columns:1fr}.nav-links a{font-size:.66rem;padding:0 .5rem}}
+/* ── FORMATION SECTION ── */
+.formation-hero{background:linear-gradient(135deg,#050e1a 0%,#0d2438 60%,#0a1e32 100%);border-radius:12px;padding:2.5rem;margin-bottom:2rem;position:relative;overflow:hidden}
+.formation-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(30,139,195,.22),transparent);pointer-events:none}
+.formation-hero-badge{display:inline-block;border:1px solid rgba(184,148,60,.5);color:var(--gold,#b8943c);font-size:.68rem;letter-spacing:.22em;padding:.28rem .9rem;border-radius:2rem;margin-bottom:1rem;text-transform:uppercase}
+.formation-hero h3{font-family:"Cormorant Garamond",serif;font-size:clamp(1.4rem,3vw,2rem);color:#fff;line-height:1.3;margin-bottom:.8rem}
+.formation-hero h3 em{color:var(--gold,#b8943c);font-style:normal}
+.formation-hero p{color:rgba(255,255,255,.72);font-size:.88rem;line-height:1.75;max-width:580px}
+.formation-grid{display:grid;grid-template-columns:1fr 340px;gap:2rem;align-items:start}
+@media(max-width:900px){.formation-grid{grid-template-columns:1fr}}
+.formation-modules{list-style:none;padding:0;margin:0}
+.formation-modules li{display:flex;gap:.9rem;align-items:flex-start;padding:.75rem 0;border-bottom:1px solid var(--border)}
+.formation-modules li:last-child{border-bottom:none}
+.fm-num{min-width:28px;height:28px;background:rgba(30,139,195,.12);border:1px solid rgba(30,139,195,.25);color:var(--crystal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0;margin-top:.1rem}
+.fm-title{font-size:.88rem;color:var(--ink);font-weight:600;margin-bottom:.15rem}
+.fm-sub{font-size:.75rem;color:var(--muted)}
+.formation-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.8rem;box-shadow:0 4px 24px rgba(13,36,56,.08);position:sticky;top:72px}
+.formation-price-block{text-align:center;padding-bottom:1.4rem;border-bottom:1px solid var(--border);margin-bottom:1.4rem}
+.formation-price{font-size:2.8rem;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.formation-price span{font-size:1.1rem;vertical-align:top;margin-top:.5rem;display:inline-block;opacity:.7}
+.formation-price-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;opacity:.55;margin-top:.25rem}
+.formation-includes{list-style:none;padding:0;margin:0 0 1.4rem}
+.formation-includes li{font-size:.82rem;color:var(--ink2);padding:.3rem 0;display:flex;gap:.6rem;align-items:flex-start}
+.formation-includes li::before{content:'✓';color:var(--green,#2ecc71);font-weight:700;flex-shrink:0}
+.btn-buy{display:block;width:100%;padding:.9rem;background:linear-gradient(135deg,#1e8bc3,#166fa0);color:#fff;border:none;border-radius:8px;font-size:.9rem;font-weight:700;letter-spacing:.04em;cursor:pointer;text-decoration:none;text-align:center;transition:all .2s;position:relative;overflow:hidden}
+.btn-buy:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(30,139,195,.35)}
+.btn-buy:active{transform:translateY(0)}
+.btn-buy-sub{font-size:.68rem;opacity:.75;margin-top:.4rem;display:block}
+.btn-preview{display:block;width:100%;padding:.65rem;background:transparent;color:var(--crystal);border:1px solid var(--border2,rgba(30,139,195,.25));border-radius:8px;font-size:.82rem;cursor:pointer;text-decoration:none;text-align:center;margin-top:.6rem;transition:all .2s}
+.btn-preview:hover{background:rgba(30,139,195,.06)}
+.formation-badge-beta{display:inline-block;background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.3);color:#1a7a44;font-size:.65rem;padding:.15rem .6rem;border-radius:1rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.stripe-note{font-size:.68rem;color:var(--muted);text-align:center;margin-top:.8rem;display:flex;align-items:center;justify-content:center;gap:.3rem;opacity:.65}
 </style>
 </head>
 <body>
@@ -213,7 +244,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
   <div class="nav-brand" style="display:flex;align-items:center;gap:.6rem"><img id="nav-logo" style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid rgba(184,148,60,.3)"> Axis Lumen</div>
   <div class="nav-links">
     <a href="#pionniers">Pionniers</a><a href="#machine">Machine</a><a href="#protocole">Protocole</a>
-    <a href="#formule">Formule &phi;&sup2;&deg;</a><a href="#conference">Conf&eacute;rence</a><a href="#stage">Stage</a><a href="#biowell">Biowell</a>
+    <a href="#formule">Formule &phi;&sup2;&deg;</a><a href="#conference">Conf&eacute;rence</a><a href="#stage">Stage</a><a href="#formation">Formation</a><a href="#biowell">Biowell</a>
     <a href="https://axis-lumen.fr" target="_blank" class="nav-axis">Axis Lumen ↗</a>
   </div>
 </nav>
@@ -475,6 +506,65 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
   </div>
 </section>
 
+
+<section id="formation">
+  <div class="container">
+    <div class="eyebrow">Formation digitale</div>
+    <h2 class="sec-title">Formation<br><em>Biodynamiseur Plasmatique</em></h2>
+    <p class="sec-lead">8 modules complets pour comprendre, construire et transmettre &mdash; de la physique des pionniers &agrave; la mise en route. Acc&egrave;s &agrave; vie, imprimable, transmissible.</p>
+    <div class="divider"></div>
+
+    <div class="formation-hero">
+      <div class="formation-hero-badge">&#x1F9EA; Contenu exclusif Axis Lumen</div>
+      <h3>Tout comprendre,<br><em>tout construire, tout transmettre</em></h3>
+      <p>De la physique quantique de Marc Henry aux bobines 144/72 spires en sens oppos&eacute;s, des r&eacute;servoirs sph&eacute;riques par &eacute;tage au protocole complet &phi;&sup2;&deg; &mdash; un cours con&ccedil;u pour &ecirc;tre accessible &agrave; 12 ans sans minimiser une seule &eacute;quation.</p>
+    </div>
+
+    <div class="formation-grid">
+      <div>
+        <h3 style="font-family:serif;font-size:1.2rem;color:var(--ink);margin-bottom:1.2rem">Programme complet &mdash; 8 modules</h3>
+        <ul class="formation-modules">
+          <li><div class="fm-num">&#x2605;</div><div><div class="fm-title">Introduction &mdash; Les 5 Pionniers</div><div class="fm-sub">Violet &middot; Schauberger &middot; Vincent &middot; Marc Henry &middot; Tesla &mdash; leurs d&eacute;couvertes, leurs &eacute;quations</div></div></li>
+          <li><div class="fm-num">1</div><div><div class="fm-title">Physique du Plasma</div><div class="fm-sub">&omega; = S/V = 3/r &middot; Masses atomiques &middot; &Eacute;quation Zn(65)&minus;Cu(59)=C(6) &middot; Ordres de grandeur &middot; COHN 96,2%</div></div></li>
+          <li><div class="fm-num">2</div><div><div class="fm-title">Nano-Rev&ecirc;tement du Cuivre</div><div class="fm-sub">Soude froide/chaude &middot; Polarisation 200 mV &middot; Rin&ccedil;age &times;12 &middot; 60 000 couches carbone</div></div></li>
+          <li><div class="fm-num">3</div><div><div class="fm-title">Fabrication des 15 Bobines</div><div class="fm-sub">144/72/27 spires &middot; HORAIRE (ext.) / ANTIHORAIRE (int.) &middot; Torsion toro&iuml;dale &middot; Connexions cuivre/cuivre</div></div></li>
+          <li><div class="fm-num">4</div><div><div class="fm-title">Les Plasmas &amp; Condensateurs</div><div class="fm-sub">4 GaNS fondamentaux &middot; Cire d&rsquo;abeille (protocole Violet) &middot; 3 r&eacute;servoirs sph&eacute;riques par &eacute;tage &middot; GaNS d&rsquo;or</div></div></li>
+          <li><div class="fm-num">5</div><div><div class="fm-title">Assemblage du Biodynamiseur</div><div class="fm-sub">9 op&eacute;rations &middot; Architecture des 3 &eacute;tages &middot; R&egrave;gles de connexion</div></div></li>
+          <li><div class="fm-num">6</div><div><div class="fm-title">S&eacute;curit&eacute; de l&rsquo;Utilisateur</div><div class="fm-sub">Interrupteur de mise en route &middot; Isolant bouteille (li&egrave;ge/bois/verre) &middot; C&acirc;blage phase</div></div></li>
+          <li><div class="fm-num">7</div><div><div class="fm-title">Activation</div><div class="fm-sub">3 jours d&rsquo;acclimatation &middot; 21 jours avec r&eacute;frig&eacute;rateur &middot; L&rsquo;intention comme ingr&eacute;dient</div></div></li>
+          <li><div class="fm-num">8</div><div><div class="fm-title">Protocole Violet &middot; Axis Lumen &phi;&sup2;&deg;</div><div class="fm-sub">6 &eacute;tapes document&eacute;es &middot; Aplicum &middot; PEMF Spooky&sup2; &middot; Mesures Biowell avant/apr&egrave;s</div></div></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="formation-card">
+          <div class="formation-badge-beta">&#x1F513; Acc&egrave;s libre &mdash; Phase b&ecirc;ta</div>
+          <div class="formation-price-block">
+            <div class="formation-price"><span>&euro;</span>97</div>
+            <div class="formation-price-label">Acc&egrave;s &agrave; vie &middot; Une seule fois</div>
+          </div>
+          <ul class="formation-includes">
+            <li>8 modules complets avec &eacute;quations</li>
+            <li>Biographies des 5 pionniers</li>
+            <li>Sp&eacute;cifications bobines 144/72 spires</li>
+            <li>Protocole r&eacute;servoirs sph&eacute;riques + GaNS d&rsquo;or</li>
+            <li>Module s&eacute;curit&eacute; interrupteur + isolant</li>
+            <li>Protocole &phi;&sup2;&deg; complet en 6 &eacute;tapes</li>
+            <li>Imprimable &mdash; format A4 optimis&eacute;</li>
+            <li>Certificat d&rsquo;autorisation de transmission</li>
+          </ul>
+          <a href="formation-magrav-plasma.html" class="btn-buy" id="btn-buy-formation">
+            Acc&eacute;der &agrave; la Formation
+            <span class="btn-buy-sub">Acc&egrave;s instantan&eacute; &mdash; phase b&ecirc;ta gratuite</span>
+          </a>
+          <div class="stripe-note">
+            &#x1F512; Paiement s&eacute;curis&eacute; via Stripe &mdash; bient&ocirc;t activ&eacute;
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="biowell" class="sec-alt">
   <div class="container">
     <div class="eyebrow">Galerie priv&eacute;e</div>
@@ -734,7 +824,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
   <div class="fst">Axis Lumen &middot; Biodynamiseur Plasmatique &middot; Protocole Marcel Violet &middot; Bio&eacute;lectronique de Vincent</div>
   <div class="fl">
     <a href="#pionniers">Pionniers</a><a href="#machine">Machine</a><a href="#protocole">Protocole</a>
-    <a href="#formule">Formule &phi;&sup2;&deg;</a><a href="#conference">Conf&eacute;rence</a><a href="#stage">Stage</a><a href="#legal">Mentions l&eacute;gales &amp; CGV</a><a href="#biowell">Galerie Biowell</a><a href="#legal">L&eacute;gal</a><a href="https://axis-lumen.fr" target="_blank">axis-lumen.fr ↗</a>
+    <a href="#formule">Formule &phi;&sup2;&deg;</a><a href="#conference">Conf&eacute;rence</a><a href="#stage">Stage</a><a href="#formation">Formation</a><a href="#legal">Mentions l&eacute;gales &amp; CGV</a><a href="#biowell">Galerie Biowell</a><a href="#legal">L&eacute;gal</a><a href="https://axis-lumen.fr" target="_blank">axis-lumen.fr ↗</a>
   </div>
   <div class="fcp">Document p&eacute;dagogique &middot; Axis Lumen &middot; Usage exp&eacute;rimental &mdash; non m&eacute;dical</div>
 </footer>
@@ -882,7 +972,7 @@ function updateStats(){
   document.getElementById('stat-avg-ph').textContent=pc>0?(ps/pc).toFixed(1):'&mdash;';
 }
 updateStats();
-const navSecs=['hero','pionniers','machine','protocole','formule','conference','stage','biowell'];
+const navSecs=['hero','pionniers','machine','protocole','formule','conference','stage','formation','biowell'];
 window.addEventListener('scroll',()=>{let cur='';navSecs.forEach(id=>{const el=document.getElementById(id);if(el&&window.scrollY>=el.offsetTop-80)cur=id;});document.querySelectorAll('.nav-links a').forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});});
 function openAxisLumen(){const w=window.open('file:///C:/Users/chauv/Documents/axis-lumen-deploy/index.html','_blank');if(!w||w.closed){const d=document.createElement('div');d.style.cssText='position:fixed;top:70px;right:1.5rem;background:var(--ink);color:white;padding:1rem 1.5rem;border-radius:8px;font-size:.8rem;z-index:500;max-width:320px;line-height:1.7;box-shadow:0 4px 20px rgba(0,0,0,.3)';d.innerHTML='<strong style="color:var(--crystal-p)">Axis Lumen</strong><br><code style="font-size:.72rem;color:var(--teal-l)">C:\\Users\\chauv\\Documents\\axis-lumen-deploy</code><br><button onclick="this.parentNode.remove()" style="margin-top:.5rem;background:transparent;border:1px solid rgba(255,255,255,.3);color:white;font-size:.7rem;padding:.2rem .6rem;cursor:pointer;border-radius:3px">Fermer</button>';document.body.appendChild(d);setTimeout(()=>{if(d.parentNode)d.remove();},6000);}}
 const AUTH_CODES={michael:btoa('Michael:AxisLumen2024!'),emmanuel:btoa('Emmanuel:PlasmaKesh2024!')};
