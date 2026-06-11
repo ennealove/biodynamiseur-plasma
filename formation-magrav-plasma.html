@@ -110,7 +110,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-h
 footer{background:var(--ink);color:rgba(255,255,255,.6);text-align:center;padding:2rem;font-size:.8rem;margin-top:4rem}
 footer strong{color:var(--gold)}
 /* --- Lock overlay --- */
-#formation-lock{display:none;position:fixed;inset:0;background:rgba(10,8,20,.92);backdrop-filter:blur(8px);
+#formation-lock{display:flex;position:fixed;inset:0;background:rgba(10,8,20,.97);backdrop-filter:blur(8px);
   z-index:999;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem}
 #formation-lock .lock-box{background:var(--card);border:1px solid var(--gold);border-radius:1.2rem;
   padding:3rem 2.5rem;max-width:480px;width:100%}
@@ -133,7 +133,7 @@ footer strong{color:var(--gold)}
 </head>
 <body>
 
-<!-- Lock overlay — shown when BETA_OPEN=false and no valid token -->
+<!-- Verrou — affiché par défaut (CSS display:flex), caché uniquement si accès validé -->
 <div id="formation-lock">
   <div class="lock-box">
     <div class="lock-icon">&#x1F512;</div>
@@ -145,6 +145,8 @@ footer strong{color:var(--gold)}
   </div>
 </div>
 
+<!-- Contenu du cours — caché par défaut, visible uniquement si accès validé -->
+<div id="fc" style="display:none">
 <div class="progress-bar" id="pb"></div>
 
 <nav class="nav">
@@ -985,48 +987,39 @@ window.addEventListener('scroll',function(){
 });
 
 // --- Contrôle d'accès formation ---
-var BETA_OPEN = false; // true = accès libre bêta | false = paywall actif
+// Structure : #formation-lock visible par CSS par défaut
+//             #fc (contenu cours) caché par défaut (style="display:none")
+//             => accès validé = cacher verrou + afficher #fc
+
+var BETA_OPEN = false; // true = accès libre | false = paywall actif
 var ACCESS_KEY = 'axl_formation_v1';
 
 function checkFormationAccess() {
-  if (BETA_OPEN) return;
-  var token = localStorage.getItem(ACCESS_KEY);
-  var valid = token && token.indexOf('paid_') === 0;
-  if (!valid) lockFormation();
+  var ok = BETA_OPEN;
+  if (!ok) {
+    var token = localStorage.getItem(ACCESS_KEY);
+    ok = token && token.indexOf('paid_') === 0;
+  }
+  if (ok) {
+    document.getElementById('formation-lock').style.display = 'none';
+    document.getElementById('fc').style.display = 'block';
+  }
+  // Sinon : verrou reste affiché (CSS), #fc reste caché
 }
 
-function lockFormation() {
-  // Masquer tout le contenu réel
-  document.getElementById('pb').style.display = 'none';
-  var nav = document.querySelector('nav.nav');
-  if (nav) nav.style.display = 'none';
-  var footer = document.querySelector('footer');
-  if (footer) footer.style.display = 'none';
-  // Masquer toutes les sections du cours
-  document.querySelectorAll('section, .hero, [id^="module"], [id="intro"]').forEach(function(el) {
-    el.style.display = 'none';
-  });
-  // Afficher le verrou
-  var lock = document.getElementById('formation-lock');
-  lock.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  document.body.style.background = '#0a0814';
-}
-
-// Appelée depuis la page de succès Stripe : ?access=paid
+// Appelée après paiement Stripe (redirect ?access=paid)
 function grantFormationAccess() {
   localStorage.setItem(ACCESS_KEY, 'paid_' + Date.now());
   window.location.reload();
 }
 
-// Activation automatique si Stripe redirige avec ?access=paid
-(function() {
-  if (window.location.search.indexOf('access=paid') !== -1) {
-    grantFormationAccess();
-  }
-})();
+// Détection redirect Stripe
+if (window.location.search.indexOf('access=paid') !== -1) {
+  grantFormationAccess();
+}
 
 checkFormationAccess();
 </script>
+</div><!-- /fc -->
 </body>
 </html>
