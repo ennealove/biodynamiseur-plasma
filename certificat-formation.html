@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Certificat de Formation — Axis Lumen</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+
+  :root {
+    --gold:   #b8943c;
+    --gold2:  #d4af5a;
+    --crystal:#1e8bc3;
+    --ink:    #0d2438;
+    --ink2:   #1a3a52;
+    --bg:     #faf8f2;
+    --border: rgba(184,148,60,.3);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #e8e0d0;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 4rem;
+  }
+
+  /* ── Barre d'outils (masquée à l'impression) ── */
+  .toolbar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .toolbar input {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: .9rem;
+    width: 260px;
+  }
+  .toolbar button {
+    background: var(--gold);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 22px;
+    font-size: .9rem;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: .03em;
+  }
+  .toolbar button:hover { background: var(--gold2); }
+
+  /* ── Certificat A4 ── */
+  .cert {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,.22);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  /* Bordure dorée externe */
+  .border-outer {
+    position: absolute;
+    inset: 8mm;
+    border: 2.5px solid var(--gold);
+    pointer-events: none;
+    z-index: 1;
+  }
+  /* Bordure dorée interne */
+  .border-inner {
+    position: absolute;
+    inset: 11mm;
+    border: 1px solid rgba(184,148,60,.45);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Coins ornementaux */
+  .corner {
+    position: absolute;
+    width: 18mm;
+    height: 18mm;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .corner svg { width: 100%; height: 100%; }
+  .corner.tl { top: 6mm;    left: 6mm; }
+  .corner.tr { top: 6mm;    right: 6mm;  transform: scaleX(-1); }
+  .corner.bl { bottom: 6mm; left: 6mm;   transform: scaleY(-1); }
+  .corner.br { bottom: 6mm; right: 6mm;  transform: scale(-1); }
+
+  /* Fond filigrane géométrique */
+  .watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140mm;
+    height: 140mm;
+    opacity: .04;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Contenu */
+  .content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    padding: 22mm 20mm 18mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Logo / en-tête */
+  .org-name {
+    font-family: 'Cinzel', serif;
+    font-size: 9pt;
+    letter-spacing: .35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2mm;
+  }
+  .org-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    letter-spacing: .18em;
+    color: var(--crystal);
+    text-transform: uppercase;
+    margin-bottom: 8mm;
+  }
+
+  /* Séparateur doré */
+  .divider {
+    width: 60mm;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin-bottom: 8mm;
+  }
+  .divider-sm {
+    width: 30mm;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184,148,60,.5), transparent);
+    margin: 5mm 0;
+  }
+
+  /* Titre principal */
+  .cert-title {
+    font-family: 'Cinzel', serif;
+    font-size: 22pt;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: .08em;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 3mm;
+  }
+  .cert-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 11pt;
+    color: var(--gold);
+    letter-spacing: .06em;
+    text-align: center;
+    margin-bottom: 8mm;
+  }
+
+  /* Corps */
+  .cert-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11.5pt;
+    color: var(--ink2);
+    text-align: center;
+    line-height: 1.7;
+    margin-bottom: 6mm;
+    max-width: 140mm;
+  }
+
+  /* Nom du bénéficiaire */
+  .recipient-name {
+    font-family: 'Cinzel', serif;
+    font-size: 20pt;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: .06em;
+    text-align: center;
+    border-bottom: 1.5px solid var(--gold);
+    padding-bottom: 2mm;
+    min-width: 120mm;
+    margin: 2mm 0 6mm;
+  }
+
+  /* Bloc programme */
+  .program-box {
+    background: rgba(30,139,195,.05);
+    border: 1px solid rgba(30,139,195,.2);
+    border-radius: 4px;
+    padding: 6mm 10mm;
+    width: 150mm;
+    margin-bottom: 7mm;
+  }
+  .program-title {
+    font-family: 'Cinzel', serif;
+    font-size: 7.5pt;
+    letter-spacing: .2em;
+    color: var(--crystal);
+    text-transform: uppercase;
+    margin-bottom: 4mm;
+    text-align: center;
+  }
+  .program-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2mm 6mm;
+  }
+  .program-item {
+    font-family: 'Inter', sans-serif;
+    font-size: 7.5pt;
+    color: var(--ink2);
+    display: flex;
+    align-items: flex-start;
+    gap: 3mm;
+    line-height: 1.5;
+  }
+  .program-item::before {
+    content: '◆';
+    color: var(--gold);
+    font-size: 5pt;
+    margin-top: 1.5px;
+    flex-shrink: 0;
+  }
+
+  /* Bloc autorisation */
+  .auth-box {
+    background: rgba(184,148,60,.06);
+    border: 1px solid rgba(184,148,60,.3);
+    border-radius: 4px;
+    padding: 5mm 10mm;
+    width: 150mm;
+    margin-bottom: 8mm;
+    text-align: center;
+  }
+  .auth-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 10pt;
+    color: var(--ink);
+    line-height: 1.65;
+  }
+  .auth-text strong {
+    font-style: normal;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* Signatures */
+  .signatures {
+    display: flex;
+    justify-content: space-between;
+    width: 150mm;
+    margin-top: 4mm;
+  }
+  .sig-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2mm;
+    width: 60mm;
+  }
+  .sig-line {
+    width: 50mm;
+    height: 1px;
+    background: var(--gold);
+  }
+  .sig-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: .12em;
+    color: var(--ink2);
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .sig-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9pt;
+    color: var(--ink);
+    text-align: center;
+    margin-top: 1mm;
+  }
+
+  /* Date */
+  .date-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1mm;
+    margin-top: 6mm;
+  }
+  .date-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: .15em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .date-value {
+    font-family: 'Cinzel', serif;
+    font-size: 10pt;
+    color: var(--ink2);
+  }
+
+  /* Pied */
+  .cert-footer {
+    margin-top: auto;
+    padding-top: 8mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5mm;
+  }
+  .cert-footer-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 6pt;
+    letter-spacing: .12em;
+    color: rgba(13,36,56,.45);
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .cert-id {
+    font-family: 'Inter', sans-serif;
+    font-size: 5.5pt;
+    color: rgba(13,36,56,.3);
+  }
+
+  /* ── IMPRESSION ── */
+  @media print {
+    body { background: white; padding: 0; }
+    .toolbar { display: none !important; }
+    .cert { box-shadow: none; width: 210mm; min-height: 297mm; }
+    @page { size: A4 portrait; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Barre d'outils -->
+<div class="toolbar">
+  <input type="text" id="recipientInput" placeholder="Nom complet du participant..." oninput="updateName(this.value)">
+  <input type="text" id="dateInput" placeholder="Date de la formation (ex: 15 juin 2026)" oninput="updateDate(this.value)">
+  <button onclick="window.print()">🖨️ Imprimer / Enregistrer PDF</button>
+</div>
+
+<!-- Certificat -->
+<div class="cert" id="cert">
+
+  <!-- Bordures -->
+  <div class="border-outer"></div>
+  <div class="border-inner"></div>
+
+  <!-- Coins ornementaux -->
+  <div class="corner tl">
+    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 5 L30 5 M5 5 L5 30" stroke="#b8943c" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M12 12 L25 12 M12 12 L12 25" stroke="#b8943c" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+      <circle cx="5" cy="5" r="2" fill="#b8943c"/>
+      <path d="M18 5 Q40 18 5 40" stroke="#b8943c" stroke-width=".8" fill="none" opacity=".4"/>
+    </svg>
+  </div>
+  <div class="corner tr">
+    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 5 L30 5 M5 5 L5 30" stroke="#b8943c" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M12 12 L25 12 M12 12 L12 25" stroke="#b8943c" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+      <circle cx="5" cy="5" r="2" fill="#b8943c"/>
+      <path d="M18 5 Q40 18 5 40" stroke="#b8943c" stroke-width=".8" fill="none" opacity=".4"/>
+    </svg>
+  </div>
+  <div class="corner bl">
+    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 5 L30 5 M5 5 L5 30" stroke="#b8943c" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M12 12 L25 12 M12 12 L12 25" stroke="#b8943c" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+      <circle cx="5" cy="5" r="2" fill="#b8943c"/>
+      <path d="M18 5 Q40 18 5 40" stroke="#b8943c" stroke-width=".8" fill="none" opacity=".4"/>
+    </svg>
+  </div>
+  <div class="corner br">
+    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 5 L30 5 M5 5 L5 30" stroke="#b8943c" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M12 12 L25 12 M12 12 L12 25" stroke="#b8943c" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+      <circle cx="5" cy="5" r="2" fill="#b8943c"/>
+      <path d="M18 5 Q40 18 5 40" stroke="#b8943c" stroke-width=".8" fill="none" opacity=".4"/>
+    </svg>
+  </div>
+
+  <!-- Filigrane -->
+  <svg class="watermark" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="90" stroke="#b8943c" stroke-width="1"/>
+    <circle cx="100" cy="100" r="70" stroke="#b8943c" stroke-width=".5"/>
+    <circle cx="100" cy="100" r="50" stroke="#b8943c" stroke-width="1"/>
+    <polygon points="100,15 185,57 185,143 100,185 15,143 15,57" stroke="#b8943c" stroke-width=".8" fill="none"/>
+    <polygon points="100,30 170,65 170,135 100,170 30,135 30,65" stroke="#b8943c" stroke-width=".5" fill="none"/>
+    <line x1="100" y1="10" x2="100" y2="190" stroke="#b8943c" stroke-width=".3"/>
+    <line x1="10" y1="100" x2="190" y2="100" stroke="#b8943c" stroke-width=".3"/>
+    <line x1="30" y1="30" x2="170" y2="170" stroke="#b8943c" stroke-width=".3"/>
+    <line x1="170" y1="30" x2="30" y2="170" stroke="#b8943c" stroke-width=".3"/>
+    <circle cx="100" cy="100" r="8" stroke="#b8943c" stroke-width="1" fill="none"/>
+    <circle cx="100" cy="100" r="3" fill="#b8943c" opacity=".5"/>
+  </svg>
+
+  <!-- Contenu principal -->
+  <div class="content">
+
+    <div class="org-name">Axis Lumen</div>
+    <div class="org-sub">Formation · Biodynamique · Eau Vivante Plasma</div>
+
+    <div class="divider"></div>
+
+    <div class="cert-title">Certificat<br>de Formation</div>
+    <div class="cert-subtitle">Protocole Violet-MaGrav · Biodynamisateur d'Eau Vivante Plasma</div>
+
+    <div class="divider-sm"></div>
+
+    <p class="cert-body">
+      Ce certificat atteste que
+    </p>
+
+    <div class="recipient-name" id="recipientName">— Nom du participant —</div>
+
+    <p class="cert-body" style="margin-top:4mm">
+      a suivi et maîtrisé l'intégralité du stage pratique<br>
+      <em>Biodynamisateur d'Eau Vivante Plasma</em><br>
+      dispensé par Michael Chauvet — Axis Lumen
+    </p>
+
+    <div class="divider-sm"></div>
+
+    <!-- Programme couvert -->
+    <div class="program-box">
+      <div class="program-title">Programme validé</div>
+      <div class="program-items">
+        <div class="program-item">Distillation &amp; purification de l'eau</div>
+        <div class="program-item">Protocole Violet-MaGrav complet</div>
+        <div class="program-item">Technologie GANS plasma (nano-revêtement)</div>
+        <div class="program-item">Information fréquentielle (Aplicum / Spooky²)</div>
+        <div class="program-item">Bioélectronique Vincent (pH, rH2, rô)</div>
+        <div class="program-item">Mesure Biowell GDV avant/après</div>
+        <div class="program-item">Formule φ²° &amp; calcul fréquentiel</div>
+        <div class="program-item">Phosphénisme &amp; intention (depuis 2024)</div>
+      </div>
+    </div>
+
+    <!-- Autorisation de transmission -->
+    <div class="auth-box">
+      <p class="auth-text">
+        Le titulaire de ce certificat est <strong>autorisé à pratiquer</strong> le protocole Violet-MaGrav
+        et à <strong>transmettre cette formation</strong> à titre personnel ou professionnel,
+        dans le respect de l'éthique et des valeurs d'Axis Lumen.
+      </p>
+    </div>
+
+    <!-- Signatures -->
+    <div class="signatures">
+      <div class="sig-block">
+        <div style="height:12mm"></div>
+        <div class="sig-line"></div>
+        <div class="sig-label">Formateur</div>
+        <div class="sig-name">Michael Chauvet<br><span style="font-size:7pt;color:var(--crystal)">Axis Lumen</span></div>
+      </div>
+
+      <div class="date-block" style="margin-top:0;align-self:flex-end;padding-bottom:2mm">
+        <div class="date-label">Délivré le</div>
+        <div class="date-value" id="certDate">——————————</div>
+      </div>
+
+      <div class="sig-block">
+        <div style="height:12mm"></div>
+        <div class="sig-line"></div>
+        <div class="sig-label">Signature du titulaire</div>
+        <div class="sig-name" style="font-size:7pt;opacity:.5">&nbsp;</div>
+      </div>
+    </div>
+
+    <!-- Pied de page -->
+    <div class="cert-footer">
+      <div class="divider" style="margin-bottom:3mm;margin-top:6mm"></div>
+      <div class="cert-footer-text">
+        Axis Lumen · La Ferme du nouveau monde · 7 l'Aigrie, 44170 Abbaretz · France
+      </div>
+      <div class="cert-footer-text">
+        chauvetmichael@live.fr · 06 86 53 33 17 · axis-lumen.fr
+      </div>
+      <div class="cert-id" id="certId"></div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /cert -->
+
+<script>
+  // Générer un ID unique par certificat
+  const certId = 'AXL-' + new Date().getFullYear() + '-' + Math.random().toString(36).substr(2,6).toUpperCase();
+  document.getElementById('certId').textContent = 'Réf. ' + certId;
+
+  // Date du jour par défaut
+  const today = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  document.getElementById('certDate').textContent = today;
+
+  function updateName(val) {
+    document.getElementById('recipientName').textContent = val || '— Nom du participant —';
+  }
+
+  function updateDate(val) {
+    document.getElementById('certDate').textContent = val || today;
+  }
+</script>
+</body>
+</html>
