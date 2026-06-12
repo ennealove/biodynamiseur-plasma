@@ -142,6 +142,8 @@ section{padding:6rem 2rem}
 .sdc-days{font-family:"Cormorant Garamond",serif;font-size:1.9rem;font-weight:300;color:var(--crystal);line-height:1.1}
 .sdc-year{font-size:.72rem;color:var(--muted);margin-top:.15rem}
 .sdc-badge{display:inline-block;margin-top:.7rem;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .6rem;border-radius:10px;background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.25);color:#1a7a44}
+.sdc-btn{display:block;margin-top:1rem;padding:.65rem .8rem;background:linear-gradient(135deg,var(--crystal),var(--teal));color:#fff;border-radius:7px;font-size:.75rem;font-weight:700;letter-spacing:.05em;text-decoration:none;text-align:center;transition:opacity .2s}
+.sdc-btn:hover{opacity:.85}
 .stage-includes-wrap{margin-bottom:2.5rem}
 .stage-includes-title{font-family:"Cormorant Garamond",serif;font-size:1.3rem;color:var(--ink);margin-bottom:1rem}
 .stage-includes{display:flex;flex-wrap:wrap;gap:.6rem}
@@ -647,24 +649,28 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
         <div class="sdc-days">25&thinsp;&ndash;&thinsp;27</div>
         <div class="sdc-year">2026</div>
         <div class="sdc-badge">Places disponibles</div>
+        <a class="sdc-btn" href="javascript:void(0)" onclick="preselectSession('session-sept')">R&eacute;server ma place</a>
       </div>
       <div class="stage-date-card">
         <div class="sdc-month">Octobre</div>
         <div class="sdc-days">3&thinsp;&ndash;&thinsp;5</div>
         <div class="sdc-year">2026</div>
         <div class="sdc-badge">Places disponibles</div>
+        <a class="sdc-btn" href="javascript:void(0)" onclick="preselectSession('session-oct')">R&eacute;server ma place</a>
       </div>
       <div class="stage-date-card">
         <div class="sdc-month">Novembre</div>
         <div class="sdc-days">20&thinsp;&ndash;&thinsp;22</div>
         <div class="sdc-year">2026</div>
         <div class="sdc-badge">Places disponibles</div>
+        <a class="sdc-btn" href="javascript:void(0)" onclick="preselectSession('session-nov')">R&eacute;server ma place</a>
       </div>
       <div class="stage-date-card">
         <div class="sdc-month">D&eacute;cembre</div>
         <div class="sdc-days">11&thinsp;&ndash;&thinsp;13</div>
         <div class="sdc-year">2026</div>
         <div class="sdc-badge">Places disponibles</div>
+        <a class="sdc-btn" href="javascript:void(0)" onclick="preselectSession('session-dec')">R&eacute;server ma place</a>
       </div>
     </div>
 
@@ -722,25 +728,24 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
           <textarea id="sf-message" name="Message" placeholder="Parlez-moi un peu de vous et de ce qui vous attire dans ce stage..."></textarea>
         </div>
         <div style="margin-top:.5rem;padding-top:1.2rem;border-top:1px solid var(--border)">
-          <div style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Paiement s&eacute;curis&eacute;</div>
-          <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-          <stripe-buy-button
-            buy-button-id="buy_btn_1ThWMNEQqih2iurpWkfMu0nJ"
-            publishable-key="pk_live_51SYYDVEQqih2iurpeFX03BFOyT7GwgMpxc9kzW2pXb3yEGvDBO0C6kQ9hNraT73j7lElvSKknlfjC6pNrqbm5YNn00okPKjCWO"
-          ></stripe-buy-button>
-          <p class="sf-note" style="margin-top:.8rem">10 places maximum par session &middot; Remplissez le formulaire puis cliquez sur le bouton Stripe pour r&eacute;gler</p>
+          <button type="submit" class="sf-submit">Continuer vers le paiement s&eacute;curis&eacute; Stripe &rarr;</button>
+          <p class="sf-note" style="margin-top:.8rem">10 places maximum par session &middot; Paiement s&eacute;curis&eacute; via Stripe &middot; Vous serez redirig&eacute; vers la page de r&egrave;glement</p>
         </div>
       </form>
 
       <script>
-      // ── Liens Stripe par session (remplacer par les vrais Payment Links Stripe) ──
-      // Dans Stripe > Payment Links : créer 1 lien par session, stock = 10
-      // Coller ici les URLs obtenues
+      function preselectSession(sessionKey) {
+        var sel = document.getElementById('sf-session');
+        if (sel) sel.value = sessionKey;
+        var form = document.getElementById('stage-inscription-form');
+        if (form) form.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+
       var STRIPE_LINKS = {
-        'session-sept': 'https://buy.stripe.com/REMPLACER_SEPT',
-        'session-oct':  'https://buy.stripe.com/REMPLACER_OCT',
-        'session-nov':  'https://buy.stripe.com/REMPLACER_NOV',
-        'session-dec':  'https://buy.stripe.com/REMPLACER_DEC'
+        'session-sept': 'https://buy.stripe.com/28EbJ11phdUY4PX6KA0Jq0i',
+        'session-oct':  'https://buy.stripe.com/00w8wP2tleZ23LT6KA0Jq0n',
+        'session-nov':  'https://buy.stripe.com/cNidR99VNaIM3LT8SI0Jq0o',
+        'session-dec':  'https://buy.stripe.com/3cI5kDgkb7wAgyFgla0Jq0p'
       };
 
       function handleStageSubmit(e) {
