@@ -300,6 +300,21 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
   .mcanc{width:100%;text-align:center}
 .fd{font-size:clamp(.8rem,3.5vw,1.2rem);padding:1rem 1.2rem}
 }
+/* ── SÉPARATEUR OU ── */
+.ou-separator{background:var(--bg2,#eef4fa);padding:3rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.ou-inner{display:flex;align-items:center;gap:2rem}
+.ou-line{flex:1;height:1px;background:var(--border)}
+.ou-block{flex:3;text-align:center}
+.ou-badge{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.ou-title{font-family:"Cormorant Garamond",serif;font-size:1.4rem;color:var(--ink);margin-bottom:1.4rem}
+.ou-cards{display:flex;align-items:center;gap:1.2rem;justify-content:center;flex-wrap:wrap}
+.ou-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.4rem;flex:1;min-width:200px;max-width:280px;text-align:left}
+.ou-card--stage{border-color:rgba(30,139,195,.3)}
+.ou-card--digital{border-color:rgba(184,148,60,.3)}
+.ou-card-icon{font-size:1.5rem;margin-bottom:.5rem}
+.ou-card-label{font-weight:700;font-size:.9rem;color:var(--ink);margin-bottom:.4rem}
+.ou-card-desc{font-size:.78rem;color:var(--ink2);line-height:1.6}
+.ou-divider-v{font-family:"Cormorant Garamond",serif;font-size:1.3rem;color:var(--muted);flex-shrink:0;padding:0 .4rem}
 /* ── FORMATION SECTION ── */
 .formation-hero{background:linear-gradient(135deg,#050e1a 0%,#0d2438 60%,#0a1e32 100%);border-radius:12px;padding:2.5rem;margin-bottom:2rem;position:relative;overflow:hidden}
 .formation-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(30,139,195,.22),transparent);pointer-events:none}
@@ -337,7 +352,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
   <div class="nav-brand" style="display:flex;align-items:center;gap:.6rem"><img id="nav-logo" style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid rgba(184,148,60,.3)"> Axis Lumen</div>
   <div class="nav-links">
     <a href="#pionniers">Pionniers</a><a href="#machine">Machine</a><a href="#protocole">Protocole</a>
-    <a href="#formule">Formule &phi;&sup2;&deg;</a><a href="#conference">Conf&eacute;rence</a><a href="#stage">Stage</a><a href="#formation">Formation</a><a href="#biowell">Biowell</a>
+    <a href="#formule">Formule &phi;&sup2;&deg;</a><a href="#conference">Conf&eacute;rence</a><a href="#stage">Atelier</a><a href="#formation">Cours digital</a><a href="#biowell">Biowell</a>
     <a href="https://axis-lumen.fr" target="_blank" class="nav-axis">Axis Lumen ↗</a>
   </div>
   <button class="nav-toggle" id="nav-toggle" aria-label="Menu">&#9776;</button>
@@ -556,9 +571,12 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
 
 <section id="stage">
   <div class="container">
-    <div class="eyebrow">Atelier pratique &mdash; Places limit&eacute;es</div>
-    <h2 class="sec-title">Stage<br><em>Montage du Biodynamiseur</em></h2>
+    <div class="eyebrow">Atelier en pr&eacute;sentiel &mdash; 3 jours &mdash; Places limit&eacute;es</div>
+    <h2 class="sec-title">Atelier<br><em>Montage du Biodynamiseur</em></h2>
     <p class="sec-lead">3 jours immersifs pour assembler votre propre Biodynamiseur Plasmatique. Toutes les pi&egrave;ces sont pr&eacute;par&eacute;es en amont &mdash; vous repartez avec votre appareil, calibr&eacute; et op&eacute;rationnel.</p>
+    <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.3);border-radius:20px;padding:.35rem 1rem;font-size:.76rem;color:#1a7a44;margin-bottom:1.5rem">
+      <span>✓</span> Le cours digital Axis Lumen (valeur&nbsp;900&nbsp;€) est <strong style="margin-left:.2rem">offert</strong> avec l&rsquo;atelier
+    </div>
     <div class="divider"></div>
 
     <div class="stage-days">
@@ -754,10 +772,35 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
   </div>
 </section>
 
+<div class="ou-separator">
+  <div class="container">
+    <div class="ou-inner">
+      <div class="ou-line"></div>
+      <div class="ou-block">
+        <div class="ou-badge">Ou, si vous ne pouvez pas vous d&eacute;placer</div>
+        <div class="ou-title">Deux voies vers le m&ecirc;me savoir</div>
+        <div class="ou-cards">
+          <div class="ou-card ou-card--stage">
+            <div class="ou-card-icon">🏗️</div>
+            <div class="ou-card-label">Atelier 3 jours</div>
+            <div class="ou-card-desc">En pr&eacute;sentiel &mdash; vous assemblez votre Biodynamiseur et repartez avec l&rsquo;appareil. La formation digitale est <strong>incluse</strong>.</div>
+          </div>
+          <div class="ou-divider-v">OU</div>
+          <div class="ou-card ou-card--digital">
+            <div class="ou-card-icon">💻</div>
+            <div class="ou-card-label">Cours digital &mdash; 900&nbsp;€</div>
+            <div class="ou-card-desc">En ligne, &agrave; votre rythme &mdash; 8 modules complets, acc&egrave;s &agrave; vie + acc&egrave;s &agrave; axis-lumen.fr. Pour ceux qui ne peuvent pas se d&eacute;placer.</div>
+          </div>
+        </div>
+      </div>
+      <div class="ou-line"></div>
+    </div>
+  </div>
+</div>
 
 <section id="formation">
   <div class="container">
-    <div class="eyebrow">Formation digitale</div>
+    <div class="eyebrow">Cours digital &mdash; En ligne &middot; &Agrave; votre rythme</div>
     <h2 class="sec-title">Formation<br><em>Biodynamiseur Plasmatique</em></h2>
     <p class="sec-lead">8 modules complets pour comprendre, construire et transmettre &mdash; de la physique des pionniers &agrave; la mise en route. Acc&egrave;s &agrave; vie, imprimable, transmissible.</p>
     <div class="divider"></div>
@@ -799,10 +842,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
             <li>Protocole &phi;&sup2;&deg; complet en 6 &eacute;tapes</li>
             <li>Imprimable &mdash; format A4 optimis&eacute;</li>
             <li>Certificat d&rsquo;autorisation de transmission</li>
+            <li><strong>Acc&egrave;s &agrave; axis-lumen.fr inclus</strong> &mdash; console &amp; outils en ligne</li>
           </ul>
           <a href="https://buy.stripe.com/28EbJ11phdUY4PX6KA0Jq0i" target="_blank" class="btn-buy" id="btn-buy-formation">
             Acc&eacute;der &agrave; la Formation &mdash; 900 &euro;
-            <span class="btn-buy-sub">Acc&egrave;s &agrave; vie &middot; Paiement s&eacute;curis&eacute; Stripe</span>
+            <span class="btn-buy-sub">Acc&egrave;s &agrave; vie &middot; axis-lumen.fr inclus &middot; Stripe</span>
           </a>
         </div>
       </div>
@@ -1068,7 +1112,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
   <div class="fst">Axis Lumen &middot; Biodynamiseur Plasmatique &middot; Protocole Marcel Violet &middot; Bio&eacute;lectronique de Vincent</div>
   <div class="fl">
     <a href="#pionniers">Pionniers</a><a href="#machine">Machine</a><a href="#protocole">Protocole</a>
-    <a href="#formule">Formule &phi;&sup2;&deg;</a><a href="#conference">Conf&eacute;rence</a><a href="#stage">Stage</a><a href="#formation">Formation</a><a href="#legal">Mentions l&eacute;gales &amp; CGV</a><a href="#biowell">Galerie Biowell</a><a href="#legal">L&eacute;gal</a><a href="https://axis-lumen.fr" target="_blank">axis-lumen.fr ↗</a>
+    <a href="#formule">Formule &phi;&sup2;&deg;</a><a href="#conference">Conf&eacute;rence</a><a href="#stage">Atelier</a><a href="#formation">Cours digital</a><a href="#legal">Mentions l&eacute;gales &amp; CGV</a><a href="#biowell">Galerie Biowell</a><a href="#legal">L&eacute;gal</a><a href="https://axis-lumen.fr" target="_blank">axis-lumen.fr ↗</a>
   </div>
   <div class="fcp">Document p&eacute;dagogique &middot; Axis Lumen &middot; Usage exp&eacute;rimental &mdash; non m&eacute;dical</div>
 </footer>
