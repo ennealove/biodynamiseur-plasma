@@ -122,20 +122,44 @@ section{padding:6rem 2rem}
 .conf-ref-n{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem}
 .conf-ref-v{font-size:.84rem;font-weight:600;color:var(--ink)}
 .conf-ref-d{font-size:.74rem;color:var(--ink2);margin-top:.15rem}
-.stage-grid{display:grid;grid-template-columns:1fr 340px;gap:4rem;align-items:start}
-.stage-offer{background:linear-gradient(135deg,var(--crystal),var(--teal));color:#fff;border-radius:12px;padding:2.5rem;box-shadow:0 8px 40px rgba(30,139,195,.25)}
-.stage-price{font-family:"Cormorant Garamond",serif;font-size:3.5rem;font-weight:300;margin-bottom:.2rem}
-.stage-price span{font-size:1.2rem;opacity:.8}
-.stage-desc{font-size:.84rem;opacity:.85;line-height:1.7;margin-bottom:1.5rem}
-.stage-items{list-style:none;font-size:.82rem;opacity:.9}
-.stage-items li{padding:.3rem 0;padding-left:1.2rem;position:relative}
-.stage-items li::before{content:"✓";position:absolute;left:0;opacity:.7}
-.stage-prog h3{font-family:"Cormorant Garamond",serif;font-size:1.3rem;color:var(--ink);margin-bottom:1rem}
+.stage-days{display:flex;flex-direction:column;gap:2rem;margin-bottom:3rem}
+.stage-day-block{background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.stage-day-header{background:linear-gradient(135deg,var(--crystal),var(--teal));color:#fff;padding:1rem 1.5rem;display:flex;align-items:center;gap:1.2rem}
+.stage-day-num{font-family:"Cormorant Garamond",serif;font-size:2.2rem;font-weight:300;line-height:1;flex-shrink:0;opacity:.85}
+.stage-day-title{font-family:"Cormorant Garamond",serif;font-size:1.15rem;font-weight:500}
+.stage-day-subtitle{font-size:.73rem;opacity:.75;margin-top:.15rem;letter-spacing:.04em}
+.stage-day-steps{padding:1rem 1.5rem}
 .stage-step{display:flex;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border)}
 .stage-step:last-child{border-bottom:none}
 .stage-t{font-family:"JetBrains Mono",monospace;font-size:.7rem;color:var(--muted);width:60px;flex-shrink:0;padding-top:.1rem}
 .stage-c{font-size:.84rem;color:var(--ink2);line-height:1.6}
 .stage-c strong{color:var(--ink)}
+.stage-dates-title{font-family:"Cormorant Garamond",serif;font-size:1.3rem;color:var(--ink);margin-bottom:1rem}
+.stage-dates{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:3rem}
+.stage-date-card{background:var(--panel);border:1.5px solid var(--border);border-radius:10px;padding:1.4rem 1rem;text-align:center;transition:border-color .2s,box-shadow .2s}
+.stage-date-card:hover{border-color:var(--crystal);box-shadow:0 4px 20px rgba(30,139,195,.12)}
+.sdc-month{font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.sdc-days{font-family:"Cormorant Garamond",serif;font-size:1.9rem;font-weight:300;color:var(--crystal);line-height:1.1}
+.sdc-year{font-size:.72rem;color:var(--muted);margin-top:.15rem}
+.sdc-badge{display:inline-block;margin-top:.7rem;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .6rem;border-radius:10px;background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.25);color:#1a7a44}
+.stage-includes-wrap{margin-bottom:2.5rem}
+.stage-includes-title{font-family:"Cormorant Garamond",serif;font-size:1.3rem;color:var(--ink);margin-bottom:1rem}
+.stage-includes{display:flex;flex-wrap:wrap;gap:.6rem}
+.si-tag{display:flex;align-items:center;gap:.4rem;background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:.38rem 1rem;font-size:.78rem;color:var(--ink2)}
+.si-tag::before{content:"✓";color:var(--green,#2ecc71);font-weight:700;font-size:.75rem;flex-shrink:0}
+.stage-form-wrap{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:2rem}
+.stage-form-title{font-family:"Cormorant Garamond",serif;font-size:1.4rem;color:var(--ink);margin-bottom:.4rem}
+.stage-form-sub{font-size:.83rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6}
+.stage-form{display:flex;flex-direction:column;gap:1rem}
+.sf-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.sf-field{display:flex;flex-direction:column;gap:.3rem}
+.sf-field label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.sf-field input,.sf-field select,.sf-field textarea{background:var(--bg2);border:1.5px solid var(--border);border-radius:5px;color:var(--ink);font-size:.88rem;padding:.6rem .8rem;outline:none;transition:border-color .2s;font-family:Inter,sans-serif;width:100%;box-sizing:border-box}
+.sf-field input:focus,.sf-field select:focus,.sf-field textarea:focus{border-color:var(--crystal)}
+.sf-field textarea{min-height:90px;resize:vertical}
+.sf-submit{background:linear-gradient(135deg,var(--crystal),var(--teal));color:#fff;border:none;padding:.85rem 2.5rem;font-size:.85rem;border-radius:6px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:opacity .2s;align-self:flex-start}
+.sf-submit:hover{opacity:.88}
+.sf-note{font-size:.72rem;color:var(--muted);margin-top:.3rem;line-height:1.5}
 .bw-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:2.5rem;flex-wrap:wrap;gap:.8rem}
 .bw-stats{display:flex;gap:2rem}
 .bwst{text-align:center}
@@ -213,7 +237,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
 /* ─── Tablet (≤ 900px) ─── */
 @media(max-width:900px){
   .hero-inner{grid-template-columns:1fr;gap:3rem}
-  .ml,.conf-grid,.stage-grid{grid-template-columns:1fr}
+  .ml,.conf-grid{grid-template-columns:1fr}
+  .stage-dates{grid-template-columns:1fr 1fr}
+  .sf-row{grid-template-columns:1fr}
   .conf-refs{position:static;display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
   .formation-grid{grid-template-columns:1fr}
   .formation-card{position:static;top:auto}
@@ -272,8 +298,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
   .conf-refs{grid-template-columns:1fr}
   .mbt{flex-direction:column}
   .mcanc{width:100%;text-align:center}
-  .stage-price{font-size:2.6rem}
-  .fd{font-size:clamp(.8rem,3.5vw,1.2rem);padding:1rem 1.2rem}
+.fd{font-size:clamp(.8rem,3.5vw,1.2rem);padding:1rem 1.2rem}
 }
 /* ── FORMATION SECTION ── */
 .formation-hero{background:linear-gradient(135deg,#050e1a 0%,#0d2438 60%,#0a1e32 100%);border-radius:12px;padding:2.5rem;margin-bottom:2rem;position:relative;overflow:hidden}
@@ -531,47 +556,161 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
 
 <section id="stage">
   <div class="container">
-    <div class="eyebrow">Formation pratique</div>
-    <h2 class="sec-title">Stage<br><em>Eau Vivante Plasma</em></h2>
-    <p class="sec-lead">Une journ&eacute;e compl&egrave;te pour ma&icirc;triser le protocole de A &agrave; Z : distillation, magn&eacute;tisation, vortex, Biodynamiseur Plasmatique, fr&eacute;quences, mesures Biowell.</p>
+    <div class="eyebrow">Atelier pratique &mdash; Places limit&eacute;es</div>
+    <h2 class="sec-title">Stage<br><em>Montage du Biodynamiseur</em></h2>
+    <p class="sec-lead">3 jours immersifs pour assembler votre propre Biodynamiseur Plasmatique. Toutes les pi&egrave;ces sont pr&eacute;par&eacute;es en amont &mdash; vous repartez avec votre appareil, calibr&eacute; et op&eacute;rationnel.</p>
     <div class="divider"></div>
-    <div class="stage-grid">
-      <div class="stage-prog">
-        <h3>Programme de la journ&eacute;e</h3>
-        <div class="stage-step"><div class="stage-t">09h00</div><div class="stage-c"><strong>Accueil &amp; bases th&eacute;oriques</strong><br>Bio&eacute;lectronique de Vincent, triangle pH/rH2/r&eacute;sistivit&eacute;, histoire des pionniers</div></div>
-        <div class="stage-step"><div class="stage-t">10h30</div><div class="stage-c"><strong>Mesure Biowell initiale</strong><br>Capture GDV de chaque participant &mdash; &eacute;tat de r&eacute;f&eacute;rence</div></div>
-        <div class="stage-step"><div class="stage-t">11h00</div><div class="stage-c"><strong>Distillation &amp; analyse eau</strong><br>Mesure pH, rH2, r&eacute;sistivit&eacute; &mdash; eau distill&eacute;e vs eau courante</div></div>
-        <div class="stage-step"><div class="stage-t">12h30</div><div class="stage-c"><strong>Repas &amp; magn&eacute;tisation</strong><br>Mise en place de la magn&eacute;tisation nocturne</div></div>
-        <div class="stage-step"><div class="stage-t">14h00</div><div class="stage-c"><strong>Biodynamiseur Plasmatique</strong><br>D&eacute;monstration compl&egrave;te &mdash; activation, interrupteur, mesures avant/apr&egrave;s</div></div>
-        <div class="stage-step"><div class="stage-t">15h30</div><div class="stage-c"><strong>Formule &phi;&sup2;&deg; &amp; fr&eacute;quences</strong><br>Calcul des fr&eacute;quences mol&eacute;culaires, diffusion via antenne scalaire ou PEMF</div></div>
-        <div class="stage-step"><div class="stage-t">17h00</div><div class="stage-c"><strong>Mesure Biowell finale</strong><br>Comparaison captures GDV avant/apr&egrave;s &mdash; interpr&eacute;tation collective</div></div>
-        <div class="stage-step"><div class="stage-t">18h00</div><div class="stage-c"><strong>Synth&egrave;se &amp; autonomisation</strong><br>Kit complet remis &mdash; protocole &eacute;crit, liste mat&eacute;riel, acc&egrave;s galerie Biowell</div></div>
-      </div>
-      <div>
-        <div class="stage-offer">
-          <div class="stage-price"><span>€</span>2000</div>
-          <div style="font-size:.72rem;opacity:.7;margin-bottom:1rem;letter-spacing:.08em;text-transform:uppercase">Tarif cl&eacute; en main &middot; Journ&eacute;e compl&egrave;te</div>
-          <div class="stage-desc">Inclut toutes les mesures Biowell, le protocole complet document&eacute;, l&rsquo;acc&egrave;s &agrave; la galerie priv&eacute;e Axis Lumen et le certificat d&rsquo;autorisation de transmission.</div>
-          <ul class="stage-items">
-            <li>Distillation + analyse bio&eacute;lectronique</li>
-            <li>Biodynamiseur Plasmatique en d&eacute;monstration</li>
-            <li>Mesures Biowell GDV avant/apr&egrave;s</li>
-            <li>Formule &phi;&sup2;&deg; &amp; calcul fr&eacute;quentiel</li>
-            <li>Protocole &eacute;crit complet</li>
-            <li><strong>Bouteille verre pour magn&eacute;tisation</strong></li>
-            <li><strong>Antenne scalaire Aplicum</strong></li>
-            <li><strong>Biodynamiseur Plasmatique inclus</strong></li>
-            <li><strong>Acc&egrave;s &agrave; vie &agrave; axis-lumen.fr</strong></li>
-            <li>Acc&egrave;s galerie Biowell priv&eacute;e</li>
-            <li>Certificat de formation d&eacute;livr&eacute; &mdash; autorisation de transmission</li>
-          </ul>
-          <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.2)">
-            <div style="font-size:.72rem;opacity:.6;margin-bottom:.4rem">Contact</div>
-            <div style="font-size:.88rem">chauvetmichael@live.fr</div><div style="font-size:.88rem;margin-top:.3rem">06 56 53 33 17</div>
+
+    <div class="stage-days">
+      <div class="stage-day-block">
+        <div class="stage-day-header">
+          <div class="stage-day-num">J1</div>
+          <div>
+            <div class="stage-day-title">Th&eacute;orie &amp; Fondements scientifiques</div>
+            <div class="stage-day-subtitle">Comprendre l&rsquo;eau vivante avant de construire l&rsquo;appareil</div>
           </div>
+        </div>
+        <div class="stage-day-steps">
+          <div class="stage-step"><div class="stage-t">09h00</div><div class="stage-c"><strong>Accueil &amp; pr&eacute;sentation</strong><br>Tour de table, intentions de chacun, vision globale des 3 jours</div></div>
+          <div class="stage-step"><div class="stage-t">09h30</div><div class="stage-c"><strong>Mesures Biowell initiales</strong><br>Capture GDV de chaque participant &mdash; &eacute;tat de r&eacute;f&eacute;rence avant toute intervention</div></div>
+          <div class="stage-step"><div class="stage-t">10h15</div><div class="stage-c"><strong>Bio&eacute;lectronique de Vincent</strong><br>Triangle pH / rH2 / r&eacute;sistivit&eacute; &mdash; ce que ces mesures r&eacute;v&egrave;lent sur la vitalit&eacute; de l&rsquo;eau</div></div>
+          <div class="stage-step"><div class="stage-t">11h00</div><div class="stage-c"><strong>Les pionniers de l&rsquo;eau vivante</strong><br>Schauberger, Keshe, Violet &mdash; histoire, d&eacute;couvertes, h&eacute;ritage scientifique</div></div>
+          <div class="stage-step"><div class="stage-t">12h00</div><div class="stage-c"><strong>Distillation &amp; analyse compar&eacute;e</strong><br>Eau du robinet, eau distill&eacute;e, eau structur&eacute;e &mdash; lecture et interpr&eacute;tation des param&egrave;tres</div></div>
+          <div class="stage-step"><div class="stage-t">13h00</div><div class="stage-c"><strong>Repas collectif</strong><br>Eau vivante au menu &mdash; temps d&rsquo;&eacute;changes libres</div></div>
+          <div class="stage-step"><div class="stage-t">14h30</div><div class="stage-c"><strong>Formule &phi;&sup2;&deg;</strong><br>Calcul des fr&eacute;quences mol&eacute;culaires selon le nombre d&rsquo;or &mdash; logique et application</div></div>
+          <div class="stage-step"><div class="stage-t">15h30</div><div class="stage-c"><strong>Vortex, magn&eacute;tisation &amp; m&eacute;moire de l&rsquo;eau</strong><br>Principes de structuration &mdash; d&eacute;monstration en direct, observation des effets</div></div>
+          <div class="stage-step"><div class="stage-t">16h30</div><div class="stage-c"><strong>Introduction au Biodynamiseur Plasmatique</strong><br>Pr&eacute;sentation de l&rsquo;appareil, r&ocirc;le de chaque composant, logique de la conception</div></div>
+          <div class="stage-step"><div class="stage-t">17h30</div><div class="stage-c"><strong>Bilan du jour &amp; questions</strong><br>Ancrage des notions, pr&eacute;paration mentale au montage du lendemain</div></div>
+        </div>
+      </div>
+
+      <div class="stage-day-block">
+        <div class="stage-day-header">
+          <div class="stage-day-num">J2</div>
+          <div>
+            <div class="stage-day-title">Montage du Biodynamiseur Plasmatique</div>
+            <div class="stage-day-subtitle">Assembler pi&egrave;ce par pi&egrave;ce, avec pr&eacute;cision et conscience</div>
+          </div>
+        </div>
+        <div class="stage-day-steps">
+          <div class="stage-step"><div class="stage-t">09h00</div><div class="stage-c"><strong>Pr&eacute;paration &amp; v&eacute;rification</strong><br>Installation de l&rsquo;espace de travail &mdash; identification et v&eacute;rification de toutes les pi&egrave;ces pr&eacute;par&eacute;es</div></div>
+          <div class="stage-step"><div class="stage-t">09h30</div><div class="stage-c"><strong>Assemblage des bobines nano-rev&ecirc;tues</strong><br>Positionnement, orientation, fixation selon le protocole Axis Lumen</div></div>
+          <div class="stage-step"><div class="stage-t">11h00</div><div class="stage-c"><strong>Condensateurs en cire d&rsquo;abeille</strong><br>Installation et isolation &mdash; gestes pr&eacute;cis, v&eacute;rifications &eacute;tape par &eacute;tape</div></div>
+          <div class="stage-step"><div class="stage-t">12h30</div><div class="stage-c"><strong>Repas collectif</strong><br>Pause bien m&eacute;rit&eacute;e &mdash; l&rsquo;appareil prend forme</div></div>
+          <div class="stage-step"><div class="stage-t">14h00</div><div class="stage-c"><strong>Tige argent &amp; c&acirc;blage</strong><br>Int&eacute;gration de l&rsquo;&eacute;l&eacute;ment conducteur &mdash; raccordements et s&eacute;curisation &eacute;lectrique</div></div>
+          <div class="stage-step"><div class="stage-t">15h30</div><div class="stage-c"><strong>Premi&egrave;re activation</strong><br>Mise sous tension, tests de continuit&eacute;, v&eacute;rifications et premiers ajustements</div></div>
+          <div class="stage-step"><div class="stage-t">16h30</div><div class="stage-c"><strong>Mise en eau &amp; premi&egrave;res mesures</strong><br>L&rsquo;appareil entre en contact avec l&rsquo;eau &mdash; observation des effets imm&eacute;diats</div></div>
+          <div class="stage-step"><div class="stage-t">17h30</div><div class="stage-c"><strong>Bilan du jour</strong><br>Partage des ressentis, r&eacute;glages individuels, pr&eacute;paration de la calibration finale</div></div>
+        </div>
+      </div>
+
+      <div class="stage-day-block">
+        <div class="stage-day-header">
+          <div class="stage-day-num">J3</div>
+          <div>
+            <div class="stage-day-title">Calibration, Fr&eacute;quences &amp; Certification</div>
+            <div class="stage-day-subtitle">Partir avec son appareil op&eacute;rationnel et son autorisation de transmission</div>
+          </div>
+        </div>
+        <div class="stage-day-steps">
+          <div class="stage-step"><div class="stage-t">09h00</div><div class="stage-c"><strong>Calibration finale</strong><br>Optimisation individuelle de chaque Biodynamiseur &mdash; mesures de contr&ocirc;le</div></div>
+          <div class="stage-step"><div class="stage-t">10h00</div><div class="stage-c"><strong>Diffusion fr&eacute;quentielle</strong><br>Mise en route de l&rsquo;antenne scalaire ou PEMF &mdash; application de la formule &phi;&sup2;&deg;</div></div>
+          <div class="stage-step"><div class="stage-t">11h00</div><div class="stage-c"><strong>Mesures Biowell finales</strong><br>Capture GDV de chaque participant &mdash; comparaison avant/apr&egrave;s sur 3 jours</div></div>
+          <div class="stage-step"><div class="stage-t">12h00</div><div class="stage-c"><strong>Interpr&eacute;tation collective</strong><br>Lecture des captures &mdash; ce que les mesures racontent de chacun</div></div>
+          <div class="stage-step"><div class="stage-t">13h00</div><div class="stage-c"><strong>Repas collectif</strong><br>Derni&egrave;re table commune &mdash; partage des exp&eacute;riences et des &eacute;motions</div></div>
+          <div class="stage-step"><div class="stage-t">14h30</div><div class="stage-c"><strong>Protocole complet &amp; kit de maintenance</strong><br>Remise du document &eacute;crit &mdash; tout ce qu&rsquo;il faut pour utiliser et entretenir l&rsquo;appareil seul</div></div>
+          <div class="stage-step"><div class="stage-t">15h30</div><div class="stage-c"><strong>C&eacute;r&eacute;monie de certification</strong><br>D&eacute;livrance du certificat Axis Lumen &mdash; autorisation officielle de transmission</div></div>
+          <div class="stage-step"><div class="stage-t">16h30</div><div class="stage-c"><strong>D&eacute;part</strong><br>Vous repartez avec votre Biodynamiseur Plasmatique, calibr&eacute;, op&eacute;rationnel &mdash; pr&ecirc;t &agrave; transformer votre eau</div></div>
         </div>
       </div>
     </div>
+
+    <div class="stage-dates-title">Sessions disponibles 2026</div>
+    <div class="stage-dates">
+      <div class="stage-date-card">
+        <div class="sdc-month">Septembre</div>
+        <div class="sdc-days">25&thinsp;&ndash;&thinsp;27</div>
+        <div class="sdc-year">2026</div>
+        <div class="sdc-badge">Places disponibles</div>
+      </div>
+      <div class="stage-date-card">
+        <div class="sdc-month">Octobre</div>
+        <div class="sdc-days">3&thinsp;&ndash;&thinsp;5</div>
+        <div class="sdc-year">2026</div>
+        <div class="sdc-badge">Places disponibles</div>
+      </div>
+      <div class="stage-date-card">
+        <div class="sdc-month">Novembre</div>
+        <div class="sdc-days">20&thinsp;&ndash;&thinsp;22</div>
+        <div class="sdc-year">2026</div>
+        <div class="sdc-badge">Places disponibles</div>
+      </div>
+      <div class="stage-date-card">
+        <div class="sdc-month">D&eacute;cembre</div>
+        <div class="sdc-days">11&thinsp;&ndash;&thinsp;13</div>
+        <div class="sdc-year">2026</div>
+        <div class="sdc-badge">Places disponibles</div>
+      </div>
+    </div>
+
+    <div class="stage-includes-wrap">
+      <div class="stage-includes-title">Ce qui est inclus</div>
+      <div class="stage-includes">
+        <span class="si-tag">Toutes les pi&egrave;ces pr&eacute;par&eacute;es en amont</span>
+        <span class="si-tag">Votre Biodynamiseur assembl&eacute; &amp; calibr&eacute;</span>
+        <span class="si-tag">Mesures Biowell GDV avant/apr&egrave;s</span>
+        <span class="si-tag">Formule &phi;&sup2;&deg; compl&egrave;te</span>
+        <span class="si-tag">Protocole &eacute;crit complet</span>
+        <span class="si-tag">Kit de maintenance</span>
+        <span class="si-tag">Acc&egrave;s galerie priv&eacute;e Axis Lumen</span>
+        <span class="si-tag">Certificat d&rsquo;autorisation de transmission</span>
+        <span class="si-tag">Repas inclus les 3 jours</span>
+      </div>
+    </div>
+
+    <div class="stage-form-wrap">
+      <div class="stage-form-title">Formulaire d&rsquo;inscription</div>
+      <p class="stage-form-sub">Places limit&eacute;es &mdash; merci d&rsquo;indiquer vos coordonn&eacute;es et la session souhait&eacute;e. Je reviendrai vers vous dans les 48h avec toutes les informations pratiques et le tarif.</p>
+      <form class="stage-form" action="mailto:chauvetmichael@live.fr" method="post" enctype="text/plain">
+        <div class="sf-row">
+          <div class="sf-field">
+            <label for="sf-prenom">Pr&eacute;nom</label>
+            <input type="text" id="sf-prenom" name="Prenom" placeholder="Votre pr&eacute;nom" required>
+          </div>
+          <div class="sf-field">
+            <label for="sf-nom">Nom</label>
+            <input type="text" id="sf-nom" name="Nom" placeholder="Votre nom" required>
+          </div>
+        </div>
+        <div class="sf-row">
+          <div class="sf-field">
+            <label for="sf-email">Email</label>
+            <input type="email" id="sf-email" name="Email" placeholder="votre@email.fr" required>
+          </div>
+          <div class="sf-field">
+            <label for="sf-tel">T&eacute;l&eacute;phone</label>
+            <input type="tel" id="sf-tel" name="Telephone" placeholder="06 XX XX XX XX">
+          </div>
+        </div>
+        <div class="sf-field">
+          <label for="sf-session">Session souhait&eacute;e</label>
+          <select id="sf-session" name="Session" required>
+            <option value="" disabled selected>Choisissez une date</option>
+            <option value="session-sept">25&ndash;27 septembre 2026</option>
+            <option value="session-oct">3&ndash;5 octobre 2026</option>
+            <option value="session-nov">20&ndash;22 novembre 2026</option>
+            <option value="session-dec">11&ndash;13 d&eacute;cembre 2026</option>
+          </select>
+        </div>
+        <div class="sf-field">
+          <label for="sf-message">Votre message &amp; motivations</label>
+          <textarea id="sf-message" name="Message" placeholder="Parlez-moi un peu de vous et de ce qui vous attire dans ce stage..."></textarea>
+        </div>
+        <button type="submit" class="sf-submit">Envoyer ma demande d&rsquo;inscription</button>
+        <p class="sf-note">Tarif communiqu&eacute; sur inscription &middot; R&eacute;ponse sous 48h &middot; chauvetmichael@live.fr &middot; 06 56 53 33 17</p>
+      </form>
+    </div>
+
   </div>
 </section>
 
