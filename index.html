@@ -721,8 +721,15 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
           <label for="sf-message">Votre message &amp; motivations</label>
           <textarea id="sf-message" name="Message" placeholder="Parlez-moi un peu de vous et de ce qui vous attire dans ce stage..."></textarea>
         </div>
-        <button type="submit" class="sf-submit">R&eacute;server ma place &mdash; Payer en ligne</button>
-        <p class="sf-note">10 places maximum par session &middot; Paiement s&eacute;curis&eacute; via Stripe &middot; Acc&egrave;s &agrave; la formation Axis Lumen offert apr&egrave;s r&egrave;glement</p>
+        <div style="margin-top:.5rem;padding-top:1.2rem;border-top:1px solid var(--border)">
+          <div style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem">Paiement s&eacute;curis&eacute;</div>
+          <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+          <stripe-buy-button
+            buy-button-id="buy_btn_1ThWMNEQqih2iurpWkfMu0nJ"
+            publishable-key="pk_live_51SYYDVEQqih2iurpeFX03BFOyT7GwgMpxc9kzW2pXb3yEGvDBO0C6kQ9hNraT73j7lElvSKknlfjC6pNrqbm5YNn00okPKjCWO"
+          ></stripe-buy-button>
+          <p class="sf-note" style="margin-top:.8rem">10 places maximum par session &middot; Remplissez le formulaire puis cliquez sur le bouton Stripe pour r&eacute;gler</p>
+        </div>
       </form>
 
       <script>
