@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Formation Biodynamiseur Plasmatique — Axis Lumen</title>
+<script async src="https://js.stripe.com/v3/buy-button.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
 :root{
@@ -126,6 +127,7 @@ footer strong{color:var(--gold)}
 #formation-lock .back-link{display:block;margin-top:1.2rem;color:var(--ink2);font-size:.85rem;
   text-decoration:none;opacity:.7}
 #formation-lock .back-link:hover{opacity:1}
+.stripe-btn-wrap{display:flex;justify-content:center;margin:0 auto 0.5rem;width:100%}
 .progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--crystal));
   width:0%;z-index:200;transition:width .1s}
 @media print{.nav,.progress-bar{display:none}.hero{padding:2rem}.mod-header{padding:1rem 0}}
@@ -140,7 +142,12 @@ footer strong{color:var(--gold)}
     <h2>Acc&egrave;s &agrave; la Formation</h2>
     <p>Cette formation compl&egrave;te (8 modules, protocoles, sch&eacute;mas) est r&eacute;serv&eacute;e aux participants inscrits.<br>Obtenez un acc&egrave;s &agrave; vie en une seule fois.</p>
     <div class="lock-price">900 &euro; <span>acc&egrave;s &agrave; vie</span></div>
-    <a href="https://buy.stripe.com/28EbJ11phdUY4PX6KA0Jq0i" target="_blank" class="btn-unlock">&#x2B21; Acc&eacute;der &mdash; 900 &euro;</a>
+    <div class="stripe-btn-wrap">
+      <stripe-buy-button
+        buy-button-id="buy_btn_1ThWMNEQqih2iurpWkfMu0nJ"
+        publishable-key="pk_live_51SYYDVEQqih2iurpeFX03BFOyT7GwgMpxc9kzW2pXb3yEGvDBO0C6kQ9hNraT73j7lElvSKknlfjC6pNrqbm5YNn00okPKjCWO"
+      ></stripe-buy-button>
+    </div>
     <a href="index.html" class="back-link">&larr; Retour au site Axis Lumen</a>
   </div>
 </div>
