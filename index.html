@@ -671,7 +671,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
     <div class="stage-form-wrap">
       <div class="stage-form-title">Formulaire d&rsquo;inscription</div>
       <p class="stage-form-sub">Places limit&eacute;es &mdash; merci d&rsquo;indiquer vos coordonn&eacute;es et la session souhait&eacute;e. Je reviendrai vers vous dans les 48h avec toutes les informations pratiques et le tarif.</p>
-      <form class="stage-form" action="mailto:chauvetmichael@live.fr" method="post" enctype="text/plain">
+      <form class="stage-form" id="stage-inscription-form" onsubmit="return handleStageSubmit(event)">
         <div class="sf-row">
           <div class="sf-field">
             <label for="sf-prenom">Pr&eacute;nom</label>
@@ -706,9 +706,49 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
           <label for="sf-message">Votre message &amp; motivations</label>
           <textarea id="sf-message" name="Message" placeholder="Parlez-moi un peu de vous et de ce qui vous attire dans ce stage..."></textarea>
         </div>
-        <button type="submit" class="sf-submit">Envoyer ma demande d&rsquo;inscription</button>
-        <p class="sf-note">Tarif communiqu&eacute; sur inscription &middot; R&eacute;ponse sous 48h &middot; chauvetmichael@live.fr &middot; 06 56 53 33 17</p>
+        <button type="submit" class="sf-submit">R&eacute;server ma place &mdash; Payer en ligne</button>
+        <p class="sf-note">10 places maximum par session &middot; Paiement s&eacute;curis&eacute; via Stripe &middot; Acc&egrave;s &agrave; la formation Axis Lumen offert apr&egrave;s r&egrave;glement</p>
       </form>
+
+      <script>
+      // ── Liens Stripe par session (remplacer par les vrais Payment Links Stripe) ──
+      // Dans Stripe > Payment Links : créer 1 lien par session, stock = 10
+      // Coller ici les URLs obtenues
+      var STRIPE_LINKS = {
+        'session-sept': 'https://buy.stripe.com/REMPLACER_SEPT',
+        'session-oct':  'https://buy.stripe.com/REMPLACER_OCT',
+        'session-nov':  'https://buy.stripe.com/REMPLACER_NOV',
+        'session-dec':  'https://buy.stripe.com/REMPLACER_DEC'
+      };
+
+      function handleStageSubmit(e) {
+        e.preventDefault();
+        var email   = document.getElementById('sf-email').value.trim();
+        var prenom  = document.getElementById('sf-prenom').value.trim();
+        var session = document.getElementById('sf-session').value;
+
+        if (!session) {
+          alert('Veuillez choisir une session.');
+          return false;
+        }
+
+        // Sauvegarde pour la page merci
+        try {
+          localStorage.setItem('stage_email',  email);
+          localStorage.setItem('stage_prenom', prenom);
+          localStorage.setItem('stage_session', session);
+        } catch(err) {}
+
+        var link = STRIPE_LINKS[session];
+        if (!link || link.indexOf('REMPLACER') !== -1) {
+          alert('Le lien de paiement pour cette session n\'est pas encore disponible.\nContactez Michael : chauvetmichael@live.fr');
+          return false;
+        }
+
+        window.location.href = link;
+        return false;
+      }
+      </script>
     </div>
 
   </div>

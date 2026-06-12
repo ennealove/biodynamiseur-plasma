@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Réservation confirmée — Axis Lumen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crystal:#1e8bc3;--teal:#0d9e8a;--ink:#0d2438;--ink2:#2a4a62;
+    --muted:#6b8299;--bg:#f5faff;--panel:#fff;--border:#dde8f0;
+    --gold:#b8943c;--green:#2ecc71;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1rem}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:3rem 2.5rem;max-width:560px;width:100%;box-shadow:0 8px 40px rgba(13,36,56,.08);text-align:center}
+  .icon{font-size:3rem;margin-bottom:1rem}
+  .eyebrow{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem}
+  h1{font-family:"Cormorant Garamond",serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:300;line-height:1.2;margin-bottom:1rem;color:var(--ink)}
+  h1 em{color:var(--crystal);font-style:normal}
+  .lead{font-size:.95rem;color:var(--ink2);line-height:1.7;margin-bottom:2rem}
+  .divider{height:1px;background:var(--border);margin:1.5rem 0}
+  .prenom-name{font-weight:700;color:var(--crystal)}
+
+  .access-box{background:linear-gradient(135deg,rgba(30,139,195,.08),rgba(13,158,138,.08));border:1.5px solid rgba(30,139,195,.25);border-radius:12px;padding:1.8rem 1.5rem;margin-bottom:2rem;text-align:left}
+  .access-box .ab-title{font-family:"Cormorant Garamond",serif;font-size:1.2rem;color:var(--ink);margin-bottom:.4rem}
+  .access-box .ab-sub{font-size:.83rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.6}
+  .btn-access{display:block;width:100%;padding:1rem 1.5rem;background:linear-gradient(135deg,var(--crystal),var(--teal));color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;text-align:center;letter-spacing:.03em;transition:opacity .2s;margin-bottom:.8rem}
+  .btn-access:hover{opacity:.88}
+  .code-fallback{font-size:.78rem;color:var(--muted);line-height:1.6}
+  .code-fallback code{background:rgba(30,139,195,.1);color:var(--crystal);padding:.15rem .5rem;border-radius:4px;font-size:.82rem;letter-spacing:.05em}
+
+  .next-steps{text-align:left;margin-bottom:2rem}
+  .next-steps h3{font-family:"Cormorant Garamond",serif;font-size:1.1rem;color:var(--ink);margin-bottom:.8rem}
+  .step{display:flex;gap:.8rem;align-items:flex-start;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.85rem;color:var(--ink2);line-height:1.6}
+  .step:last-child{border-bottom:none}
+  .step-num{background:var(--crystal);color:#fff;border-radius:50%;width:22px;height:22px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;margin-top:.1rem}
+
+  .contact{font-size:.8rem;color:var(--muted);line-height:1.8}
+  .contact a{color:var(--crystal);text-decoration:none}
+
+  .btn-home{display:inline-block;margin-top:1.5rem;padding:.6rem 1.5rem;border:1px solid var(--border);border-radius:6px;font-size:.82rem;color:var(--muted);text-decoration:none;transition:all .2s}
+  .btn-home:hover{border-color:var(--crystal);color:var(--crystal)}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="icon">✅</div>
+  <div class="eyebrow">Réservation confirmée</div>
+  <h1>Merci <em id="prenom-display"></em> — votre place est réservée !</h1>
+  <p class="lead">
+    Votre paiement a bien été reçu. Vous allez recevoir un email de confirmation Stripe.
+    Michael vous contactera dans les 48h avec toutes les informations pratiques pour préparer votre stage.
+  </p>
+
+  <div class="divider"></div>
+
+  <div class="access-box">
+    <div class="ab-title">🎓 Votre accès formation est offert</div>
+    <div class="ab-sub">
+      En tant que participant, vous bénéficiez d'un accès complet à la console Axis Lumen pendant 1 an — offert avec votre stage.
+      Cliquez ci-dessous pour l'activer avec votre email.
+    </div>
+    <a id="btn-access" href="#" class="btn-access">
+      Activer mon accès Axis Lumen — offert 1 an
+    </a>
+    <div class="code-fallback">
+      Ou rendez-vous sur <strong>axis-lumen.fr</strong> et entrez le code&nbsp;:
+      <code>STAGE2026_ACCES</code>
+    </div>
+  </div>
+
+  <div class="next-steps">
+    <h3>Ce qui se passe maintenant</h3>
+    <div class="step"><div class="step-num">1</div><div>Email de confirmation Stripe dans votre boîte mail</div></div>
+    <div class="step"><div class="step-num">2</div><div>Michael vous contacte dans les 48h avec les informations pratiques (lieu, hébergement, matériel)</div></div>
+    <div class="step"><div class="step-num">3</div><div>Activez votre accès Axis Lumen via le bouton ci-dessus dès maintenant</div></div>
+    <div class="step"><div class="step-num">4</div><div>Arrivez le jour J — votre Biodynamiseur Plasmatique vous attend, prêt à être assemblé</div></div>
+  </div>
+
+  <div class="contact">
+    Des questions ? Contactez Michael :<br>
+    <a href="mailto:chauvetmichael@live.fr">chauvetmichael@live.fr</a> &nbsp;·&nbsp;
+    <a href="tel:0656533317">06 56 53 33 17</a>
+  </div>
+
+  <a href="/" class="btn-home">← Retour au site</a>
+</div>
+
+<script>
+(function(){
+  try {
+    var prenom  = localStorage.getItem('stage_prenom') || '';
+    var email   = localStorage.getItem('stage_email')  || '';
+
+    if (prenom) {
+      document.getElementById('prenom-display').textContent = prenom;
+    }
+
+    var base = 'https://axis-lumen.fr/abonnement?stage=STAGE2026_ACCES';
+    var url  = email ? base + '&email=' + encodeURIComponent(email) : base;
+    document.getElementById('btn-access').href = url;
+  } catch(err) {
+    document.getElementById('btn-access').href =
+      'https://axis-lumen.fr/abonnement?stage=STAGE2026_ACCES';
+  }
+})();
+</script>
+
+</body>
+</html>
