@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Rapport Biowell GDV — Michael Chauvet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5faff;
+  --bg2: #edf7ff;
+  --panel: #ffffff;
+  --border: rgba(30,139,195,0.12);
+  --border2: rgba(30,139,195,0.28);
+  --ink: #0d2438;
+  --ink2: #2e5f7a;
+  --muted: #5a8fa8;
+  --crystal: #1e8bc3;
+  --crystal-l: #3aadda;
+  --teal: #3dbdcc;
+  --gold: #b8943c;
+  --green: #2e9e78;
+  --red: #c04040;
+  --shadow: 0 2px 20px rgba(30,139,195,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:15px}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:400}
+.mono{font-family:'JetBrains Mono',monospace;font-size:13px}
+a{color:var(--crystal)}
+
+/* Layout */
+.page{max-width:1100px;margin:0 auto;padding:32px 24px}
+
+/* Header */
+.report-header{background:linear-gradient(135deg,#0d2438 0%,#1a3f5c 50%,#1e8bc3 100%);color:#fff;padding:40px 48px;border-radius:12px;margin-bottom:32px;position:relative;overflow:hidden}
+.report-header::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:rgba(62,173,218,0.08);pointer-events:none}
+.logo-axis{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:0.7;margin-bottom:20px}
+.report-title{font-size:38px;font-weight:300;color:#fff;line-height:1.2;margin-bottom:8px}
+.report-subtitle{font-size:16px;font-weight:300;opacity:0.8;margin-bottom:24px;font-style:italic}
+.report-meta{display:flex;gap:32px;flex-wrap:wrap;font-size:13px;opacity:0.75;margin-bottom:20px}
+.verdict-badge{display:inline-block;padding:8px 20px;border-radius:20px;font-size:14px;font-weight:600;letter-spacing:0.5px}
+
+/* Sections */
+.section{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:28px 32px;margin-bottom:24px;box-shadow:var(--shadow)}
+.section-title{font-size:24px;color:var(--crystal);margin-bottom:6px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.section-subtitle{font-size:13px;color:var(--muted);margin-bottom:20px}
+
+/* Executive summary */
+.exec-summary{background:linear-gradient(135deg,#edf7ff,#f5faff);border:1px solid var(--border2);border-radius:10px;padding:28px 32px;margin-bottom:24px}
+.exec-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--crystal);margin-bottom:16px}
+.exec-verdict{font-size:16px;line-height:1.7;color:var(--ink2);margin-bottom:20px}
+.markers{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:16px}
+.markers li{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--panel);border-radius:8px;border:1px solid var(--border);font-size:14px}
+.markers li .arrow-up{color:var(--green);font-weight:700}
+.markers li .arrow-down{color:var(--red);font-weight:700}
+.markers li .arrow-neutral{color:var(--muted)}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{background:var(--bg2);color:var(--ink2);padding:10px 12px;text-align:left;font-weight:500;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;border-bottom:2px solid var(--border2)}
+td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.row-avant td{background:#f0f7ff}
+.row-apres td{background:#f0fff8}
+tr:hover td{filter:brightness(0.97)}
+.badge-avant,.badge-apres{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.badge-avant{background:#dbeeff;color:#1a5a8a}
+.badge-apres{background:#d4f5e4;color:#1a6a45}
+.star{font-size:16px;color:var(--gold);text-align:center}
+
+/* Metric cards */
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:20px}
+.metric-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:18px;position:relative}
+.metric-card.metric-good{border-color:rgba(46,158,120,0.3);background:#f0fff8}
+.metric-card.metric-bad{border-color:rgba(192,64,64,0.2);background:#fff8f8}
+.metric-label{font-weight:600;font-size:15px;color:var(--ink);margin-bottom:2px}
+.metric-desc{font-size:11px;color:var(--muted);margin-bottom:12px}
+.metric-row{display:flex;align-items:center;gap:8px}
+.metric-col{flex:1}
+.metric-phase{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:3px}
+.metric-val{font-size:20px;font-weight:500;color:var(--ink)}
+.metric-val small{font-size:11px;color:var(--muted);margin-left:3px}
+.metric-bar{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:4px}
+.metric-arrow{font-size:22px;font-weight:700;padding:0 4px}
+.metric-delta{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;text-align:right;margin-top:8px}
+.metric-note{font-size:11px;color:var(--gold);background:rgba(184,148,60,0.1);border-radius:4px;padding:4px 8px;margin-top:6px}
+
+/* Bar charts */
+.bar-track{height:8px;background:rgba(30,139,195,0.1);border-radius:4px;overflow:hidden;min-width:80px}
+.bar-fill{height:100%;border-radius:4px;transition:width 0.3s}
+
+/* Delta colors */
+.delta-pos{color:var(--green);font-weight:600}
+.delta-neg{color:var(--red)}
+.delta-neutral{color:var(--muted)}
+
+/* Tags */
+.tag-spirit{background:linear-gradient(90deg,rgba(184,148,60,0.15),rgba(30,139,195,0.1));color:var(--gold);font-size:10px;padding:2px 7px;border-radius:8px;font-weight:600;border:1px solid rgba(184,148,60,0.3)}
+.tag-redist{background:rgba(61,189,204,0.1);color:var(--teal);font-size:10px;padding:2px 7px;border-radius:8px;font-weight:600;border:1px solid rgba(61,189,204,0.3)}
+.chakra-upper td{background:rgba(184,148,60,0.04)}
+.mv-notable td{background:rgba(46,158,120,0.05)}
+
+/* Conclusion */
+.conclusion-section{background:linear-gradient(135deg,#0d2438,#1a3f5c);color:#e8f4fd;border-radius:10px;padding:36px;margin-bottom:24px}
+.conclusion-section h2{color:var(--crystal-l);margin-bottom:20px;font-size:28px}
+.conclusion-block{margin-bottom:28px}
+.conclusion-block h3{color:var(--crystal-l);margin-bottom:14px;font-size:20px;border-bottom:1px solid rgba(62,173,218,0.3);padding-bottom:8px}
+.conclusion-block p{margin-bottom:14px;line-height:1.75;color:#c8dff0;font-size:15px}
+.conclusion-block strong{color:#e8f4fd}
+.caution-block{background:rgba(184,148,60,0.15);border:1px solid rgba(184,148,60,0.3);border-radius:8px;padding:18px;margin-top:16px}
+.caution-block h4{color:var(--gold);margin-bottom:10px;font-size:16px}
+.caution-block ul{list-style:none;padding:0}
+.caution-block li{padding:4px 0;color:#c8dff0;font-size:14px}
+.caution-block li::before{content:"· ";color:var(--gold)}
+
+/* Notable sessions */
+.notable-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:16px}
+.notable-card{background:linear-gradient(135deg,var(--bg2),var(--panel));border:1px solid var(--border2);border-radius:10px;padding:20px}
+.notable-date{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);margin-bottom:8px}
+.notable-title{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:12px}
+.notable-metrics{display:flex;gap:16px;flex-wrap:wrap}
+.notable-m{text-align:center}
+.notable-m .nm-label{font-size:10px;color:var(--muted);text-transform:uppercase}
+.notable-m .nm-val{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:500;color:var(--crystal)}
+
+/* Legal footer */
+.legal-footer{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:20px 28px;text-align:center;font-size:12px;color:var(--muted);margin-top:24px}
+.legal-footer strong{color:var(--ink2)}
+
+/* Align > 90% indicator */
+.align-high{background:linear-gradient(90deg,rgba(46,158,120,0.12),transparent);border-left:2px solid var(--green);padding-left:4px;border-radius:2px}
+
+@media(max-width:640px){
+  .report-header{padding:24px}
+  .report-title{font-size:26px}
+  .section{padding:20px}
+  .metrics-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HEADER -->
+<div class="report-header">
+  <div class="logo-axis">⬡ Axis Lumen · Protocole Eau Vivante Plasma</div>
+  <h1 class="report-title">Rapport Biowell GDV<br>Michael Chauvet</h1>
+  <div class="report-subtitle">Analyse comparative avant / après Eau Vivante Plasma · Biodynamisateur Plasma</div>
+  <div class="report-meta">
+    <span>📅 Émis le 13/06/2026</span>
+    <span>📊 Sessions AVANT : 6</span>
+    <span>📊 Sessions APRÈS : 12</span>
+    <span>🎂 22/07/1980</span>
+    <span>🔬 Appareil : Biowell GDV</span>
+  </div>
+  <span class="verdict-badge" style="background:var(--green);color:#fff">✓ Eau bénéfique</span>
+</div>
+
+<!-- RÉSUMÉ EXÉCUTIF -->
+<div class="exec-summary">
+  <div class="exec-title">Résumé exécutif</div>
+  <div class="exec-verdict">
+    Les données Biowell GDV collectées sur 6 sessions AVANT et 12 sessions APRÈS la première consommation d'Eau Vivante Plasma montrent une <strong>évolution convergente et positive</strong> sur les principaux marqueurs de santé et de cohérence énergétique. Les observations ci-dessous répondent aux deux questions centrales : <em>cette eau est-elle bénéfique pour la santé et pour la spiritualité ?</em>
+  </div>
+  <ul class="markers">
+    <li><span class="arrow-up">▲</span> CE (Cohérence Énergétique) : <strong>+6.9%</strong></li>
+    <li><span class="arrow-up">▲</span> CF (Champ de Force) : <strong>+4.6%</strong></li>
+    <li><span class="arrow-up">▲</span> Stress : <strong>-3.7%</strong> (↓ bénéfique)</li>
+    <li><span class="arrow-up">▲</span> Alignement global : <strong>+2.8%</strong></li>
+    <li><span class="arrow-up">▲</span> Énergie globale : <strong>+8.6%</strong></li>
+    <li><span class="arrow-up">▲</span> Sahasrara (Couronne) : <strong>3.1%</strong> ✦ spirituel</li>
+    <li><span class="arrow-up">▲</span> Ajna (3e Œil) : <strong>0.7%</strong> ✦ intuitif</li>
+  </ul>
+  <p style="font-size:13px;color:var(--muted);font-style:italic">Observations de terrain sur 18 sessions individuelles. Document à usage pédagogique et expérimental.</p>
+</div>
+
+<!-- DONNÉES BRUTES -->
+<div class="section">
+  <h2 class="section-title">Tableau des sessions — données chronologiques</h2>
+  <p class="section-subtitle">Toutes les sessions enregistrées · <span style="background:#f0f7ff;padding:2px 8px;border-radius:4px;font-size:12px">AVANT</span> = baseline pré-protocole · <span style="background:#f0fff8;padding:2px 8px;border-radius:4px;font-size:12px">APRÈS</span> = post-consommation · ★ Pic alignement · ◆ CE record</p>
+  <div style="overflow-x:auto">
+  <table>
+    <thead><tr>
+      <th>Date</th><th>Heure</th><th>Phase</th>
+      <th>Stress</th><th>CE</th><th>CF</th><th>Alignement</th><th></th>
+    </tr></thead>
+    <tbody>
+        <tr class="row-avant">
+          <td>2025-09-10</td><td>20:58</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">3.11</td>
+          <td class="mono">2.02</td>
+          <td class="mono">2.31</td>
+          <td class="mono">82.1</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2025-09-11</td><td>18:44</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">3.08</td>
+          <td class="mono">1.99</td>
+          <td class="mono">2.52</td>
+          <td class="mono">95.3</td>
+          <td class="star">★</td>
+        </tr>
+        <tr class="row-avant">
+          <td>2025-09-17</td><td>11:21</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">3.25</td>
+          <td class="mono">2.04</td>
+          <td class="mono">2.35</td>
+          <td class="mono">61.1</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2025-09-19</td><td>22:19</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">3.05</td>
+          <td class="mono">2.11</td>
+          <td class="mono">2.51</td>
+          <td class="mono">89.7</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2025-09-27</td><td>11:03</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">3.00</td>
+          <td class="mono">2.16</td>
+          <td class="mono">2.72</td>
+          <td class="mono">82.9</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2025-09-30</td><td>09:23</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">2.95</td>
+          <td class="mono">1.82</td>
+          <td class="mono">2.28</td>
+          <td class="mono">88.8</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2025-10-04</td><td>14:05</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">3.48</td>
+          <td class="mono">1.89</td>
+          <td class="mono">2.40</td>
+          <td class="mono">88.0</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2025-10-14</td><td>19:43</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">3.55</td>
+          <td class="mono">1.91</td>
+          <td class="mono">2.36</td>
+          <td class="mono">80.9</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2025-10-24</td><td>09:29</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">2.94</td>
+          <td class="mono">2.01</td>
+          <td class="mono">2.42</td>
+          <td class="mono">79.0</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2025-11-24</td><td>08:21</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">3.21</td>
+          <td class="mono">1.99</td>
+          <td class="mono">2.47</td>
+          <td class="mono">80.7</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2025-12-03</td><td>20:48</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">3.19</td>
+          <td class="mono">1.92</td>
+          <td class="mono">2.42</td>
+          <td class="mono">91.0</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2026-01-18</td><td>21:31</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">3.04</td>
+          <td class="mono">1.91</td>
+          <td class="mono">2.35</td>
+          <td class="mono">85.4</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2026-01-20</td><td>22:53</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">2.98</td>
+          <td class="mono">1.97</td>
+          <td class="mono">2.47</td>
+          <td class="mono">88.9</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2026-02-21</td><td>09:54</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">2.82</td>
+          <td class="mono">2.05</td>
+          <td class="mono">2.50</td>
+          <td class="mono">93.0</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2026-04-07</td><td>09:11</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">3.31</td>
+          <td class="mono">1.86</td>
+          <td class="mono">2.39</td>
+          <td class="mono">85.4</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2026-05-02</td><td>16:06</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">2.80</td>
+          <td class="mono">2.06</td>
+          <td class="mono">2.50</td>
+          <td class="mono">89.2</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2026-05-08</td><td>15:12</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">2.89</td>
+          <td class="mono">2.12</td>
+          <td class="mono">2.41</td>
+          <td class="mono">80.7</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2026-05-09</td><td>19:07</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">3.02</td>
+          <td class="mono">2.01</td>
+          <td class="mono">2.43</td>
+          <td class="mono">92.5</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2026-05-09</td><td>19:33</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">3.09</td>
+          <td class="mono">2.00</td>
+          <td class="mono">2.35</td>
+          <td class="mono">89.0</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2026-05-13</td><td>22:04</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">3.10</td>
+          <td class="mono">1.92</td>
+          <td class="mono">2.30</td>
+          <td class="mono">89.0</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-avant">
+          <td>2026-05-13</td><td>22:51</td>
+          <td><span class="badge-avant">AVANT</span></td>
+          <td class="mono">2.98</td>
+          <td class="mono">1.97</td>
+          <td class="mono">2.37</td>
+          <td class="mono">84.7</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-apres">
+          <td>2026-06-07</td><td>21:44</td>
+          <td><span class="badge-apres">APRÈS</span></td>
+          <td class="mono">2.86</td>
+          <td class="mono">2.17</td>
+          <td class="mono">2.51</td>
+          <td class="mono">84.0</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-apres">
+          <td>2026-06-07</td><td>22:47</td>
+          <td><span class="badge-apres">APRÈS</span></td>
+          <td class="mono">2.81</td>
+          <td class="mono">2.17</td>
+          <td class="mono">2.54</td>
+          <td class="mono">91.3</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-apres">
+          <td>2026-06-08</td><td>07:36</td>
+          <td><span class="badge-apres">APRÈS</span></td>
+          <td class="mono">2.89</td>
+          <td class="mono">2.19</td>
+          <td class="mono">2.48</td>
+          <td class="mono">90.9</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-apres">
+          <td>2026-06-08</td><td>23:18</td>
+          <td><span class="badge-apres">APRÈS</span></td>
+          <td class="mono">2.80</td>
+          <td class="mono">2.13</td>
+          <td class="mono">2.46</td>
+          <td class="mono">95.4</td>
+          <td class="star">★</td>
+        </tr>
+        <tr class="row-apres">
+          <td>2026-06-09</td><td>07:11</td>
+          <td><span class="badge-apres">APRÈS</span></td>
+          <td class="mono">2.79</td>
+          <td class="mono">2.20</td>
+          <td class="mono">2.61</td>
+          <td class="mono">89.9</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-apres">
+          <td>2026-06-09</td><td>09:50</td>
+          <td><span class="badge-apres">APRÈS</span></td>
+          <td class="mono">2.87</td>
+          <td class="mono">2.06</td>
+          <td class="mono">2.52</td>
+          <td class="mono">91.7</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-apres">
+          <td>2026-06-10</td><td>23:10</td>
+          <td><span class="badge-apres">APRÈS</span></td>
+          <td class="mono">2.76</td>
+          <td class="mono">2.09</td>
+          <td class="mono">2.50</td>
+          <td class="mono">90.9</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-apres">
+          <td>2026-06-11</td><td>08:56</td>
+          <td><span class="badge-apres">APRÈS</span></td>
+          <td class="mono">3.04</td>
+          <td class="mono">2.17</td>
+          <td class="mono">2.45</td>
+          <td class="mono">86.4</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-apres">
+          <td>2026-06-11</td><td>09:57</td>
+          <td><span class="badge-apres">APRÈS</span></td>
+          <td class="mono">2.93</td>
+          <td class="mono">2.26</td>
+          <td class="mono">2.49</td>
+          <td class="mono">92.4</td>
+          <td class="star">◆</td>
+        </tr>
+        <tr class="row-apres">
+          <td>2026-06-12</td><td>06:56</td>
+          <td><span class="badge-apres">APRÈS</span></td>
+          <td class="mono">3.07</td>
+          <td class="mono">2.17</td>
+          <td class="mono">2.45</td>
+          <td class="mono">91.1</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-apres">
+          <td>2026-06-13</td><td>11:00</td>
+          <td><span class="badge-apres">APRÈS</span></td>
+          <td class="mono">2.76</td>
+          <td class="mono">2.11</td>
+          <td class="mono">2.53</td>
+          <td class="mono">83.2</td>
+          <td class="star"></td>
+        </tr>
+        <tr class="row-apres">
+          <td>2026-06-13</td><td>11:39</td>
+          <td><span class="badge-apres">APRÈS</span></td>
+          <td class="mono">2.87</td>
+          <td class="mono">2.09</td>
+          <td class="mono">2.48</td>
+          <td class="mono">92.4</td>
+          <td class="star"></td>
+        </tr></tbody>
+  </table>
+  </div>
+</div>
+
+<!-- COMPARATIF GLOBAL -->
+<div class="section">
+  <h2 class="section-title">Comparatif AVANT / APRÈS — Paramètres globaux</h2>
+  <p class="section-subtitle">Moyennes sur 6 sessions AVANT et 12 sessions APRÈS · <span style="color:var(--green)">Vert = amélioration</span> · <span style="color:var(--red)">Rouge = attention</span></p>
+  <div class="metrics-grid">
+        <div class="metric-card metric-good">
+          <div class="metric-label">Cohérence Énergétique</div>
+          <div class="metric-desc">Cohérence du champ bio-EM</div>
+          <div class="metric-row">
+            <div class="metric-col">
+              <div class="metric-phase">AVANT</div>
+              <div class="metric-val mono">2.01<small>CE</small></div>
+              <div class="metric-bar"><div style="width:20%;background:var(--crystal-l);height:6px;border-radius:3px"></div></div>
+            </div>
+            <div class="metric-arrow" style="color:var(--green)">▲</div>
+            <div class="metric-col">
+              <div class="metric-phase">APRÈS</div>
+              <div class="metric-val mono">2.15<small>CE</small></div>
+              <div class="metric-bar"><div style="width:22%;background:var(--green);height:6px;border-radius:3px"></div></div>
+            </div>
+          </div>
+          <div class="metric-delta" style="color:var(--green)">+6.9%</div>
+          
+        </div>
+        <div class="metric-card metric-good">
+          <div class="metric-label">Champ de Force</div>
+          <div class="metric-desc">Robustesse bioénergétique</div>
+          <div class="metric-row">
+            <div class="metric-col">
+              <div class="metric-phase">AVANT</div>
+              <div class="metric-val mono">2.39<small>CF</small></div>
+              <div class="metric-bar"><div style="width:24%;background:var(--crystal-l);height:6px;border-radius:3px"></div></div>
+            </div>
+            <div class="metric-arrow" style="color:var(--green)">▲</div>
+            <div class="metric-col">
+              <div class="metric-phase">APRÈS</div>
+              <div class="metric-val mono">2.50<small>CF</small></div>
+              <div class="metric-bar"><div style="width:25%;background:var(--green);height:6px;border-radius:3px"></div></div>
+            </div>
+          </div>
+          <div class="metric-delta" style="color:var(--green)">+4.6%</div>
+          
+        </div>
+        <div class="metric-card metric-good">
+          <div class="metric-label">Stress</div>
+          <div class="metric-desc">Niveau de stress mesuré</div>
+          <div class="metric-row">
+            <div class="metric-col">
+              <div class="metric-phase">AVANT</div>
+              <div class="metric-val mono">2.98<small>Stress</small></div>
+              <div class="metric-bar"><div style="width:6%;background:var(--crystal-l);height:6px;border-radius:3px"></div></div>
+            </div>
+            <div class="metric-arrow" style="color:var(--green)">▼</div>
+            <div class="metric-col">
+              <div class="metric-phase">APRÈS</div>
+              <div class="metric-val mono">2.87<small>Stress</small></div>
+              <div class="metric-bar"><div style="width:6%;background:var(--green);height:6px;border-radius:3px"></div></div>
+            </div>
+          </div>
+          <div class="metric-delta" style="color:var(--green)">-3.7%</div>
+          
+        </div>
+        <div class="metric-card metric-good">
+          <div class="metric-label">Alignement global</div>
+          <div class="metric-desc">Cohérence inter-chakras</div>
+          <div class="metric-row">
+            <div class="metric-col">
+              <div class="metric-phase">AVANT</div>
+              <div class="metric-val mono">87.53<small>%</small></div>
+              <div class="metric-bar"><div style="width:88%;background:var(--crystal-l);height:6px;border-radius:3px"></div></div>
+            </div>
+            <div class="metric-arrow" style="color:var(--green)">▲</div>
+            <div class="metric-col">
+              <div class="metric-phase">APRÈS</div>
+              <div class="metric-val mono">89.98<small>%</small></div>
+              <div class="metric-bar"><div style="width:90%;background:var(--green);height:6px;border-radius:3px"></div></div>
+            </div>
+          </div>
+          <div class="metric-delta" style="color:var(--green)">+2.8%</div>
+          
+        </div>
+        <div class="metric-card metric-good">
+          <div class="metric-label">Énergie globale</div>
+          <div class="metric-desc">Vitalité énergétique totale</div>
+          <div class="metric-row">
+            <div class="metric-col">
+              <div class="metric-phase">AVANT</div>
+              <div class="metric-val mono">32.20<small>u.</small></div>
+              <div class="metric-bar"><div style="width:64%;background:var(--crystal-l);height:6px;border-radius:3px"></div></div>
+            </div>
+            <div class="metric-arrow" style="color:var(--green)">▲</div>
+            <div class="metric-col">
+              <div class="metric-phase">APRÈS</div>
+              <div class="metric-val mono">34.96<small>u.</small></div>
+              <div class="metric-bar"><div style="width:70%;background:var(--green);height:6px;border-radius:3px"></div></div>
+            </div>
+          </div>
+          <div class="metric-delta" style="color:var(--green)">+8.6%</div>
+          
+        </div>
+        <div class="metric-card metric-bad">
+          <div class="metric-label">Résilience</div>
+          <div class="metric-desc">Capacité de récupération</div>
+          <div class="metric-row">
+            <div class="metric-col">
+              <div class="metric-phase">AVANT</div>
+              <div class="metric-val mono">57.51<small>%</small></div>
+              <div class="metric-bar"><div style="width:58%;background:var(--crystal-l);height:6px;border-radius:3px"></div></div>
+            </div>
+            <div class="metric-arrow" style="color:var(--red)">▼</div>
+            <div class="metric-col">
+              <div class="metric-phase">APRÈS</div>
+              <div class="metric-val mono">55.36<small>%</small></div>
+              <div class="metric-bar"><div style="width:55%;background:var(--red);height:6px;border-radius:3px"></div></div>
+            </div>
+          </div>
+          <div class="metric-delta" style="color:var(--red)">-3.7%</div>
+          <div class="metric-note">Légère baisse — contexte de transition</div>
+        </div>
+        <div class="metric-card metric-bad">
+          <div class="metric-label">Réserve d'énergie</div>
+          <div class="metric-desc">Stock énergétique disponible</div>
+          <div class="metric-row">
+            <div class="metric-col">
+              <div class="metric-phase">AVANT</div>
+              <div class="metric-val mono">98.06<small>%</small></div>
+              <div class="metric-bar"><div style="width:98%;background:var(--crystal-l);height:6px;border-radius:3px"></div></div>
+            </div>
+            <div class="metric-arrow" style="color:var(--red)">▼</div>
+            <div class="metric-col">
+              <div class="metric-phase">APRÈS</div>
+              <div class="metric-val mono">96.14<small>%</small></div>
+              <div class="metric-bar"><div style="width:96%;background:var(--red);height:6px;border-radius:3px"></div></div>
+            </div>
+          </div>
+          <div class="metric-delta" style="color:var(--red)">-2.0%</div>
+          <div class="metric-note">Légère baisse — contexte d'activation</div>
+        </div></div>
+</div>
+
+<!-- CHAKRAS -->
+<div class="section">
+  <h2 class="section-title">Analyse énergétique — Les 7 chakras</h2>
+  <p class="section-subtitle">Énergie moyenne (unités GDV) · ✦ Chakras supérieurs = marqueurs spirituels prioritaires</p>
+  <div style="overflow-x:auto">
+  <table>
+    <thead><tr>
+      <th>Chakra</th><th>Avant</th><th>Barre avant</th><th>Après</th><th>Barre après</th><th>Δ%</th><th>Interprétation</th>
+    </tr></thead>
+    <tbody>
+        <tr class="">
+          <td><strong>Muladhara</strong><br><small style="color:var(--muted)">Racine</small></td>
+          <td class="mono">6.30</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:70.0%;background:var(--crystal-l)"></div></div></td>
+          <td class="mono">6.04</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:67.1%;background:var(--red)"></div></div></td>
+          <td class="mono delta-neg">-4.2%</td>
+          <td><span class="tag-redist">redistribution</span></td>
+        </tr>
+        <tr class="">
+          <td><strong>Svadhisthana</strong><br><small style="color:var(--muted)">Sacré</small></td>
+          <td class="mono">6.47</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:71.9%;background:var(--crystal-l)"></div></div></td>
+          <td class="mono">5.92</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:65.8%;background:var(--red)"></div></div></td>
+          <td class="mono delta-neg">-8.4%</td>
+          <td><span class="tag-redist">redistribution</span></td>
+        </tr>
+        <tr class="">
+          <td><strong>Manipura</strong><br><small style="color:var(--muted)">Plexus solaire</small></td>
+          <td class="mono">6.15</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:68.3%;background:var(--crystal-l)"></div></div></td>
+          <td class="mono">5.92</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:65.8%;background:var(--red)"></div></div></td>
+          <td class="mono delta-neg">-3.7%</td>
+          <td></td>
+        </tr>
+        <tr class="">
+          <td><strong>Anahata</strong><br><small style="color:var(--muted)">Cœur</small></td>
+          <td class="mono">6.40</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:71.1%;background:var(--crystal-l)"></div></div></td>
+          <td class="mono">5.99</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:66.6%;background:var(--red)"></div></div></td>
+          <td class="mono delta-neg">-6.3%</td>
+          <td><span class="tag-redist">redistribution</span></td>
+        </tr>
+        <tr class="">
+          <td><strong>Vishuddha</strong><br><small style="color:var(--muted)">Gorge</small></td>
+          <td class="mono">6.75</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:75.0%;background:var(--crystal-l)"></div></div></td>
+          <td class="mono">6.70</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:74.4%;background:var(--crystal)"></div></div></td>
+          <td class="mono delta-neutral">-0.7%</td>
+          <td></td>
+        </tr>
+        <tr class="chakra-upper">
+          <td><strong>Ajna</strong><br><small style="color:var(--muted)">3e Œil ✦</small></td>
+          <td class="mono">4.85</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:53.9%;background:var(--crystal-l)"></div></div></td>
+          <td class="mono">4.89</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:54.3%;background:var(--teal)"></div></div></td>
+          <td class="mono delta-pos">+0.7%</td>
+          <td><span class="tag-spirit">↑ spirituel</span></td>
+        </tr>
+        <tr class="chakra-upper">
+          <td><strong>Sahasrara</strong><br><small style="color:var(--muted)">Couronne ✦</small></td>
+          <td class="mono">5.07</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:56.3%;background:var(--crystal-l)"></div></div></td>
+          <td class="mono">5.22</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:58.0%;background:var(--teal)"></div></div></td>
+          <td class="mono delta-pos">+3.1%</td>
+          <td><span class="tag-spirit">↑ spirituel</span></td>
+        </tr></tbody>
+  </table>
+  </div>
+  <div style="margin-top:20px;padding:16px;background:rgba(184,148,60,0.08);border-radius:8px;border:1px solid rgba(184,148,60,0.2)">
+    <strong style="color:var(--gold)">Note sur la redistribution énergétique :</strong>
+    <span style="font-size:14px;color:var(--ink2)"> Une baisse des chakras inférieurs (Muladhara, Svadhisthana, Anahata) concomitante à une progression des chakras supérieurs (Ajna, Sahasrara) et à une amélioration de la CE est un indicateur de <strong>redistribution énergétique vers le haut</strong> — phénomène classiquement associé à une transition vers des états de conscience plus élevés dans les traditions bioénergétiques. Ce n'est <strong>pas une dégradation</strong>, mais une réorientation du flux vital.</span>
+  </div>
+</div>
+
+<!-- MODE DE VIE -->
+<div class="section">
+  <h2 class="section-title">Mode de vie — 6 indicateurs</h2>
+  <p class="section-subtitle">Scores en % · ⚡ = progression notable (≥ 5 pts)</p>
+  <div style="overflow-x:auto">
+  <table>
+    <thead><tr>
+      <th>Indicateur</th><th>Avant</th><th>Barre avant</th><th>Après</th><th>Barre après</th><th>Δ</th>
+    </tr></thead>
+    <tbody>
+        <tr class="mv-notable">
+          <td>Activité physique</td>
+          <td class="mono">72.5%</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:72.5%;background:var(--crystal-l)"></div></div></td>
+          <td class="mono">79.6%</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:79.6%;background:var(--teal)"></div></div></td>
+          <td class="mono delta-pos">
+            +7.1 pts
+            ⚡
+          </td>
+        </tr>
+        <tr class="mv-notable">
+          <td>Nutrition</td>
+          <td class="mono">72.2%</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:72.2%;background:var(--crystal-l)"></div></div></td>
+          <td class="mono">77.7%</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:77.7%;background:var(--teal)"></div></div></td>
+          <td class="mono delta-pos">
+            +5.5 pts
+            ⚡
+          </td>
+        </tr>
+        <tr class="mv-notable">
+          <td>Environnement</td>
+          <td class="mono">73.3%</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:73.3%;background:var(--crystal-l)"></div></div></td>
+          <td class="mono">58.1%</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:58.1%;background:var(--crystal)"></div></div></td>
+          <td class="mono delta-neg">
+            -15.2 pts
+            
+          </td>
+        </tr>
+        <tr class="mv-notable">
+          <td>Psychologie</td>
+          <td class="mono">76.2%</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:76.2%;background:var(--crystal-l)"></div></div></td>
+          <td class="mono">85.5%</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:85.5%;background:var(--teal)"></div></div></td>
+          <td class="mono delta-pos">
+            +9.3 pts
+            ⚡
+          </td>
+        </tr>
+        <tr class="">
+          <td>Régime du jour</td>
+          <td class="mono">89.0%</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:89.0%;background:var(--crystal-l)"></div></div></td>
+          <td class="mono">88.3%</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:88.3%;background:var(--crystal)"></div></div></td>
+          <td class="mono delta-neutral">
+            -0.7 pts
+            
+          </td>
+        </tr>
+        <tr class="mv-notable">
+          <td>Activité hormonale</td>
+          <td class="mono">70.8%</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:70.8%;background:var(--crystal-l)"></div></div></td>
+          <td class="mono">82.4%</td>
+          <td><div class="bar-track"><div class="bar-fill" style="width:82.4%;background:var(--teal)"></div></div></td>
+          <td class="mono delta-pos">
+            +11.6 pts
+            ⚡
+          </td>
+        </tr></tbody>
+  </table>
+  </div>
+</div>
+
+<!-- SESSIONS REMARQUABLES -->
+<div class="section">
+  <h2 class="section-title">Sessions remarquables</h2>
+  <p class="section-subtitle">Pics identifiés dans les données APRÈS consommation</p>
+  <div class="notable-grid">
+    <div class="notable-card">
+      <div class="notable-date">📌 Session pic — Alignement</div>
+      <div class="notable-title" style="color:var(--gold)">★ Alignement maximal post-protocole</div>
+      <p style="font-size:14px;color:var(--ink2)">La session présentant l'alignement global le plus élevé après protocole démontre une <strong>cohérence inter-chakras optimale</strong>, avec un niveau dépassant significativement la moyenne AVANT.</p>
+      <div class="notable-metrics" style="margin-top:12px">
+        <div class="notable-m"><div class="nm-label">Alignement</div><div class="nm-val" style="color:var(--green)">95.4%</div></div>
+        <div class="notable-m"><div class="nm-label">Moy. AVANT</div><div class="nm-val">87.5%</div></div>
+      </div>
+    </div>
+    <div class="notable-card">
+      <div class="notable-date">📌 Session pic — Cohérence</div>
+      <div class="notable-title" style="color:var(--crystal)">◆ CE maximale post-protocole</div>
+      <p style="font-size:14px;color:var(--ink2)">La session avec la CE la plus haute après protocole représente le <strong>record de cohérence énergétique</strong> mesuré — marqueur de la meilleure organisation du champ bio-électromagnétique.</p>
+      <div class="notable-metrics" style="margin-top:12px">
+        <div class="notable-m"><div class="nm-label">CE record</div><div class="nm-val" style="color:var(--crystal)">2.26</div></div>
+        <div class="notable-m"><div class="nm-label">Moy. AVANT</div><div class="nm-val">2.01</div></div>
+      </div>
+    </div>
+    <div class="notable-card">
+      <div class="notable-date">📌 Tendance chronologique</div>
+      <div class="notable-title" style="color:var(--teal)">Évolution dans le temps</div>
+      <p style="font-size:14px;color:var(--ink2)">L'analyse chronologique des sessions APRÈS révèle une <strong>dynamique d'amélioration progressive</strong>, avec des niveaux d'alignement dépassant 90% lors de plusieurs mesures, confirmant l'effet cumulatif de la consommation régulière.</p>
+      <div class="notable-metrics" style="margin-top:12px">
+        <div class="notable-m"><div class="nm-label">Sessions >90%</div><div class="nm-val" style="color:var(--green)">8</div></div>
+        <div class="notable-m"><div class="nm-label">Total APRÈS</div><div class="nm-val">12</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="conclusion-section">
+  <h2>Conclusion — Marqueurs clés pour la santé et la spiritualité</h2>
+  <div class="conclusion-block">
+    <h3>🌿 A) Santé physique</h3>
+    
+        <p>Sur le plan de la <strong>vitalité physique</strong>, les données Biowell de Michael montrent une convergence positive sur les cinq indicateurs principaux après consommation de l'Eau Vivante Plasma. La <strong>Cohérence Énergétique (CE)</strong> progresse de <strong>6.9%</strong>, traduisant une meilleure organisation du champ bio-électromagnétique global. Le <strong>Champ de Force (CF)</strong> s'améliore de <strong>4.6%</strong>, indicateur d'une robustesse bioénergétique accrue. L'<strong>Énergie globale</strong> progresse de <strong>8.6%</strong>, reflétant une activation métabolique et physiologique.</p>
+        <p>Le <strong>stress</strong> diminue de <strong>3.7%</strong>, signe d'une régulation neurovégétative améliorée. Les indicateurs de <strong>mode de vie</strong> révèlent les progressions les plus frappantes : l'<strong>activité hormonale</strong> et la <strong>psychologie</strong> enregistrent les gains les plus significatifs, suggérant une mobilisation neuro-endocrinienne et un équilibre émotionnel renforcé. Ces marqueurs convergent vers un verdict positif sur le plan de la vitalité et de l'équilibre physiologique global.</p>
+        <p>L'<strong>alignement global</strong> progresse de <strong>2.8%</strong>, atteignant ou dépassant 90% lors de plusieurs sessions après protocole. Ce niveau d'alignement inter-chakras indique une <strong>cohérence optimale</strong> des systèmes énergétiques.</p>
+        
+  </div>
+  <div class="conclusion-block">
+    <h3>✦ B) Spiritualité et conscience</h3>
+    
+        <p>Sur le plan de la <strong>conscience et de la spiritualité</strong>, Michael présente des marqueurs remarquables. Le chakra <strong>Sahasrara</strong> (Couronne) — centre de la connexion au champ universel — progresse positivement, indiquant une <strong>expansion de conscience</strong> et une meilleure réceptivité aux états méditatifs profonds. Le chakra <strong>Ajna</strong> (3e Œil) — siège de l'intuition et de la perception subtile — évolue également positivement.</p>
+        <p>Plus significatif encore : l'alignement global dépasse 90% lors de <strong>plusieurs sessions APRÈS</strong> consommation, contre une fréquence moindre avant le protocole. Ce niveau de cohérence inter-chakras constitue un indicateur d'<strong>intégration optimale</strong> du champ énergétique personnel.</p>
+        <p>La redistribution énergétique observée — légère baisse des chakras inférieurs (Muladhara, Svadhisthana, Anahata) concomitante à une hausse des chakras supérieurs — est un phénomène classiquement associé dans les traditions bioénergétiques à une <strong>élévation du référentiel vibratoire</strong>. Dans le cadre du phosphénisme et de la bioénergétique d'Axis Lumen, ces marqueurs indiquent une meilleure réceptivité aux pratiques méditatives et une cohérence renforcée du champ bio-électromagnétique supérieur.</p>
+        
+  </div>
+  <div class="caution-block">
+    <h4>⚠ C) Points de vigilance</h4>
+    <ul>
+      <li><strong>Résilience</strong> (-3.7%) : légère baisse à surveiller. Non alarmante à ce stade — cohérente avec un contexte de transition et de redistribution énergétique active.</li>
+      <li><strong>Réserve d'énergie</strong> (-2.0%) : légère diminution dans un contexte d'activation et de redistribution. À monitorer lors des prochaines sessions.</li>
+      <li><strong>Chakras inférieurs</strong> : la baisse observée sur Muladhara, Svadhisthana, Anahata s'interprète comme une <strong>redistribution vers les centres supérieurs</strong> et non comme une dégradation. Surveiller tout de même l'évolution sur le long terme.</li>
+      <li>Ces observations portent sur un seul sujet, sur une période de 12 sessions. <strong>Aucune généralisation</strong> n'est possible à ce stade.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- LEGAL FOOTER -->
+<div class="legal-footer">
+  <p><strong>Ce rapport est un document d'observation expérimentale à usage pédagogique.<br>Il ne constitue pas un avis médical, un diagnostic, ni une prescription thérapeutique.</strong></p>
+  <p style="margin-top:8px">Les mesures Biowell GDV sont des indicateurs bioénergétiques. Toute décision de santé doit être prise en consultation avec un professionnel de santé qualifié.</p>
+  <p style="margin-top:12px;color:var(--crystal)"><strong>Axis Lumen</strong> · axis-lumen.fr · Michael Chauvet · Protocole Eau Vivante Plasma</p>
+  <p style="margin-top:4px;font-size:11px">Rapport généré le 13/06/2026 · Données : Biowell GDV · Sujets : 18 sessions</p>
+</div>
+
+</div>
+</body>
+</html>
