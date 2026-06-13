@@ -287,6 +287,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
   /* Texte légèrement agrandi pour lisibilité */
   .pp,.md,.stage-c,.conf-body,.gno{font-size:.9rem}
   .pk{font-size:.84rem}
+  #collaborateurs .container > div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns:1fr !important; }
 }
 /* ─── Petit mobile (≤ 480px) ─── */
 @media(max-width:480px){
@@ -354,7 +355,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
   <div class="nav-brand" style="display:flex;align-items:center;gap:.6rem"><img id="nav-logo" style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid rgba(184,148,60,.3)"> Axis Lumen</div>
   <div class="nav-links">
     <a href="#pionniers">Pionniers</a><a href="#machine">Machine</a><a href="#protocole">Protocole</a>
-    <a href="#formule">Formule &phi;&sup2;&deg;</a><a href="#conference">Conf&eacute;rence</a><a href="#stage">Atelier</a><a href="#biowell">Biowell</a>
+    <a href="#formule">Formule &phi;&sup2;&deg;</a><a href="#conference">Conf&eacute;rence</a><a href="#collaborateurs">Collaborateurs</a><a href="#stage">Atelier</a><a href="#biowell">Biowell</a>
     <a href="https://axis-lumen.fr" target="_blank" class="nav-axis">Axis Lumen ↗</a>
   </div>
   <button class="nav-toggle" id="nav-toggle" aria-label="Menu">&#9776;</button>
@@ -388,7 +389,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
 <section id="pionniers" class="sec-alt">
   <div class="container">
     <div class="eyebrow">Les fondateurs</div>
-    <h2 class="sec-title">Quatre <em>pionniers</em>,<br>une convergence</h2>
+    <h2 class="sec-title">Cinq <em>pionniers</em>,<br>une convergence</h2>
     <p class="sec-lead">Des d&eacute;cennies de recherche s&eacute;par&eacute;es, une intuition commune : l&rsquo;eau n&rsquo;est pas un solvant inerte, c&rsquo;est un champ vivant.</p>
     <div class="divider"></div>
     <div class="pg">
@@ -396,6 +397,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
       <div class="pc" style="--c:#3dbdcc"><div class="pd">1885 &mdash; 1958</div><div class="pn">Viktor Schauberger</div><div class="pr">Naturaliste &amp; ing&eacute;nieur autrichien</div><p class="pp">Observateur des torrents alpins. L&rsquo;eau vivante tourne en spirale implosive &mdash; la chaleur la tue, le vortex la r&eacute;g&eacute;n&egrave;re.</p><div class="pk"><strong>D&eacute;couverte cl&eacute; :</strong> Le vortex sens horaire reproduit le mouvement naturel de Coriolis. L&rsquo;implosion concentre l&rsquo;&eacute;nergie vitale.</div></div>
       <div class="pc" style="--c:#2e9e78"><div class="pd">1906 &mdash; 1988</div><div class="pn">Louis Claude Vincent</div><div class="pr">Biologiste &amp; hydrographe fran&ccedil;ais</div><p class="pp">Cr&eacute;e la Bio&eacute;lectronique Vincent. Trois param&egrave;tres mesurables : pH, rH2 et r&eacute;sistivit&eacute; &mdash; le triangle de la vie.</p><div class="pk"><strong>D&eacute;couverte cl&eacute; :</strong> La sant&eacute; est mesurable &eacute;lectroniquement. L&rsquo;argent &agrave; l&rsquo;&eacute;tat naissant apporte des oligo-&eacute;l&eacute;ments sans toxicit&eacute;.</div></div>
       <div class="pc" style="--c:#c07832"><div class="pd">1958 &mdash;</div><div class="pn">M.T. Keshe</div><div class="pr">Ing&eacute;nieur nucl&eacute;aire &middot; Fondation KESH</div><p class="pp">D&eacute;veloppe la physique du plasma et le nano-rev&ecirc;tement du cuivre. Le fil de cuivre nano-rev&ecirc;tu cr&eacute;e des conditions de plasma interagissant avec les champs cosmiques.</p><div class="pk"><strong>D&eacute;couverte cl&eacute; :</strong> Le fil de cuivre nano-rev&ecirc;tu g&eacute;n&egrave;re un champ plasmatique capturant les &eacute;nergies cosmiques &mdash; base du Biodynamiseur Plasmatique.</div></div>
+      <div class="pc" style="--c:#8b5cf6"><div class="pd">Universit&eacute; de Strasbourg &middot; contemporain</div><div class="pn">Marc Henry</div><div class="pr">Physicien-chimiste &middot; chimie quantique</div><p class="pp">Formalise math&eacute;matiquement le lien entre masse mol&eacute;culaire, constantes fondamentales et fr&eacute;quences biologiquement actives. Sa conf&eacute;rence, rapport&eacute;e par Marc Charpentier, a &eacute;t&eacute; le point de d&eacute;part de la reformulation de la formule Axis Lumen.</p><div class="pk"><strong>Contribution cl&eacute;&nbsp;:</strong> &Eacute;quation fondatrice&nbsp;: <code style="font-family:monospace;font-size:.78rem">f&nbsp;=&nbsp;c&sup2;&nbsp;/&nbsp;(1000&nbsp;&times;&nbsp;N&#x2090;&nbsp;&times;&nbsp;h&nbsp;&times;&nbsp;2&sup2;&deg;)&nbsp;&times;&nbsp;M</code> &mdash; ossature math&eacute;matique sur laquelle repose la formule &phi;&sup2;&deg; d&rsquo;Axis Lumen, apr&egrave;s substitution du facteur d&rsquo;octave 2&sup2;&deg; par &phi;&sup2;&deg;.</div></div>
     </div>
   </div>
 </section>
@@ -554,18 +556,68 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
         <p>Il traverse la <strong>Fondation Keshe</strong> et la physique du plasma &mdash; cette compr&eacute;hension que le cuivre nano-plaqu&eacute; peut agir comme antenne des champs magn&eacute;to-gravitationnels cosmiques.</p>
         <p>Et depuis <strong>2024</strong>, il emprunte aussi la voie du <strong>Dr Francis Lef&eacute;bure</strong> et du phosph&eacute;nisme &mdash; cette science des phosph&egrave;nes lumineux qui m&rsquo;apprend que le cerveau humain est lui-m&ecirc;me un r&eacute;cepteur, que la lumi&egrave;re entre dans le corps et y laisse une trace &eacute;nerg&eacute;tique durable.</p>
         <h3>La naissance d&rsquo;Axis Lumen</h3>
-        <p>C&rsquo;est le bagage de toutes ces ann&eacute;es qui m&rsquo;a donn&eacute; le culot d&rsquo;envoyer un mail au <strong>Dr Emmanuel Carri&egrave;re</strong> &mdash; pas un mail de pr&eacute;sentation poli, mais un mail avec des fioles de GaNS sp&eacute;cifiques et une exposition de mon projet de pyramide plasma.</p>
-        <p>Ensemble &mdash; avec ses mesures, sa rigueur scientifique, sa connaissance approfondie de la bio&eacute;lectronique de Vincent &mdash; nous avons construit <strong>Axis Lumen</strong>. Une plateforme int&eacute;grant la cam&eacute;ra GDV-Kirlian Biowell et la formule : <strong>f = c&sup2; / (1000 &times; N&#x2090; &times; h &times; &phi;&sup2;&deg;) &times; M</strong></p>
+        <h3>La rencontre qui a recalib&eacute; la formule</h3>
+        <p>Lors des <strong>Journ&eacute;es de l&rsquo;Eau &agrave; La Chapelle-des-Marais</strong>, je rencontre <strong>Marc Charpentier</strong>, op&eacute;rateur Biowell et chercheur ind&eacute;pendant. C&rsquo;est lui qui me met sur la piste&nbsp;: mon &eacute;quation de l&rsquo;&eacute;poque &mdash; <code style="font-family:monospace;font-size:.85rem">f = M &times; c&sup2; / h</code>, avec &phi; comme facteur de transposition d&rsquo;octave &mdash; n&rsquo;est pas juste. Il me rapporte que lors de sa derni&egrave;re conf&eacute;rence, le physicien <strong>Marc Henry</strong> (Universit&eacute; de Strasbourg) a pr&eacute;sent&eacute; une formulation plus rigoureuse&nbsp;: <code style="font-family:monospace;font-size:.85rem">f = c&sup2; / (1000 &times; N&#x2090; &times; h &times; 2&sup2;&deg;) &times; M</code>.</p>
+        <p>J&rsquo;entends la correction. Je la re&ccedil;ois. Et pourtant, quelque chose r&eacute;siste en moi &mdash; pas par ego, mais par observation. Le facteur 2&sup2;&deg; est la logique de la musique temp&eacute;r&eacute;e, le doublement d&rsquo;octave. Mais dans la nature, les homologies que j&rsquo;avais &eacute;tudi&eacute;es chez le <strong>Dr Francis Lef&eacute;bure</strong> ne se r&eacute;pliquent pas par doublement&nbsp;: elles se propagent par le nombre d&rsquo;or. Les spirales de Nautilus, les phyllotaxies, les proportions du corps humain &mdash; tout cela est fractal en base &phi;, pas en base 2. Je transforme donc l&rsquo;&eacute;quation en substituant 2&sup2;&deg; par &phi;&sup2;&deg;&nbsp;: la formule d&eacute;finitive d&rsquo;Axis Lumen.</p>
+        <p>C&rsquo;est aussi Marc Charpentier qui me fait comprendre qu&rsquo;Axis Lumen, m&ecirc;me am&eacute;lior&eacute; par cette nouvelle formule, ne peut fonctionner pleinement qu&rsquo;avec une eau pr&eacute;par&eacute;e &mdash; pas l&rsquo;eau du robinet. <strong>C&rsquo;est de l&agrave; qu&rsquo;est n&eacute; le protocole du Biodynamisateur d&rsquo;Eau Plasma.</strong></p>
+        <h3>La naissance d&rsquo;Axis Lumen</h3>
+        <p>C&rsquo;est le bagage de toutes ces ann&eacute;es qui m&rsquo;a donn&eacute; le culot d&rsquo;envoyer un mail au <strong>Dr Emmanuel Carri&egrave;re</strong> &mdash; pas un mail de pr&eacute;sentation poli, mais un mail avec des fioles de GaNS sp&eacute;cifiques et une exposition de mon projet de pyramide plasma. Sans lui, Axis Lumen n&rsquo;aurait pas vu le jour.</p>
+        <p>Ensemble &mdash; avec ses mesures, sa rigueur scientifique, sa connaissance approfondie de la bio&eacute;lectronique de Vincent, et la richesse de nos &eacute;changes sur l&rsquo;information vibratoire, l&rsquo;eau et la conscience &mdash; nous avons construit <strong>Axis Lumen</strong>. Une plateforme int&eacute;grant la cam&eacute;ra GDV-Kirlian Biowell et la formule&nbsp;: <strong>f = c&sup2; / (1000 &times; N&#x2090; &times; h &times; &phi;&sup2;&deg;) &times; M</strong></p>
         <p>Ce n&rsquo;est pas de la mystique. C&rsquo;est de la coh&eacute;rence.</p>
         <blockquote>&laquo;&nbsp;L&rsquo;eau est la mati&egrave;re et la matrice de la vie. Il n&rsquo;y a pas de vie sans eau.&nbsp;&raquo;<br><small>&mdash; Albert Szent-Gy&ouml;rgyi, Prix Nobel de Physiologie</small></blockquote>
         <p style="margin-top:1.5rem;font-style:italic;color:var(--crystal)"><strong>L&rsquo;eau n&rsquo;est pas un solvant. C&rsquo;est un champ vivant. Et ce champ, nous pouvons l&rsquo;&eacute;crire.</strong></p>
       </div>
       <div class="conf-refs">
         <div class="conf-ref"><div class="conf-ref-n">Intervenant</div><div class="conf-ref-v">Michael</div><div class="conf-ref-d">Praticien en bio&eacute;lectronique &middot; Fondateur Axis Lumen</div><div style="margin-top:.6rem"><a href="https://axis-lumen.fr" target="_blank" style="font-size:.78rem;color:var(--crystal);text-decoration:none;font-family:monospace">→ axis-lumen.fr</a></div></div>
-        <div class="conf-ref"><div class="conf-ref-n">Collaborateur</div><div class="conf-ref-v">Dr Emmanuel Carri&egrave;re</div><div class="conf-ref-d">Bio&eacute;lectronique de Vincent &middot; Cam&eacute;ra GDV Biowell</div></div>
-        <div class="conf-ref"><div class="conf-ref-n">R&eacute;f&eacute;rences</div><div class="conf-ref-v">L.C. Vincent &middot; M. Violet</div><div class="conf-ref-d">V. Schauberger &middot; M.T. Keshe &middot; Dr F. Lef&eacute;bure (depuis 2024) &middot; P. Gara&iuml;ev</div></div>
+        <div class="conf-ref"><div class="conf-ref-n">Collaborateur fondateur</div><div class="conf-ref-v">Dr Emmanuel Carri&egrave;re</div><div class="conf-ref-d">Bio&eacute;lectronique de Vincent &middot; Cam&eacute;ra GDV Biowell &middot; Sciences informationnelles &middot; Biologiste Num&eacute;rique &mdash; <a href="https://emmanuelcarriere.com/mon-parcours/" target="_blank" style="color:var(--crystal);font-size:.75rem">emmanuelcarriere.com</a></div></div>
+        <div class="conf-ref"><div class="conf-ref-n">Passeur cl&eacute;</div><div class="conf-ref-v">Marc Charpentier</div><div class="conf-ref-d">Op&eacute;rateur Biowell &middot; Journ&eacute;es de l&rsquo;Eau &middot; La Chapelle-des-Marais &mdash; a transmis l&rsquo;&eacute;quation de Marc Henry et ouvert la voie du protocole Eau Plasma</div></div>
+        <div class="conf-ref"><div class="conf-ref-n">R&eacute;f&eacute;rences</div><div class="conf-ref-v">L.C. Vincent &middot; M. Violet &middot; Marc Henry</div><div class="conf-ref-d">V. Schauberger &middot; M.T. Keshe &middot; Dr F. Lef&eacute;bure (depuis 2024) &middot; P. Gara&iuml;ev</div></div>
         <div class="conf-ref"><div class="conf-ref-n">Instrument</div><div class="conf-ref-v">Biowell GDV-Kirlian</div><div class="conf-ref-d">Dr K. Korotkov &middot; Universit&eacute; Saint-P&eacute;tersbourg</div></div>
         <div class="conf-ref" style="border-top:2px solid var(--crystal)"><div class="conf-ref-n">Formule signature</div><div class="conf-ref-v" style="font-family:monospace;font-size:.75rem">f = c&sup2;/(1000&times;N&#x2090;&times;h&times;&phi;&sup2;&deg;)&times;M</div><div class="conf-ref-d">&phi;&sup2;&deg; = 6765 (Fibonacci)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="collaborateurs">
+  <div class="container">
+    <div class="eyebrow">Ceux sans qui rien n&rsquo;aurait &eacute;t&eacute; possible</div>
+    <h2 class="sec-title">Collaborateurs<br><em>&amp; passeurs</em></h2>
+    <p class="sec-lead">Un projet ne nait jamais seul. Rendre &agrave; C&eacute;sar ce qui est &agrave; C&eacute;sar.</p>
+    <div class="divider"></div>
+
+    <!-- DR EMMANUEL CARRIÈRE -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem">
+      <div style="background:var(--panel);border:1px solid rgba(184,148,60,.28);border-top:3px solid var(--gold);border-radius:8px;padding:2rem;box-shadow:var(--shadow)">
+        <div style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem">Collaborateur fondateur</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:var(--ink);margin-bottom:.2rem">Dr Emmanuel Carri&egrave;re</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-bottom:1.2rem">M.D.(A.M.) &middot; Ph.D.(A.M.) &middot; Th&eacute;rapeute &middot; Chercheur ind&eacute;pendant &middot; Formateur international</div>
+        <p style="font-size:.85rem;color:var(--ink2);line-height:1.8;margin-bottom:1rem">Pionnier des sciences informationnelles et vibratoires, Emmanuel Carri&egrave;re consacre sa vie &agrave; comprendre comment l&rsquo;&eacute;nergie, la vibration et l&rsquo;information structurent le vivant. Son approche, bas&eacute;e sur plus de 20 ans d&rsquo;&eacute;tudes dans plus de 30 disciplines &mdash; de la biophotonique aux ondes scalaires, de la bionan&eacute;sonance &agrave; la physique du vide &mdash; a nourri directement l&rsquo;architecture d&rsquo;Axis Lumen.</p>
+        <p style="font-size:.85rem;color:var(--ink2);line-height:1.8;margin-bottom:1rem">En 2004, sa rencontre avec le Pr Georges Dussert oriente ses recherches vers l&rsquo;eau &mdash; ce m&eacute;dium universel de l&rsquo;information biologique que la m&eacute;decine conventionnelle ignore. Il approfondit les travaux de Jacques Benveniste sur la m&eacute;moire de l&rsquo;eau aupr&egrave;s de Jamal A&iuml;ssa (PhD) dans le laboratoire du Pr Luc Montagnier (Prix Nobel de M&eacute;decine).</p>
+        <blockquote style="border-left:2px solid var(--gold);padding:.6rem 1rem;margin:1rem 0;font-style:italic;font-size:.85rem;color:var(--ink);background:rgba(184,148,60,.05);border-radius:0 4px 4px 0">&laquo;&nbsp;La vibration est l&rsquo;identit&eacute; de l&rsquo;information.&nbsp;&raquo;<br><small style="font-style:normal;color:var(--muted)">&mdash; Dr Emmanuel Carri&egrave;re</small></blockquote>
+        <p style="font-size:.85rem;color:var(--ink2);line-height:1.8;margin-bottom:1.2rem">C&rsquo;est le bagage de toutes mes ann&eacute;es de recherche qui m&rsquo;a donn&eacute; le culot de lui &eacute;crire &mdash; pas un mail de pr&eacute;sentation poli, mais avec des fioles de GaNS sp&eacute;cifiques et une exposition de mon projet de pyramide plasma. Sans lui, <strong>Axis Lumen n&rsquo;aurait pas vu le jour</strong>. Nos &eacute;changes &mdash; aussi riches que vari&eacute;s &mdash; ont &eacute;t&eacute; le creuset o&ugrave; j&rsquo;ai su transformer des intuitions en outils dans la mati&egrave;re. Cette collaboration a chang&eacute; le cours de mon existence.</p>
+        <a href="https://emmanuelcarriere.com/mon-parcours/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--gold);text-decoration:none;border:1px solid rgba(184,148,60,.3);padding:.35rem .9rem;border-radius:20px;transition:background .2s">emmanuelcarriere.com &#x2197;</a>
+      </div>
+
+      <!-- MARC CHARPENTIER + MARC HENRY -->
+      <div style="display:flex;flex-direction:column;gap:1.5rem">
+
+        <div style="background:var(--panel);border:1px solid var(--border2);border-top:3px solid var(--crystal);border-radius:8px;padding:1.75rem;box-shadow:var(--shadow)">
+          <div style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--crystal);margin-bottom:.5rem">Passeur de connaissance</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--ink);margin-bottom:.2rem">Marc Charpentier</div>
+          <div style="font-size:.78rem;color:var(--muted);margin-bottom:1rem">Op&eacute;rateur Biowell &middot; Chercheur ind&eacute;pendant</div>
+          <p style="font-size:.83rem;color:var(--ink2);line-height:1.8">Lors des <strong>Journ&eacute;es de l&rsquo;Eau &agrave; La Chapelle-des-Marais</strong>, c&rsquo;est Marc Charpentier qui me met sur la piste&nbsp;: mon &eacute;quation de l&rsquo;&eacute;poque n&rsquo;est pas juste. Il me rapporte l&rsquo;&eacute;quation du physicien Marc Henry, qui deviendra l&rsquo;ossature math&eacute;matique de la formule &phi;&sup2;&deg;. C&rsquo;est aussi lui qui me fait comprendre que l&rsquo;eau du protocole Axis Lumen ne peut &ecirc;tre l&rsquo;eau du robinet &mdash; c&rsquo;est de l&agrave; qu&rsquo;est n&eacute; le Biodynamisateur d&rsquo;Eau Plasma. Il fournit &eacute;galement les exports CSV depuis le logiciel Biowell GDV pour les analyses de terrain d&rsquo;Axis Lumen.</p>
+        </div>
+
+        <div style="background:var(--panel);border:1px solid var(--border2);border-top:3px solid #8b5cf6;border-radius:8px;padding:1.75rem;box-shadow:var(--shadow)">
+          <div style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#8b5cf6;margin-bottom:.5rem">R&eacute;f&eacute;rence math&eacute;matique</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--ink);margin-bottom:.2rem">Marc Henry</div>
+          <div style="font-size:.78rem;color:var(--muted);margin-bottom:1rem">Physicien-chimiste &middot; Universit&eacute; de Strasbourg &middot; Chimie quantique</div>
+          <p style="font-size:.83rem;color:var(--ink2);line-height:1.8;margin-bottom:.75rem">Sa conf&eacute;rence, rapport&eacute;e par Marc Charpentier, a fourni l&rsquo;&eacute;quation fondatrice&nbsp;:</p>
+          <code style="display:block;font-family:'JetBrains Mono',monospace;font-size:.82rem;background:var(--bg2);border:1px solid var(--border);border-left:3px solid #8b5cf6;padding:.6rem 1rem;border-radius:4px;color:var(--ink);margin-bottom:.75rem">f = c&sup2; / (1000 &times; N&#x2090; &times; h &times; 2&sup2;&deg;) &times; M</code>
+          <p style="font-size:.83rem;color:var(--ink2);line-height:1.8">J&rsquo;ai conserv&eacute; cette ossature math&eacute;matique en substituant le facteur d&rsquo;octave 2&sup2;&deg; par &phi;&sup2;&deg; &mdash; le nombre d&rsquo;or &eacute;lev&eacute; &agrave; la puissance 20 &mdash; pour aligner la transposition avec la g&eacute;om&eacute;trie fractale observable dans les syst&egrave;mes vivants, suivant les homologies du Dr Lef&eacute;bure.</p>
+        </div>
+
       </div>
     </div>
   </div>
@@ -1040,7 +1092,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
   <div class="fst">Axis Lumen &middot; Biodynamiseur Plasmatique &middot; Protocole Marcel Violet &middot; Bio&eacute;lectronique de Vincent</div>
   <div class="fl">
     <a href="#pionniers">Pionniers</a><a href="#machine">Machine</a><a href="#protocole">Protocole</a>
-    <a href="#formule">Formule &phi;&sup2;&deg;</a><a href="#conference">Conf&eacute;rence</a><a href="#stage">Atelier</a><a href="#legal">Mentions l&eacute;gales &amp; CGV</a><a href="#biowell">Galerie Biowell</a><a href="#legal">L&eacute;gal</a><a href="https://axis-lumen.fr" target="_blank">axis-lumen.fr ↗</a>
+    <a href="#formule">Formule &phi;&sup2;&deg;</a><a href="#conference">Conf&eacute;rence</a><a href="#collaborateurs">Collaborateurs</a><a href="#stage">Atelier</a><a href="#legal">Mentions l&eacute;gales &amp; CGV</a><a href="#biowell">Galerie Biowell</a><a href="#legal">L&eacute;gal</a><a href="https://axis-lumen.fr" target="_blank">axis-lumen.fr ↗</a>
   </div>
   <div class="fcp">Document p&eacute;dagogique &middot; Axis Lumen &middot; Usage exp&eacute;rimental &mdash; non m&eacute;dical</div>
 </footer>
