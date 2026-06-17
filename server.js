@@ -67,7 +67,7 @@ app.post('/api/add-contact', async (req, res) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'api-key': BREVO_API_KEY },
         body: JSON.stringify({
-          sender: { name: 'Axis Lumen — Stage', email: 'noreply@biodynamiseur-plasma.fr' },
+          sender: { name: 'Axis Lumen — Stage', email: 'michaelchauvet432@gmail.com' },
           to: [{ email: 'chauvetmichael@live.fr', name: 'Michael Chauvet' }],
           subject: `Nouvelle inscription stage — ${sessionLabel || session}`,
           htmlContent: `
