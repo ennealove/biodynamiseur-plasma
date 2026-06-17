@@ -27,30 +27,39 @@ app.post('/api/add-contact', async (req, res) => {
 
   const phone = toInternationalPhone(tel);
 
-  const attributes = {
-    PRENOM:           prenom  || '',
-    NOM:              nom     || '',
-    STAGE_SESSION:    sessionLabel || session,
-    STAGE_MESSAGE:    message || '',
-    SOURCE:           'Formulaire Dynamiseur Eau — Axis Lumen',
-    DATE_INSCRIPTION: new Date().toISOString().split('T')[0]
+  const buildAttributes = (withPhone) => {
+    const attrs = {
+      PRENOM:           prenom  || '',
+      NOM:              nom     || '',
+      STAGE_SESSION:    sessionLabel || session,
+      STAGE_MESSAGE:    message || '',
+      SOURCE:           'Formulaire Dynamiseur Eau — Axis Lumen',
+      DATE_INSCRIPTION: new Date().toISOString().split('T')[0]
+    };
+    if (withPhone && phone) attrs.SMS = phone;
+    return attrs;
   };
-  if (phone) attributes.SMS = phone;
+
+  const callBrevo = (attributes) => fetch('https://api.brevo.com/v3/contacts', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'api-key': BREVO_API_KEY },
+    body: JSON.stringify({ email, updateEnabled: true, listIds: [BREVO_LIST_ID], attributes })
+  });
 
   try {
-    const response = await fetch('https://api.brevo.com/v3/contacts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'api-key': BREVO_API_KEY
-      },
-      body: JSON.stringify({
-        email,
-        updateEnabled: true,
-        listIds: [BREVO_LIST_ID],
-        attributes
-      })
-    });
+    let response = await callBrevo(buildAttributes(true));
+
+    // Si SMS déjà associé à un autre contact, réessayer sans SMS
+    if (!response.ok) {
+      const txt = await response.text();
+      if (txt.includes('duplicate_parameter') && txt.includes('SMS')) {
+        console.warn('[Brevo] SMS en doublon, retry sans SMS');
+        response = await callBrevo(buildAttributes(false));
+      } else {
+        console.error('[Brevo] Erreur', response.status, txt);
+        return res.status(502).json({ error: 'Brevo error', status: response.status, detail: txt });
+      }
+    }
 
     if (response.ok || response.status === 204) {
       // Notification email à Michael
@@ -87,9 +96,9 @@ app.post('/api/add-contact', async (req, res) => {
 
       return res.json({ ok: true });
     }
-    const body = await response.text();
-    console.error('[Brevo] Erreur', response.status, body);
-    return res.status(502).json({ error: 'Brevo error', status: response.status, detail: body });
+    const errBody = await response.text();
+    console.error('[Brevo] Erreur finale', response.status, errBody);
+    return res.status(502).json({ error: 'Brevo error', status: response.status, detail: errBody });
 
   } catch (err) {
     console.error('[Brevo] Exception', err.message);
