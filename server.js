@@ -1,12 +1,80 @@
 const express = require('express');
 const path    = require('path');
+const crypto  = require('crypto');
 
 const app  = express();
 const PORT = process.env.PORT || 3000;
 
-const BREVO_API_KEY = process.env.BREVO_API_KEY;
+const BREVO_API_KEY          = process.env.BREVO_API_KEY;
+const STRIPE_WEBHOOK_SECRET  = process.env.STRIPE_WEBHOOK_SECRET;
 const BREVO_LIST_ID = 6;
 
+// ─── Webhook Stripe — corps brut obligatoire pour vérifier la signature ───────
+app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+  const sig       = req.headers['stripe-signature'];
+  const payload   = req.body;
+
+  // Vérification signature Stripe
+  if (STRIPE_WEBHOOK_SECRET) {
+    try {
+      const parts    = sig.split(',').reduce((acc, p) => { const [k,v] = p.split('='); acc[k]=v; return acc; }, {});
+      const toSign   = `${parts.t}.${payload}`;
+      const expected = crypto.createHmac('sha256', STRIPE_WEBHOOK_SECRET).update(toSign, 'utf8').digest('hex');
+      if (expected !== parts.v1) {
+        console.warn('[Stripe] Signature invalide');
+        return res.status(400).json({ error: 'Signature invalide' });
+      }
+    } catch (e) {
+      return res.status(400).json({ error: 'Erreur vérification signature' });
+    }
+  }
+
+  let event;
+  try { event = JSON.parse(payload); } catch { return res.status(400).json({ error: 'JSON invalide' }); }
+
+  if (event.type === 'checkout.session.completed') {
+    const s          = event.data.object;
+    const customerEmail = s.customer_details?.email || s.customer_email || 'inconnu';
+    const customerName  = s.customer_details?.name  || '';
+    const amount        = s.amount_total ? (s.amount_total / 100).toFixed(2) + ' €' : '—';
+    const sessionId     = s.id;
+
+    console.log(`[Stripe] Paiement reçu — ${customerEmail} — ${amount}`);
+
+    fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'api-key': BREVO_API_KEY },
+      body: JSON.stringify({
+        sender: { name: 'Axis Lumen — Paiement', email: 'axislumen@outlook.fr' },
+        to: [{ email: 'chauvetmichael@live.fr', name: 'Michael Chauvet' }],
+        subject: `&#x1F4B3; Paiement re&#xe7;u — ${customerName || customerEmail}`,
+        htmlContent: `<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body>
+          <div style="font-family:Arial,sans-serif;max-width:560px;margin:0 auto;border:1px solid #ddd;border-radius:8px;overflow:hidden">
+            <div style="background:#0D3B4A;padding:20px 24px">
+              <h2 style="color:#2ecc71;margin:0;font-size:16px;letter-spacing:.04em">&#x2705; PAIEMENT RE&#xc7;U &#x2014; AXIS LUMEN</h2>
+            </div>
+            <div style="padding:24px">
+              <table style="width:100%;border-collapse:collapse;font-size:14px">
+                <tr><td style="padding:8px 0;color:#666;width:130px">Client</td><td style="padding:8px 0;font-weight:bold;color:#0D3B4A">${customerName || '&#x2014;'}</td></tr>
+                <tr><td style="padding:8px 0;color:#666">Email</td><td style="padding:8px 0"><a href="mailto:${customerEmail}">${customerEmail}</a></td></tr>
+                <tr><td style="padding:8px 0;color:#666">Montant</td><td style="padding:8px 0;font-weight:bold;color:#2e9e78">${amount}</td></tr>
+                <tr><td style="padding:8px 0;color:#666">ID Stripe</td><td style="padding:8px 0;font-size:11px;color:#999">${sessionId}</td></tr>
+                <tr><td style="padding:8px 0;color:#666">Date</td><td style="padding:8px 0">${new Date().toLocaleDateString('fr-FR', {day:'2-digit',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'})}</td></tr>
+              </table>
+            </div>
+            <div style="background:#f0fff4;padding:12px 24px;font-size:12px;color:#2e9e78;font-weight:bold">
+              Place r&#xe9;serv&#xe9;e &#x2014; contacter le participant dans les 48h
+            </div>
+          </div>
+        </body></html>`
+      })
+    }).catch(err => console.warn('[Brevo] Erreur email paiement:', err.message));
+  }
+
+  res.json({ received: true });
+});
+
+// ─── Routes API classiques ────────────────────────────────────────────────────
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
