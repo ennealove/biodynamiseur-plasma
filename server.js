@@ -10,12 +10,32 @@ const BREVO_LIST_ID = 6;
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
+function toInternationalPhone(tel) {
+  if (!tel) return '';
+  const digits = tel.replace(/[\s.\-()]/g, '');
+  if (digits.startsWith('+')) return digits;
+  if (digits.startsWith('0')) return '+33' + digits.slice(1);
+  return digits;
+}
+
 app.post('/api/add-contact', async (req, res) => {
   const { email, prenom, nom, tel, session, sessionLabel, message } = req.body;
 
   if (!email || !session) {
     return res.status(400).json({ error: 'email et session requis' });
   }
+
+  const phone = toInternationalPhone(tel);
+
+  const attributes = {
+    PRENOM:           prenom  || '',
+    NOM:              nom     || '',
+    STAGE_SESSION:    sessionLabel || session,
+    STAGE_MESSAGE:    message || '',
+    SOURCE:           'Formulaire Dynamiseur Eau — Axis Lumen',
+    DATE_INSCRIPTION: new Date().toISOString().split('T')[0]
+  };
+  if (phone) attributes.SMS = phone;
 
   try {
     const response = await fetch('https://api.brevo.com/v3/contacts', {
@@ -28,15 +48,7 @@ app.post('/api/add-contact', async (req, res) => {
         email,
         updateEnabled: true,
         listIds: [BREVO_LIST_ID],
-        attributes: {
-          PRENOM:           prenom  || '',
-          NOM:              nom     || '',
-          SMS:              tel     || '',
-          STAGE_SESSION:    sessionLabel || session,
-          STAGE_MESSAGE:    message || '',
-          SOURCE:           'Formulaire Dynamiseur Eau — Axis Lumen',
-          DATE_INSCRIPTION: new Date().toISOString().split('T')[0]
-        }
+        attributes
       })
     });
 
@@ -45,7 +57,7 @@ app.post('/api/add-contact', async (req, res) => {
     }
     const body = await response.text();
     console.error('[Brevo] Erreur', response.status, body);
-    return res.status(502).json({ error: 'Brevo error', status: response.status });
+    return res.status(502).json({ error: 'Brevo error', status: response.status, detail: body });
 
   } catch (err) {
     console.error('[Brevo] Exception', err.message);
