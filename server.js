@@ -53,6 +53,38 @@ app.post('/api/add-contact', async (req, res) => {
     });
 
     if (response.ok || response.status === 204) {
+      // Notification email à Michael
+      fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'api-key': BREVO_API_KEY },
+        body: JSON.stringify({
+          sender: { name: 'Axis Lumen — Stage', email: 'noreply@biodynamiseur-plasma.fr' },
+          to: [{ email: 'chauvetmichael@live.fr', name: 'Michael Chauvet' }],
+          subject: `Nouvelle inscription stage — ${sessionLabel || session}`,
+          htmlContent: `
+            <div style="font-family:Arial,sans-serif;max-width:560px;margin:0 auto;border:1px solid #ddd;border-radius:8px;overflow:hidden">
+              <div style="background:#0D3B4A;padding:20px 24px">
+                <h2 style="color:#7EC8D3;margin:0;font-size:16px;letter-spacing:.04em">AXIS LUMEN — NOUVELLE INSCRIPTION</h2>
+              </div>
+              <div style="padding:24px">
+                <table style="width:100%;border-collapse:collapse;font-size:14px">
+                  <tr><td style="padding:8px 0;color:#666;width:130px">Session</td><td style="padding:8px 0;font-weight:bold;color:#0D3B4A">${sessionLabel || session}</td></tr>
+                  <tr><td style="padding:8px 0;color:#666">Prénom</td><td style="padding:8px 0">${prenom || '—'}</td></tr>
+                  <tr><td style="padding:8px 0;color:#666">Nom</td><td style="padding:8px 0">${nom || '—'}</td></tr>
+                  <tr><td style="padding:8px 0;color:#666">Email</td><td style="padding:8px 0"><a href="mailto:${email}">${email}</a></td></tr>
+                  <tr><td style="padding:8px 0;color:#666">Téléphone</td><td style="padding:8px 0">${tel || '—'}</td></tr>
+                  <tr><td style="padding:8px 0;color:#666;vertical-align:top">Message</td><td style="padding:8px 0;line-height:1.6">${message || '—'}</td></tr>
+                  <tr><td style="padding:8px 0;color:#666">Date</td><td style="padding:8px 0">${new Date().toLocaleDateString('fr-FR', {day:'2-digit',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'})}</td></tr>
+                </table>
+              </div>
+              <div style="background:#f5f5f5;padding:12px 24px;font-size:12px;color:#999">
+                Contact ajouté à la liste Brevo — Stages Axis Lumen
+              </div>
+            </div>
+          `
+        })
+      }).catch(err => console.warn('[Brevo email] Erreur notification:', err.message));
+
       return res.json({ ok: true });
     }
     const body = await response.text();

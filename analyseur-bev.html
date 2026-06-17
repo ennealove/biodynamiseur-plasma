@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analyseur BEV — Eau Vivante · Axis Lumen</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+  --bg:#f5faff;--bg2:#edf7ff;--bg3:#f0f8fe;
+  --panel:#ffffff;--panel2:#f8fdff;
+  --border:rgba(30,139,195,0.12);--border2:rgba(30,139,195,0.28);
+  --ink:#0d2438;--ink2:#2e5f7a;--muted:#5a8fa8;--dim:#9bbfd4;
+  --crystal:#1e8bc3;--crystal-l:#3aadda;--crystal-p:#a8dced;
+  --teal:#3dbdcc;--teal-l:#7dd8e0;
+  --gold:#b8943c;--gold-l:#d4b86a;
+  --green:#2e9e78;--red:#c04040;
+  --shadow:0 2px 20px rgba(30,139,195,0.08);
+  --shadow2:0 4px 40px rgba(30,139,195,0.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden}
+
+/* ── NAVIGATION ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(245,250,255,0.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-family:"Cormorant Garamond",serif;font-size:1.1rem;font-weight:500;color:var(--crystal);letter-spacing:.04em;text-decoration:none}
+.nav-links{display:flex}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.74rem;padding:0 .8rem;height:56px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--crystal);border-bottom-color:var(--crystal)}
+
+/* ── HERO ── */
+#hero{min-height:72vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:100px 2rem 5rem;background:linear-gradient(160deg,#f5faff 0%,#e4f2fb 55%,#d4ecf7 100%)}
+.wave-bg{position:absolute;bottom:0;left:0;right:0;height:220px;opacity:.3;pointer-events:none}
+.hero-inner{position:relative;z-index:2;max-width:760px;width:100%;text-align:center}
+.eyebrow{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--crystal);margin-bottom:.6rem}
+.hero-inner h1{font-family:"Cormorant Garamond",serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:300;line-height:1.15;color:var(--ink);margin-bottom:1.2rem}
+.hero-inner h1 em{font-style:italic;color:var(--crystal)}
+.hero-inner .lead{font-size:.97rem;color:var(--ink2);line-height:1.85;max-width:620px;margin:0 auto 2rem}
+.hero-tags{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-bottom:2.5rem}
+.tag{font-size:.69rem;letter-spacing:.07em;text-transform:uppercase;padding:.25rem .75rem;border-radius:20px;border:1px solid var(--border2);color:var(--muted);background:rgba(255,255,255,.6)}
+.tag-c{border-color:rgba(30,139,195,.3);color:var(--crystal);background:rgba(30,139,195,.06)}
+.hero-cta{display:inline-flex;align-items:center;gap:.75rem;background:var(--crystal);border:none;color:#fff;padding:.8rem 1.75rem;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;transition:all .25s;border-radius:3px;cursor:pointer;box-shadow:0 4px 16px rgba(30,139,195,.3)}
+.hero-cta:hover{background:#1a7aae}
+
+/* ── SHARED ── */
+section{padding:5rem 2rem}
+.sec-alt{background:var(--bg2)}
+.container{max-width:1100px;margin:0 auto}
+.sec-title{font-family:"Cormorant Garamond",serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:300;color:var(--ink);line-height:1.2;margin-bottom:.9rem}
+.sec-title em{font-style:italic;color:var(--crystal)}
+.divider{width:48px;height:2px;background:linear-gradient(90deg,var(--crystal),var(--teal),transparent);margin-bottom:1.5rem;border-radius:1px}
+.cb{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:1.5rem;box-shadow:var(--shadow)}
+.wt{font-size:.78rem;color:#8b3030;line-height:1.6}
+.wt strong{color:#c04040}
+
+/* ── FORM SECTION ── */
+#formulaire{padding:4.5rem 2rem}
+.form-panel{max-width:720px;margin:0 auto;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:2.5rem;box-shadow:var(--shadow2)}
+.form-head{margin-bottom:2rem}
+.demo-btn{background:transparent;border:1px solid var(--border2);color:var(--crystal);padding:.42rem 1rem;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;border-radius:3px;cursor:pointer;transition:all .2s;margin-top:1rem;font-family:Inter,sans-serif}
+.demo-btn:hover{background:rgba(30,139,195,.06);border-color:var(--crystal)}
+.input-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2rem}
+.input-block{display:flex;flex-direction:column;gap:.4rem;position:relative}
+.input-label{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--crystal);display:flex;align-items:center;gap:.4rem}
+.input-wrap{position:relative;display:flex;align-items:center}
+.input-wrap input{width:100%;font-family:"JetBrains Mono",monospace;font-size:1.05rem;color:var(--ink);background:var(--bg);border:1px solid var(--border2);border-radius:6px;padding:.72rem 3rem .72rem 1rem;outline:none;transition:border-color .2s,box-shadow .2s}
+.input-wrap input:focus{border-color:var(--crystal);box-shadow:0 0 0 3px rgba(30,139,195,.12)}
+.input-unit{position:absolute;right:.75rem;font-size:.68rem;color:var(--muted);font-family:Inter,sans-serif;letter-spacing:.04em;pointer-events:none}
+.tooltip-trigger{width:16px;height:16px;border-radius:50%;background:var(--bg2);border:1px solid var(--border2);color:var(--muted);font-size:.6rem;display:inline-flex;align-items:center;justify-content:center;cursor:default;position:relative;flex-shrink:0}
+.tooltip-trigger:hover .tooltip-box{opacity:1;pointer-events:auto;transform:translateY(0)}
+.tooltip-box{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);background:var(--ink);color:#fff;font-size:.72rem;line-height:1.5;padding:.55rem .8rem;border-radius:6px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .2s,transform .2s;z-index:50;font-family:Inter,sans-serif;letter-spacing:0;text-transform:none;min-width:200px;max-width:250px;white-space:normal}
+.tooltip-box::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--ink)}
+.input-required{font-size:.62rem;color:var(--red);margin-top:.18rem}
+.input-optional{font-size:.62rem;color:var(--muted);margin-top:.18rem;font-style:italic}
+.form-note{background:rgba(192,64,64,.04);border:1px solid rgba(192,64,64,.18);border-radius:6px;padding:.85rem 1rem;margin-bottom:1.8rem;display:flex;gap:.7rem;align-items:flex-start}
+.form-note-icon{color:#c04040;flex-shrink:0;font-size:.9rem;margin-top:.1rem}
+.calc-btn{width:100%;background:var(--crystal);color:#fff;border:none;padding:1rem 2rem;font-size:.88rem;letter-spacing:.07em;text-transform:uppercase;border-radius:5px;cursor:pointer;transition:background .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(30,139,195,.3);font-family:Inter,sans-serif;display:flex;align-items:center;justify-content:center;gap:.75rem}
+.calc-btn:hover{background:#1a7aae;box-shadow:0 6px 24px rgba(30,139,195,.4)}
+.error-msg{display:none;font-size:.78rem;color:var(--red);margin-top:.8rem;text-align:center}
+
+/* ── RESULT PANEL ── */
+#resultat{display:none;padding:4rem 2rem}
+.result-panel{max-width:860px;margin:0 auto;animation:fadeSlideUp 0.45s ease-out}
+.result-header{margin-bottom:2rem}
+.result-kpis{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:2rem}
+.kpi-card{background:var(--panel);border:1px solid var(--border2);border-radius:10px;padding:1.75rem 2rem;box-shadow:var(--shadow);text-align:center}
+.kpi-label{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.kpi-value{font-family:"Cormorant Garamond",serif;font-size:3rem;font-weight:300;color:var(--crystal);line-height:1;margin-bottom:.25rem}
+.kpi-value.rh2-value{animation:pulseGlow 2s ease-in-out infinite}
+.kpi-unit{font-size:.74rem;color:var(--muted);font-family:"JetBrains Mono",monospace}
+.verdict-block{border-radius:8px;padding:1.2rem 1.75rem;margin-bottom:2rem;display:flex;align-items:center;gap:1rem}
+.verdict-block.vert{background:rgba(46,158,120,.07);border:1.5px solid rgba(46,158,120,.25)}
+.verdict-block.teal{background:rgba(61,189,204,.07);border:1.5px solid rgba(61,189,204,.3)}
+.verdict-block.ambre{background:rgba(184,148,60,.07);border:1.5px solid rgba(184,148,60,.25)}
+.verdict-block.rouge{background:rgba(192,64,64,.06);border:1.5px solid rgba(192,64,64,.2)}
+.verdict-icon{font-size:1.6rem;flex-shrink:0}
+.verdict-text{flex:1}
+.verdict-title{font-family:"Cormorant Garamond",serif;font-size:1.25rem;font-weight:500;margin-bottom:.25rem}
+.verdict-block.vert .verdict-title{color:#1e7a5a}
+.verdict-block.teal .verdict-title{color:#2a8f9b}
+.verdict-block.ambre .verdict-title{color:#8a6018}
+.verdict-block.rouge .verdict-title{color:#a03030}
+.verdict-sub{font-size:.82rem;color:var(--ink2);line-height:1.6}
+
+/* ── COMPARISON TABLE ── */
+.table-wrap{overflow-x:auto;margin-bottom:2rem;border-radius:8px;border:1px solid var(--border);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;font-size:.84rem}
+thead{background:var(--bg2)}
+thead th{padding:.8rem 1.1rem;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--crystal);font-weight:600;text-align:left;border-bottom:1px solid var(--border2)}
+tbody tr:nth-child(even){background:var(--bg)}
+tbody tr:hover{background:rgba(30,139,195,.03)}
+tbody td{padding:.85rem 1.1rem;color:var(--ink2);border-bottom:1px solid var(--border);vertical-align:middle}
+tbody td:first-child{font-weight:600;color:var(--ink)}
+tbody td.mono{font-family:"JetBrains Mono",monospace;font-size:.82rem}
+tbody tr:last-child td{border-bottom:none}
+.conf-icon{font-size:.95rem;margin-right:.35rem}
+
+/* ── ANALYSE TEXT ── */
+.analyse-section{margin-bottom:2rem}
+.analyse-section h3{font-family:"Cormorant Garamond",serif;font-size:1.2rem;font-weight:500;color:var(--ink);margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.analyse-p{font-size:.88rem;color:var(--ink2);line-height:1.85;margin-bottom:.75rem}
+.violet-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,rgba(61,189,204,.08),rgba(30,139,195,.06));border:1px solid rgba(61,189,204,.3);border-radius:6px;padding:.7rem 1rem;margin-top:.5rem;font-size:.83rem;color:var(--ink2);line-height:1.65}
+.violet-badge-icon{color:var(--teal);flex-shrink:0}
+
+/* ── RECOMMANDATIONS ── */
+.reco-panel{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--crystal);border-radius:8px;padding:1.5rem 1.75rem;margin-bottom:2rem}
+.reco-list{list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-top:1rem}
+.reco-list li{font-size:.85rem;color:var(--ink2);line-height:1.7;padding-left:1.1rem;position:relative}
+.reco-list li::before{content:"→";position:absolute;left:0;color:var(--crystal);font-weight:600}
+.reco-disclaimer{font-size:.74rem;color:var(--muted);margin-top:1.1rem;font-style:italic;border-top:1px solid var(--border);padding-top:.85rem;line-height:1.6}
+
+/* ── THEORY SECTION ── */
+#theorie{background:var(--bg2)}
+.theory-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-top:2rem}
+.theory-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:1.5rem;box-shadow:var(--shadow)}
+.theory-num{font-family:"JetBrains Mono",monospace;font-size:.75rem;color:var(--crystal);margin-bottom:.6rem}
+.theory-title{font-family:"Cormorant Garamond",serif;font-size:1.05rem;font-weight:500;color:var(--ink);margin-bottom:.6rem}
+.theory-text{font-size:.83rem;color:var(--ink2);line-height:1.75}
+
+/* ── FORMULA DISPLAY ── */
+.formula-block{background:var(--panel);border:1px solid var(--border2);border-radius:8px;padding:1.2rem 1.75rem;display:inline-flex;align-items:center;gap:1rem;margin-top:1.25rem;font-family:"JetBrains Mono",monospace;font-size:.92rem;color:var(--ink);box-shadow:var(--shadow)}
+.formula-var{color:var(--crystal)}
+.formula-result{color:var(--teal);font-weight:500}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);color:rgba(255,255,255,.55);padding:2.5rem 2rem;text-align:center}
+.footer-logo{font-family:"Cormorant Garamond",serif;font-size:1.15rem;font-weight:500;color:rgba(255,255,255,.85);letter-spacing:.04em;margin-bottom:.5rem}
+.footer-tagline{font-size:.78rem;margin-bottom:.35rem}
+.footer-credit{font-size:.7rem;color:rgba(255,255,255,.35);margin-top:.5rem}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeSlideUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes pulseGlow{
+  0%,100%{box-shadow:0 0 0 0 rgba(30,139,195,0.3)}
+  50%{box-shadow:0 0 0 8px rgba(30,139,195,0)}
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .input-grid{grid-template-columns:1fr 1fr}
+  .result-kpis{grid-template-columns:1fr 1fr}
+  .theory-grid{grid-template-columns:1fr}
+  .nav-links a{padding:0 .5rem;font-size:.68rem}
+}
+@media(max-width:480px){
+  .input-grid{grid-template-columns:1fr}
+  .result-kpis{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+
+/* ── PRINT ── */
+@media print{
+  nav,.hero-tags,.hero-cta,#formulaire,#theorie,footer,.demo-btn{display:none!important}
+  #hero{min-height:auto;padding:1rem 0;background:none}
+  #resultat{display:block!important;padding:0}
+  .result-panel{max-width:100%}
+  body{font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ NAVIGATION ══════════════════ -->
+<nav>
+  <a class="nav-brand" href="index.html">Axis Lumen</a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="analyseur-bev.html" class="active">Analyseur BEV</a>
+    <a href="bev_protocole_21j.html">Protocole 21J</a>
+    <a href="https://axis-lumen.fr" target="_blank" rel="noopener">Axis Lumen</a>
+  </div>
+</nav>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section id="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Bioélectronique Vincent</p>
+    <h1>Analyseur de l'<em>eau vivante</em></h1>
+    <p class="lead">Calculez le rH², interprétez vos mesures selon les références BEV de Louis-Claude Vincent et les eaux de Marcel Violet</p>
+    <div class="hero-tags">
+      <span class="tag tag-c">pH · rH² · Résistivité</span>
+      <span class="tag">Bioélectronique Vincent</span>
+      <span class="tag tag-c">Eau Violet</span>
+      <span class="tag">Terrain cellulaire</span>
+    </div>
+    <button class="hero-cta" onclick="document.getElementById('formulaire').scrollIntoView({behavior:'smooth'})">
+      <i class="fa-solid fa-droplet"></i> Commencer l'analyse
+    </button>
+  </div>
+  <svg class="wave-bg" viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,160 C240,220 480,80 720,140 C960,200 1200,60 1440,120 L1440,220 L0,220 Z" fill="var(--crystal)" opacity=".18"/>
+    <path d="M0,180 C360,100 720,200 1080,140 C1260,110 1380,160 1440,180 L1440,220 L0,220 Z" fill="var(--teal)" opacity=".12"/>
+  </svg>
+</section>
+
+<!-- ══════════════════ FORMULAIRE ══════════════════ -->
+<section id="formulaire">
+  <div class="form-panel">
+    <div class="form-head">
+      <p class="eyebrow">Vos paramètres de mesure</p>
+      <h2 class="sec-title">Renseignez vos <em>valeurs</em></h2>
+      <div class="divider"></div>
+      <p style="font-size:.85rem;color:var(--ink2);line-height:1.75;">Saisissez les mesures obtenues avec vos instruments. Le pH et le potentiel redox sont obligatoires pour le calcul du rH².</p>
+      <button class="demo-btn" onclick="chargerDemo()"><i class="fa-regular fa-flask" style="margin-right:.4rem"></i>Charger valeurs exemple</button>
+    </div>
+
+    <div class="input-grid">
+      <!-- pH -->
+      <div class="input-block">
+        <div class="input-label">
+          pH
+          <span class="tooltip-trigger">?
+            <span class="tooltip-box">pH de l'eau mesuré à l'électrode de verre. Axe acido-basique : 0 (acide fort) à 14 (base forte), neutre à 7.</span>
+          </span>
+        </div>
+        <div class="input-wrap">
+          <input type="number" id="ph" step="0.01" min="0" max="14" placeholder="ex: 6.4">
+          <span class="input-unit">pH</span>
+        </div>
+        <span class="input-required">* Obligatoire</span>
+      </div>
+
+      <!-- Potentiel Redox -->
+      <div class="input-block">
+        <div class="input-label">
+          Potentiel Redox
+          <span class="tooltip-trigger">?
+            <span class="tooltip-box">Mesuré avec électrode Pt vs Ag/AgCl. Indique la capacité oxydante (+) ou réductrice (−) de l'eau en millivolts.</span>
+          </span>
+        </div>
+        <div class="input-wrap">
+          <input type="number" id="mv" step="1" placeholder="ex: 185">
+          <span class="input-unit">mV</span>
+        </div>
+        <span class="input-required">* Obligatoire</span>
+      </div>
+
+      <!-- Conductivité -->
+      <div class="input-block">
+        <div class="input-label">
+          Conductivité
+          <span class="tooltip-trigger">?
+            <span class="tooltip-box">Mesurée avec un testeur µS/cm dédié. Liée à la teneur en ions dissous. Priorité 1 pour calculer la résistivité.</span>
+          </span>
+        </div>
+        <div class="input-wrap">
+          <input type="number" id="us" step="0.1" min="0" placeholder="ex: 28">
+          <span class="input-unit">µS/cm</span>
+        </div>
+        <span class="input-optional">Optionnel — testeur dédié</span>
+      </div>
+
+      <!-- TDS -->
+      <div class="input-block">
+        <div class="input-label">
+          TDS
+          <span class="tooltip-trigger">?
+            <span class="tooltip-box">Total Dissolved Solids — solides dissous totaux. Mesuré avec un testeur TDS. Priorité 2 si pas de mesure µS directe.</span>
+          </span>
+        </div>
+        <div class="input-wrap">
+          <input type="number" id="ppm" step="0.1" min="0" placeholder="ex: 13">
+          <span class="input-unit">ppm</span>
+        </div>
+        <span class="input-optional">Optionnel — testeur TDS</span>
+      </div>
+
+      <!-- Résistivité -->
+      <div class="input-block">
+        <div class="input-label">
+          Résistivité
+          <span class="tooltip-trigger">?
+            <span class="tooltip-box">Mesurée avec un multimètre et une constante cellule connue. Valeur approximative si la constante n'est pas étalonnée. Priorité 3.</span>
+          </span>
+        </div>
+        <div class="input-wrap">
+          <input type="number" id="kohms" step="0.1" min="0" placeholder="ex: 93.8">
+          <span class="input-unit">kΩ/cm</span>
+        </div>
+        <span class="input-optional">Optionnel — multimètre</span>
+      </div>
+
+      <!-- Température -->
+      <div class="input-block">
+        <div class="input-label">
+          Température
+          <span class="tooltip-trigger">?
+            <span class="tooltip-box">Température de l'eau au moment de la mesure. Influe sur la conductivité et le potentiel redox. Renseigner pour contextualiser.</span>
+          </span>
+        </div>
+        <div class="input-wrap">
+          <input type="number" id="temp" step="0.1" min="0" max="100" placeholder="ex: 24.9">
+          <span class="input-unit">°C</span>
+        </div>
+        <span class="input-optional">Optionnel — contexte</span>
+      </div>
+    </div>
+
+    <div class="form-note">
+      <i class="fa-solid fa-circle-info form-note-icon"></i>
+      <p class="wt">La résistivité peut être saisie via 3 instruments différents. En cas de valeurs contradictoires, <strong>le testeur µS dédié est retenu en priorité</strong>, puis la conversion depuis le TDS (1 ppm ≈ 2 µS/cm), enfin la valeur directe en kΩ.</p>
+    </div>
+
+    <button class="calc-btn" onclick="calculerBEV()">
+      <i class="fa-solid fa-droplet"></i> Calculer l'analyse BEV →
+    </button>
+    <p class="error-msg" id="erreur"></p>
+  </div>
+</section>
+
+<!-- ══════════════════ RÉSULTAT ══════════════════ -->
+<section id="resultat">
+  <div class="result-panel">
+    <div class="result-header">
+      <p class="eyebrow">Résultat de l'analyse BEV</p>
+      <h2 class="sec-title">Votre <em>eau analysée</em></h2>
+      <div class="divider"></div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="result-kpis">
+      <div class="kpi-card">
+        <p class="kpi-label">rH² calculé</p>
+        <p class="kpi-value rh2-value" id="res-rh2">—</p>
+        <p class="kpi-unit">indice redox Vincent</p>
+      </div>
+      <div class="kpi-card">
+        <p class="kpi-label">Résistivité retenue</p>
+        <p class="kpi-value" id="res-resistivite" style="font-size:2.2rem">—</p>
+        <p class="kpi-unit" id="res-resistivite-unit">kΩ/cm</p>
+      </div>
+    </div>
+
+    <!-- Verdict -->
+    <div class="verdict-block" id="verdict-block">
+      <span class="verdict-icon" id="verdict-icon">✅</span>
+      <div class="verdict-text">
+        <p class="verdict-title" id="verdict-title">—</p>
+        <p class="verdict-sub" id="verdict-sub">—</p>
+      </div>
+    </div>
+
+    <!-- Tableau comparatif -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Paramètre</th>
+            <th>Votre eau</th>
+            <th>Idéal BEV Vincent</th>
+            <th>Eau Violet cible</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Analyse textuelle -->
+    <div id="analyse-content"></div>
+
+    <!-- Recommandations -->
+    <div id="reco-content"></div>
+
+  </div>
+</section>
+
+<!-- ══════════════════ THÉORIE ══════════════════ -->
+<section id="theorie" class="sec-alt">
+  <div class="container">
+    <p class="eyebrow">Cadre théorique</p>
+    <h2 class="sec-title">Bioélectronique de <em>Vincent</em></h2>
+    <div class="divider"></div>
+
+    <div style="margin-bottom:1.5rem">
+      <div class="formula-block">
+        <span>rH² = </span><span class="formula-var">Eh</span><span> / 29 + 2 × </span><span class="formula-var">pH</span>
+      </div>
+    </div>
+
+    <div class="theory-grid">
+      <div class="theory-card">
+        <p class="theory-num">01 — Louis-Claude Vincent</p>
+        <p class="theory-title">Bioélectronique de Vincent</p>
+        <p class="theory-text">Louis-Claude Vincent (1906–1988), ingénieur hydrologue français, a développé la BEV en mesurant les 3 paramètres physico-chimiques de l'eau et du milieu intérieur : pH (axe acido-basique), rH² (axe oxydo-réducteur) et résistivité (axe électrique). Il établit que le terrain biologique peut être caractérisé par ces trois mesures, permettant une lecture de la vitalité cellulaire.</p>
+      </div>
+      <div class="theory-card">
+        <p class="theory-num">02 — Marcel Violet</p>
+        <p class="theory-title">Eau plasma et effluve</p>
+        <p class="theory-text">Marcel Violet (1886–1973), ingénieur électricien, a développé des appareils à effluve haute tension pour traiter l'eau et en améliorer les propriétés bioélectriques. Ses travaux ont obtenu des résultats remarquables en viticulture et en élaboration de boissons. L'eau Violet se caractérise par un rH² bas (21–25) et un pH neutre (6,8–7,2), signalant une eau réductrice et vivante.</p>
+      </div>
+      <div class="theory-card">
+        <p class="theory-num">03 — Formule rH²</p>
+        <p class="theory-title">Indice redox universel</p>
+        <p class="theory-text">La formule rH² = Eh/29 + 2×pH permet de situer une eau sur l'axe redox indépendamment du pH, révélant son potentiel de vitalité cellulaire. Eh est le potentiel redox mesuré en mV. Le rH² varie de 0 (très réducteur) à 42 (très oxydant). La zone de vitalité cellulaire selon Vincent se situe entre 20 et 28, avec un optimum autour de 23–24.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <p class="footer-logo">Axis Lumen</p>
+  <p class="footer-tagline">Bioélectronique &amp; Eau Vivante · axis-lumen.fr</p>
+  <p class="footer-credit">Calculateur BEV pédagogique — Références : L.C. Vincent, M. Violet · Aucune valeur n'est transmise à un serveur externe</p>
+</footer>
+
+<!-- ══════════════════ JAVASCRIPT ══════════════════ -->
+<script>
+const REFS = {
+  vincent: {
+    label: "BEV Vincent — Idéal eau de boisson",
+    pH: { min: 6.8, max: 7.2, optimal: 7.0 },
+    rH2: { min: 20, max: 28, optimal: 24 },
+    resistivite: { min: 50000, optimal: 100000 }
+  },
+  violet: {
+    label: "Eau Marcel Violet — Eau plasma traitée",
+    pH: { min: 6.8, max: 7.2, optimal: 7.0 },
+    rH2: { min: 21, max: 25, optimal: 23 },
+    resistivite: { min: 50000, optimal: 100000 }
+  },
+  sante: {
+    label: "Seuil physiologique minimum",
+    pH: { min: 6.5, max: 7.5 },
+    rH2: { min: 20, max: 30 },
+    resistivite: { min: 10000 }
+  }
+};
+
+function calculerRH2(mV, pH) {
+  return mV / 29 + 2 * pH;
+}
+
+function calculerResistivite(uS, ppm, kohms) {
+  if (uS && uS > 0) return 1000000 / uS;
+  if (ppm && ppm > 0) return 1000000 / (ppm * 2);
+  if (kohms && kohms > 0) return kohms * 1000;
+  return null;
+}
+
+function sourceResistivite(uS, ppm, kohms) {
+  if (uS && uS > 0) return "µS/cm";
+  if (ppm && ppm > 0) return "TDS ppm";
+  if (kohms && kohms > 0) return "kΩ direct";
+  return null;
+}
+
+function calculerScore(pH, rH2, resistiviteOhm) {
+  let score = 0;
+  if (pH >= 6.8 && pH <= 7.2) score++;
+  if (rH2 >= 20 && rH2 <= 28) score++;
+  if (resistiviteOhm && resistiviteOhm >= 50000) score++;
+  return score;
+}
+
+function conformiteIcon(val, min, max) {
+  if (val >= min && val <= max) return '<span class="conf-icon">✅</span>';
+  const marge = (max - min) * 0.15;
+  if (val >= min - marge && val <= max + marge) return '<span class="conf-icon">🟡</span>';
+  return '<span class="conf-icon">❌</span>';
+}
+
+function conformiteResist(ohmVal, minOhm) {
+  if (!ohmVal) return '<span class="conf-icon">—</span>';
+  if (ohmVal >= minOhm) return '<span class="conf-icon">✅</span>';
+  if (ohmVal >= minOhm * 0.5) return '<span class="conf-icon">🟡</span>';
+  return '<span class="conf-icon">❌</span>';
+}
+
+function formatResist(ohmVal) {
+  if (!ohmVal) return 'N/D';
+  if (ohmVal >= 1000) return (ohmVal / 1000).toFixed(1) + ' kΩ/cm';
+  return ohmVal.toFixed(0) + ' Ω/cm';
+}
+
+function genererAnalysePH(pH) {
+  const v = pH.toFixed(2);
+  if (pH < 6.5)
+    return `Votre eau est nettement acide (pH ${v}). En bioélectronique Vincent, un pH inférieur à 6,5 signale un terrain favorable à la déminéralisation cellulaire et à une activité enzymatique sous-optimale. Un travail de remontée du pH est conseillé.`;
+  if (pH < 6.8)
+    return `Votre pH de ${v} est légèrement en dessous de la zone idéale Vincent (6,8–7,2). L'eau est potable et correcte, mais une légère remontée renforcerait son terrain biologique.`;
+  if (pH <= 7.2)
+    return `pH ${v} — Votre eau se situe dans la zone idéale selon Louis-Claude Vincent. Ce pH favorise un terrain cellulaire équilibré et une bonne assimilation minérale.`;
+  return `pH ${v} — Légèrement alcalin selon les critères BEV. Contrairement à certaines idées reçues, un pH trop élevé peut réduire la disponibilité de certains minéraux. La zone Vincent préconise de rester sous 7,2.`;
+}
+
+function genererAnalyseRH2(rH2) {
+  const v = rH2.toFixed(1);
+  if (rH2 < 20)
+    return `rH² ${v} — Zone réductrice intense. L'eau est fortement antioxydante, ce qui peut être recherché dans certains protocoles thérapeutiques, mais sort de la zone de vie cellulaire optimale selon Vincent.`;
+  if (rH2 <= 25)
+    return `rH² ${v} — Zone optimale de vitalité selon Vincent et Marcel Violet. Ce potentiel redox correspond à une eau vivante, capable de participer activement aux échanges cellulaires.`;
+  if (rH2 <= 28)
+    return `rH² ${v} — Toujours dans la zone acceptable Vincent (20–28), mais légèrement au-dessus de la cible Violet (21–25). Une dynamisation par vortex ou traitement plasma pourrait abaisser ce rH² vers la zone optimale.`;
+  return `rH² ${v} — Zone oxydante, hors de la zone de vitalité cellulaire selon Vincent. Cette eau exerce une charge oxydative sur les tissus. Un traitement restructurant est fortement conseillé.`;
+}
+
+function genererAnalyseResistivite(ohmVal) {
+  if (!ohmVal) return null;
+  const kohm = ohmVal / 1000;
+  const v = kohm.toFixed(1);
+  if (kohm < 10)
+    return `Eau très minéralisée (${v} kΩ/cm). Une forte minéralisation charge le rein et perturbe l'osmose cellulaire. Vincent préconisait des eaux faiblement minéralisées pour le terrain biologique.`;
+  if (kohm < 50)
+    return `Résistivité de ${v} kΩ/cm — eau modérément minéralisée. Correcte pour la consommation quotidienne, mais en deçà de l'idéal Vincent (>100 kΩ) pour les protocoles de régénération cellulaire.`;
+  if (kohm <= 100)
+    return `Résistivité de ${v} kΩ/cm — bonne pureté, proche de la zone de vitalité Vincent. L'eau est faiblement minéralisée, favorable à la détoxification cellulaire.`;
+  return `Résistivité de ${v} kΩ/cm — eau atteignant la zone idéale de Louis-Claude Vincent (>100 kΩ). Ce niveau de pureté est celui des eaux de source vivante et des eaux traitées par plasma selon le protocole Marcel Violet.`;
+}
+
+function validerFormulaire() {
+  const pH = parseFloat(document.getElementById('ph').value);
+  const mV = parseFloat(document.getElementById('mv').value);
+  const errEl = document.getElementById('erreur');
+  if (isNaN(pH) || isNaN(mV)) {
+    errEl.style.display = 'block';
+    errEl.textContent = 'Le pH et le potentiel redox (mV) sont obligatoires pour le calcul.';
+    return false;
+  }
+  if (pH < 0 || pH > 14) {
+    errEl.style.display = 'block';
+    errEl.textContent = 'Le pH doit être compris entre 0 et 14.';
+    return false;
+  }
+  if (mV < -800 || mV > 800) {
+    errEl.style.display = 'block';
+    errEl.textContent = `Potentiel redox de ${mV} mV hors plage réaliste (−800 à +800 mV). Vérifiez votre saisie — une eau réelle se situe généralement entre −500 et +700 mV.`;
+    return false;
+  }
+  errEl.style.display = 'none';
+  return true;
+}
+
+function afficherResultat(data) {
+  const { pH, mV, rH2, resistiviteOhm, temp, source } = data;
+  const kohm = resistiviteOhm ? resistiviteOhm / 1000 : null;
+  const score = calculerScore(pH, rH2, resistiviteOhm);
+
+  // KPIs
+  document.getElementById('res-rh2').textContent = rH2.toFixed(2);
+  if (resistiviteOhm) {
+    document.getElementById('res-resistivite').textContent = kohm >= 1 ? kohm.toFixed(1) : (resistiviteOhm).toFixed(0);
+    document.getElementById('res-resistivite-unit').textContent = kohm >= 1 ? 'kΩ/cm · via ' + source : 'Ω/cm · via ' + source;
+  } else {
+    document.getElementById('res-resistivite').textContent = 'N/D';
+    document.getElementById('res-resistivite-unit').textContent = 'Aucune mesure saisie';
+  }
+
+  // Verdict
+  const vBlock = document.getElementById('verdict-block');
+  vBlock.className = 'verdict-block';
+  let vIcon, vTitle, vSub, vClass;
+  if (score === 3) {
+    vClass = 'vert'; vIcon = '✅';
+    vTitle = 'Eau excellente';
+    vSub = 'Vos trois paramètres BEV (pH, rH², résistivité) se situent dans les zones optimales selon Louis-Claude Vincent. Cette eau présente toutes les caractéristiques d\'une eau vivante de haute qualité biologique.';
+  } else if (score === 2) {
+    vClass = 'teal'; vIcon = '🟡';
+    vTitle = 'Eau de bonne qualité';
+    vSub = 'Deux de vos trois paramètres BEV sont dans la zone idéale. Quelques ajustements permettraient d\'atteindre l\'excellence selon les critères de Vincent.';
+  } else if (score === 1) {
+    vClass = 'ambre'; vIcon = '⚠️';
+    vTitle = 'Eau correcte à améliorer';
+    vSub = 'Un seul de vos paramètres BEV est dans la zone recommandée par Vincent. L\'eau est consommable, mais un travail de restructuration est conseillé pour optimiser le terrain biologique.';
+  } else {
+    vClass = 'rouge'; vIcon = '❌';
+    vTitle = 'Eau à retravailler';
+    vSub = 'Aucun de vos paramètres BEV ne se situe dans la zone optimale de Vincent. Cette eau mérite une attention particulière. Les recommandations ci-dessous proposent des pistes pédagogiques d\'amélioration.';
+  }
+  vBlock.classList.add(vClass);
+  document.getElementById('verdict-icon').textContent = vIcon;
+  document.getElementById('verdict-title').textContent = vTitle;
+  document.getElementById('verdict-sub').textContent = vSub;
+
+  // Tableau comparatif
+  const phIconV = conformiteIcon(pH, REFS.vincent.pH.min, REFS.vincent.pH.max);
+  const rh2IconV = conformiteIcon(rH2, REFS.vincent.rH2.min, REFS.vincent.rH2.max);
+  const resIconV = conformiteResist(resistiviteOhm, REFS.vincent.resistivite.min);
+  const phIconVio = conformiteIcon(pH, REFS.violet.pH.min, REFS.violet.pH.max);
+  const rh2IconVio = conformiteIcon(rH2, REFS.violet.rH2.min, REFS.violet.rH2.max);
+  const resIconVio = conformiteResist(resistiviteOhm, REFS.violet.resistivite.min);
+
+  document.getElementById('table-body').innerHTML = `
+    <tr>
+      <td>pH</td>
+      <td class="mono">${phIconV}${pH.toFixed(2)}</td>
+      <td>6,8 – 7,2 (opt. 7,0)</td>
+      <td>6,8 – 7,2 (opt. 7,0)</td>
+    </tr>
+    <tr>
+      <td>rH²</td>
+      <td class="mono">${rh2IconV}${rH2.toFixed(2)}</td>
+      <td>20 – 28 (opt. 24)</td>
+      <td>21 – 25 (opt. 23)</td>
+    </tr>
+    <tr>
+      <td>Résistivité</td>
+      <td class="mono">${resIconV}${formatResist(resistiviteOhm)}</td>
+      <td>&gt; 100 kΩ/cm</td>
+      <td>&gt; 50 kΩ/cm</td>
+    </tr>
+    <tr>
+      <td>Redox (brut)</td>
+      <td class="mono">${mV > 0 ? '🟡' : '✅'} ${mV} mV</td>
+      <td>+100 à +200 mV</td>
+      <td>+100 à +180 mV</td>
+    </tr>
+    ${temp ? `<tr><td>Température</td><td class="mono">${temp}°C</td><td colspan="2" style="color:var(--muted);font-size:.8rem">Mesure contextuelle — non prise en compte dans le score BEV</td></tr>` : ''}
+  `;
+
+  // Analyse textuelle
+  const analysePH = genererAnalysePH(pH);
+  const analyseRH2 = genererAnalyseRH2(rH2);
+  const analyseRes = genererAnalyseResistivite(resistiviteOhm);
+  const matchViolet = (rH2 >= 21 && rH2 <= 25 && pH >= 6.8 && pH <= 7.2);
+
+  let analyseHTML = `<div class="cb analyse-section">
+    <p class="eyebrow" style="margin-bottom:.9rem">Analyse paramètre par paramètre</p>`;
+
+  analyseHTML += `<h3>pH — ${pH.toFixed(2)}</h3><p class="analyse-p">${analysePH}</p>`;
+  analyseHTML += `<h3>rH² — ${rH2.toFixed(2)}</h3><p class="analyse-p">${analyseRH2}</p>`;
+
+  if (analyseRes) {
+    analyseHTML += `<h3>Résistivité — ${formatResist(resistiviteOhm)}</h3><p class="analyse-p">${analyseRes}</p>`;
+  }
+
+  if (matchViolet) {
+    analyseHTML += `<div class="violet-badge"><span class="violet-badge-icon"><i class="fa-solid fa-water"></i></span>
+      Votre eau présente des caractéristiques très proches des eaux traitées par Marcel Violet (effluve haute tension, vortex, dynamisation). Ces paramètres correspondent à l'eau qu'il qualifiait d'<em>eau vivante restructurée</em> — capable selon lui de transmettre une information biologique cohérente aux tissus cellulaires.
+    </div>`;
+  }
+
+  analyseHTML += `</div>`;
+  document.getElementById('analyse-content').innerHTML = analyseHTML;
+
+  // Recommandations
+  const recos = [];
+  if (pH < 6.8)
+    recos.push("Ajouter quelques gouttes de solution minérale alcalinisante (bicarbonate de soude alimentaire, pincée) ou laisser reposer l'eau à l'air libre pour dégazer le CO₂ dissous qui acidifie.");
+  if (rH2 > 25 && rH2 <= 28)
+    recos.push("Une dynamisation par vortex (30 secondes en spirale) ou une exposition à un champ magnétique (aimants N52 en opposition) peut abaisser le rH² vers la zone réductrice optimale.");
+  if (rH2 > 28)
+    recos.push("Envisager un traitement par effluve haute tension (type Marcel Violet / Projet Violet) ou une structuration par antenne scalaire pour réduire le potentiel oxydant. Une dynamisation intense par vortex est également recommandée.");
+  if (resistiviteOhm && resistiviteOhm < 50000)
+    recos.push("Utiliser une eau de source très peu minéralisée (<50 mg/L) ou distillée comme base avant le protocole de dynamisation. La distillation partielle élimine les minéraux en excès avant restructuration.");
+
+  let recoHTML = '';
+  if (recos.length > 0) {
+    recoHTML = `<div class="reco-panel">
+      <p class="eyebrow">Pistes d'amélioration</p>
+      <ul class="reco-list">
+        ${recos.map(r => `<li>${r}</li>`).join('')}
+      </ul>
+      <p class="reco-disclaimer">Ces informations sont à visée pédagogique et s'inscrivent dans le cadre de la bioélectronique de terrain selon Louis-Claude Vincent. Elles ne constituent pas un avis médical.</p>
+    </div>`;
+  }
+  document.getElementById('reco-content').innerHTML = recoHTML;
+
+  // Révéler et scroll
+  const section = document.getElementById('resultat');
+  section.style.display = 'block';
+  setTimeout(() => {
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 80);
+}
+
+function calculerBEV() {
+  if (!validerFormulaire()) return;
+
+  const pH = parseFloat(document.getElementById('ph').value);
+  const mV = parseFloat(document.getElementById('mv').value);
+  const uS = parseFloat(document.getElementById('us').value) || 0;
+  const ppm = parseFloat(document.getElementById('ppm').value) || 0;
+  const kohms = parseFloat(document.getElementById('kohms').value) || 0;
+  const temp = parseFloat(document.getElementById('temp').value) || null;
+
+  const rH2 = calculerRH2(mV, pH);
+  const resistiviteOhm = calculerResistivite(uS, ppm, kohms);
+  const source = sourceResistivite(uS, ppm, kohms);
+
+  afficherResultat({ pH, mV, rH2, resistiviteOhm, temp, source });
+}
+
+function chargerDemo() {
+  document.getElementById('ph').value = '6.4';
+  document.getElementById('mv').value = '185';
+  document.getElementById('us').value = '28';
+  document.getElementById('ppm').value = '13';
+  document.getElementById('kohms').value = '93.8';
+  document.getElementById('temp').value = '24.9';
+}
+</script>
+</body>
+</html>
