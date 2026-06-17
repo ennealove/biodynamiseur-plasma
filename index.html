@@ -355,7 +355,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
   <div class="nav-brand" style="display:flex;align-items:center;gap:.6rem"><img id="nav-logo" style="width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid rgba(184,148,60,.3)"> Axis Lumen</div>
   <div class="nav-links">
     <a href="#pionniers">Pionniers</a><a href="#machine">Machine</a><a href="#protocole">Protocole</a>
-    <a href="#formule">Formule &phi;&sup2;&deg;</a><a href="#conference">Conf&eacute;rence</a><a href="#collaborateurs">Collaborateurs</a><a href="#stage">Atelier</a><a href="#biowell">Biowell</a><a href="bev_protocole_21j.html">💧 BEV 21J</a>
+    <a href="#formule">Formule &phi;&sup2;&deg;</a><a href="#conference">Conf&eacute;rence</a><a href="#collaborateurs">Collaborateurs</a><a href="#stage">Atelier</a><a href="#biowell">Biowell</a><a href="bev_protocole_21j.html">💧 BEV 21J</a><a href="analyseur-bev.html">🔬 Analyseur Eau</a>
     <a href="https://axis-lumen.fr" target="_blank" class="nav-axis">Axis Lumen ↗</a>
   </div>
   <button class="nav-toggle" id="nav-toggle" aria-label="Menu">&#9776;</button>
@@ -839,47 +839,155 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
       </form>
 
       <script>
+
       function preselectSession(sessionKey) {
+
         var sel = document.getElementById('sf-session');
+
         if (sel) sel.value = sessionKey;
+
         var form = document.getElementById('stage-inscription-form');
+
         if (form) form.scrollIntoView({behavior:'smooth', block:'start'});
+
       }
 
       var STRIPE_LINKS = {
+
         'session-sept': 'https://buy.stripe.com/28EbJ11phdUY4PX6KA0Jq0i',
+
         'session-oct':  'https://buy.stripe.com/00w8wP2tleZ23LT6KA0Jq0n',
+
         'session-nov':  'https://buy.stripe.com/cNidR99VNaIM3LT8SI0Jq0o',
+
         'session-dec':  'https://buy.stripe.com/3cI5kDgkb7wAgyFgla0Jq0p'
+
       };
 
+      var SESSION_LABELS = {
+
+        'session-sept': '25-27 septembre 2026',
+
+        'session-oct':  '3-5 octobre 2026',
+
+        'session-nov':  '20-22 novembre 2026',
+
+        'session-dec':  '11-13 décembre 2026'
+
+      };
+
+      function addContactToBrevo(email, prenom, nom, tel, session, message) {
+
+        return fetch('/api/add-contact', {
+
+          method: 'POST',
+
+          headers: { 'Content-Type': 'application/json' },
+
+          body: JSON.stringify({
+
+            email: email,
+
+            prenom: prenom,
+
+            nom: nom,
+
+            tel: tel,
+
+            session: session,
+
+            sessionLabel: SESSION_LABELS[session] || session,
+
+            message: message
+
+          })
+
+        });
+
+      }
+
       function handleStageSubmit(e) {
+
         e.preventDefault();
+
         var email   = document.getElementById('sf-email').value.trim();
+
         var prenom  = document.getElementById('sf-prenom').value.trim();
+
+        var nom     = document.getElementById('sf-nom').value.trim();
+
+        var tel     = document.getElementById('sf-tel').value.trim();
+
         var session = document.getElementById('sf-session').value;
 
+        var message = document.getElementById('sf-message').value.trim();
+
         if (!session) {
+
           alert('Veuillez choisir une session.');
+
           return false;
+
         }
 
-        // Sauvegarde pour la page merci
+        var stripeLink = STRIPE_LINKS[session];
+
+        if (!stripeLink || stripeLink.indexOf('REMPLACER') !== -1) {
+
+          alert('Le lien de paiement pour cette session n\'est pas encore disponible.\nContactez Michael : chauvetmichael@live.fr');
+
+          return false;
+
+        }
+
+        // Sauvegarde locale de secours
+
         try {
-          localStorage.setItem('stage_email',  email);
-          localStorage.setItem('stage_prenom', prenom);
+
+          localStorage.setItem('stage_email',   email);
+
+          localStorage.setItem('stage_prenom',  prenom);
+
           localStorage.setItem('stage_session', session);
+
         } catch(err) {}
 
-        var link = STRIPE_LINKS[session];
-        if (!link || link.indexOf('REMPLACER') !== -1) {
-          alert('Le lien de paiement pour cette session n\'est pas encore disponible.\nContactez Michael : chauvetmichael@live.fr');
-          return false;
-        }
+        // Désactiver le bouton pendant l'envoi
 
-        window.location.href = link;
+        var btn = e.target.querySelector('.sf-submit');
+
+        if (btn) { btn.disabled = true; btn.textContent = 'Enregistrement…'; }
+
+        // Envoi Brevo puis redirection Stripe (Stripe s'ouvre même si Brevo échoue)
+
+        addContactToBrevo(email, prenom, nom, tel, session, message)
+
+          .then(function(resp) {
+
+            if (!resp.ok && resp.status !== 204) {
+
+              console.warn('[Brevo] Réponse inattendue :', resp.status);
+
+            }
+
+          })
+
+          .catch(function(err) {
+
+            console.warn('[Brevo] Erreur API :', err);
+
+          })
+
+          .finally(function() {
+
+            window.location.href = stripeLink;
+
+          });
+
         return false;
+
       }
+
       </script>
     </div>
 
