@@ -1248,6 +1248,85 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
   </div>
 </section>
 
+<!-- ══════════════════ CONTACT ══════════════════ -->
+<section id="contact" style="padding:5rem 2rem;background:#fff">
+  <div class="container" style="max-width:680px">
+    <div class="eyebrow">Une question ?</div>
+    <h2 class="sec-title">Contactez <em>Michael</em></h2>
+    <div class="divider"></div>
+    <p style="font-size:.92rem;color:var(--ink2);line-height:1.8;margin-bottom:2rem">
+      Pour toute demande de renseignement sur le Biodynamiseur Plasmatique, le protocole Eau Vivante ou les stages Axis Lumen, écrivez-moi directement. Je vous réponds personnellement sous 48h.
+    </p>
+
+    <form id="contact-form" onsubmit="handleContactSubmit(event)" style="display:flex;flex-direction:column;gap:1.2rem">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem">
+        <div>
+          <label style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--crystal);display:block;margin-bottom:.4rem">Prénom *</label>
+          <input id="ct-prenom" type="text" required placeholder="Votre prénom" style="width:100%;padding:.75rem 1rem;border:1px solid var(--border2);border-radius:6px;font-size:.92rem;color:var(--ink);background:var(--bg);outline:none;font-family:Inter,sans-serif">
+        </div>
+        <div>
+          <label style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--crystal);display:block;margin-bottom:.4rem">Nom *</label>
+          <input id="ct-nom" type="text" required placeholder="Votre nom" style="width:100%;padding:.75rem 1rem;border:1px solid var(--border2);border-radius:6px;font-size:.92rem;color:var(--ink);background:var(--bg);outline:none;font-family:Inter,sans-serif">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem">
+        <div>
+          <label style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--crystal);display:block;margin-bottom:.4rem">Email *</label>
+          <input id="ct-email" type="email" required placeholder="votre@email.fr" style="width:100%;padding:.75rem 1rem;border:1px solid var(--border2);border-radius:6px;font-size:.92rem;color:var(--ink);background:var(--bg);outline:none;font-family:Inter,sans-serif">
+        </div>
+        <div>
+          <label style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--crystal);display:block;margin-bottom:.4rem">Téléphone</label>
+          <input id="ct-tel" type="tel" placeholder="06 XX XX XX XX" style="width:100%;padding:.75rem 1rem;border:1px solid var(--border2);border-radius:6px;font-size:.92rem;color:var(--ink);background:var(--bg);outline:none;font-family:Inter,sans-serif">
+        </div>
+      </div>
+      <div>
+        <label style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--crystal);display:block;margin-bottom:.4rem">Votre message *</label>
+        <textarea id="ct-message" required rows="5" placeholder="Décrivez votre question, votre intérêt pour le protocole ou ce que vous souhaitez savoir sur les stages..." style="width:100%;padding:.75rem 1rem;border:1px solid var(--border2);border-radius:6px;font-size:.92rem;color:var(--ink);background:var(--bg);outline:none;resize:vertical;font-family:Inter,sans-serif;line-height:1.6"></textarea>
+      </div>
+      <button type="submit" id="ct-submit" style="align-self:flex-start;background:var(--crystal);color:#fff;border:none;padding:.85rem 2rem;font-size:.84rem;letter-spacing:.06em;text-transform:uppercase;border-radius:5px;cursor:pointer;transition:background .2s;font-family:Inter,sans-serif;box-shadow:0 4px 16px rgba(30,139,195,.3)">
+        Envoyer mon message →
+      </button>
+      <p id="ct-success" style="display:none;color:var(--green);font-size:.88rem;font-weight:600">✓ Message envoyé — Michael vous répondra dans les 48h.</p>
+      <p id="ct-error" style="display:none;color:var(--red);font-size:.82rem">Une erreur s'est produite. Écrivez directement à <a href="mailto:chauvetmichael@live.fr">chauvetmichael@live.fr</a></p>
+    </form>
+  </div>
+</section>
+
+<script>
+function handleContactSubmit(e) {
+  e.preventDefault();
+  var prenom  = document.getElementById('ct-prenom').value.trim();
+  var nom     = document.getElementById('ct-nom').value.trim();
+  var email   = document.getElementById('ct-email').value.trim();
+  var tel     = document.getElementById('ct-tel').value.trim();
+  var message = document.getElementById('ct-message').value.trim();
+  var btn     = document.getElementById('ct-submit');
+
+  btn.disabled = true;
+  btn.textContent = 'Envoi…';
+
+  fetch('/api/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prenom, nom, email, tel, message })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(r) {
+    if (r.ok) {
+      document.getElementById('ct-success').style.display = 'block';
+      document.getElementById('contact-form').style.opacity = '.4';
+      document.getElementById('contact-form').style.pointerEvents = 'none';
+    } else { throw new Error(); }
+  })
+  .catch(function() {
+    document.getElementById('ct-error').style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Envoyer mon message →';
+  });
+  return false;
+}
+</script>
+
 <footer>
   <div class="ftt">Eau Vivante Plasma</div>
   <div class="fst">Axis Lumen &middot; Biodynamiseur Plasmatique &middot; Protocole Marcel Violet &middot; Bio&eacute;lectronique de Vincent</div>
