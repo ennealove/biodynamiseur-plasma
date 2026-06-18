@@ -411,45 +411,192 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
     <div class="ml">
       <div>
         <div class="cb">
-          <div class="cl">Sch&eacute;ma &eacute;lectrique &mdash; principe</div>
-          <svg width="100%" height="310" viewBox="0 0 600 310" font-family="monospace" font-size="8.5">
-            <line x1="20" y1="95" x2="78" y2="95" stroke="#c04040" stroke-width="2"/>
-            <rect x="78" y="80" width="66" height="30" rx="3" fill="rgba(192,64,64,.07)" stroke="rgba(192,64,64,.35)" stroke-width="1.5"/>
-            <text x="111" y="92" fill="#c04040" text-anchor="middle">INTER-</text><text x="111" y="103" fill="#c04040" text-anchor="middle">RUPTEUR</text>
-            <line x1="144" y1="95" x2="192" y2="95" stroke="#c04040" stroke-width="2"/>
-            <rect x="192" y="74" width="78" height="42" rx="3" fill="rgba(30,139,195,.07)" stroke="rgba(30,139,195,.35)" stroke-width="1.5"/>
-            <text x="231" y="90" fill="#1e8bc3" text-anchor="middle">COND.</text><text x="231" y="101" fill="#1e8bc3" text-anchor="middle">CIRE</text><text x="231" y="111" fill="#5a8fa8" text-anchor="middle">3x27 sp.</text>
-            <line x1="270" y1="95" x2="315" y2="95" stroke="#3aadda" stroke-width="2"/>
-            <line x1="315" y1="55" x2="315" y2="255" stroke="#3aadda" stroke-width="1.5"/>
-            <line x1="315" y1="55" x2="348" y2="55" stroke="#3aadda" stroke-width="1.5"/>
-            <rect x="348" y="40" width="86" height="30" rx="3" fill="rgba(160,96,40,.07)" stroke="rgba(160,96,40,.35)" stroke-width="1.5"/>
-            <text x="391" y="53" fill="#a06028" text-anchor="middle">ETAGE 1</text><text x="391" y="63" fill="#c07832" text-anchor="middle">144+144+72+72 sp.</text>
-            <line x1="434" y1="55" x2="472" y2="55" stroke="#5a8fa8" stroke-width="1.5"/>
-            <line x1="315" y1="155" x2="348" y2="155" stroke="#3aadda" stroke-width="1.5"/>
-            <rect x="348" y="140" width="86" height="30" rx="3" fill="rgba(160,96,40,.07)" stroke="rgba(160,96,40,.35)" stroke-width="1.5"/>
-            <text x="391" y="153" fill="#a06028" text-anchor="middle">ETAGE 2</text><text x="391" y="163" fill="#c07832" text-anchor="middle">144+144+72+72 sp.</text>
-            <line x1="434" y1="155" x2="472" y2="155" stroke="#5a8fa8" stroke-width="1.5"/>
-            <line x1="315" y1="255" x2="348" y2="255" stroke="#3aadda" stroke-width="1.5"/>
-            <rect x="348" y="240" width="86" height="30" rx="3" fill="rgba(160,96,40,.07)" stroke="rgba(160,96,40,.35)" stroke-width="1.5"/>
-            <text x="391" y="253" fill="#a06028" text-anchor="middle">ETAGE 3</text><text x="391" y="263" fill="#c07832" text-anchor="middle">144+144+72+72 sp.</text>
-            <line x1="434" y1="255" x2="472" y2="255" stroke="#5a8fa8" stroke-width="1.5"/>
-            <line x1="472" y1="55" x2="472" y2="255" stroke="#5a8fa8" stroke-width="1.5"/>
-            <line x1="472" y1="155" x2="502" y2="155" stroke="#9bbfd4" stroke-width="2.5"/>
-            <rect x="502" y="142" width="52" height="26" rx="3" fill="rgba(155,191,212,.1)" stroke="rgba(155,191,212,.5)" stroke-width="1.5"/>
-            <text x="528" y="153" fill="#5a8fa8" text-anchor="middle">TIGE</text><text x="528" y="163" fill="#5a8fa8" text-anchor="middle">ARGENT</text>
-            <line x1="554" y1="155" x2="572" y2="155" stroke="#9bbfd4" stroke-width="1.5" stroke-dasharray="4,3"/>
-            <ellipse cx="578" cy="155" rx="8" ry="14" fill="rgba(30,139,195,.08)" stroke="rgba(30,139,195,.35)" stroke-width="1.5"/>
-            <text x="578" y="159" fill="#1e8bc3" text-anchor="middle" font-size="12">~</text>
-            <line x1="20" y1="105" x2="20" y2="285" stroke="#9bbfd4" stroke-width="1.5"/>
-            <line x1="20" y1="285" x2="192" y2="285" stroke="#9bbfd4" stroke-width="1.5"/>
-            <line x1="192" y1="285" x2="192" y2="116" stroke="#9bbfd4" stroke-width="1.5"/>
-            <text x="106" y="299" fill="#9bbfd4" text-anchor="middle">NEUTRE - retour condensateur</text>
-            <text x="47" y="87" fill="#c04040">230V PHASE</text>
-            <ellipse cx="578" cy="155" rx="22" ry="30" fill="none" stroke="rgba(30,139,195,.1)" stroke-width="1" stroke-dasharray="3,3"/>
-            <ellipse cx="578" cy="155" rx="32" ry="42" fill="none" stroke="rgba(30,139,195,.06)" stroke-width="1" stroke-dasharray="3,4"/>
+          <div class="cl">Sch&eacute;ma &eacute;lectrique s&eacute;curis&eacute; &mdash; v2.0</div>
+
+          <!-- Légende -->
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.75rem">
+            <span style="font-size:.67rem;background:rgba(192,64,64,.08);border:1px solid rgba(192,64,64,.3);color:#c04040;padding:.15rem .55rem;border-radius:10px">■ 230V Phase</span>
+            <span style="font-size:.67rem;background:rgba(155,191,212,.1);border:1px solid rgba(155,191,212,.4);color:#5a8fa8;padding:.15rem .55rem;border-radius:10px">■ Neutre</span>
+            <span style="font-size:.67rem;background:rgba(30,139,195,.08);border:1px solid rgba(30,139,195,.3);color:#1e8bc3;padding:.15rem .55rem;border-radius:10px">■ Signal plasma</span>
+            <span style="font-size:.67rem;background:rgba(46,158,120,.1);border:1px solid rgba(46,158,120,.35);color:#2e9e78;padding:.15rem .55rem;border-radius:10px">■ Interlock sécurité</span>
+          </div>
+
+          <svg width="100%" viewBox="0 0 700 420" font-family="monospace" font-size="8" xmlns="http://www.w3.org/2000/svg">
+
+            <!-- ══════════════════════════════════════════
+                 LIGNE PHASE (rouge) — de gauche à droite
+                 ══════════════════════════════════════════ -->
+            <text x="8" y="80" fill="#c04040" font-size="7.5">230V~</text>
+            <text x="8" y="89" fill="#c04040" font-size="7.5">PHASE</text>
+
+            <!-- Phase entrée -->
+            <line x1="38" y1="90" x2="58" y2="90" stroke="#c04040" stroke-width="2"/>
+
+            <!-- 1. DISJONCTEUR (10A) -->
+            <rect x="58" y="76" width="54" height="28" rx="3" fill="rgba(192,64,64,.09)" stroke="#c04040" stroke-width="1.8"/>
+            <text x="85" y="87" fill="#c04040" text-anchor="middle" font-size="7.5" font-weight="bold">DISJ.</text>
+            <text x="85" y="97" fill="#c04040" text-anchor="middle" font-size="7">10A</text>
+            <!-- symbole zigzag disjoncteur -->
+            <polyline points="64,86 68,82 72,90 76,82 80,90" fill="none" stroke="#c04040" stroke-width="1.2"/>
+            <line x1="112" y1="90" x2="136" y2="90" stroke="#c04040" stroke-width="2"/>
+
+            <!-- 2. INTERRUPTEUR BIPOLAIRE -->
+            <rect x="136" y="76" width="58" height="28" rx="3" fill="rgba(192,64,64,.07)" stroke="rgba(192,64,64,.35)" stroke-width="1.5"/>
+            <text x="165" y="87" fill="#c04040" text-anchor="middle" font-size="7.5">INTER-</text>
+            <text x="165" y="97" fill="#c04040" text-anchor="middle" font-size="7">RUPTEUR</text>
+            <line x1="194" y1="90" x2="218" y2="90" stroke="#c04040" stroke-width="2"/>
+
+            <!-- 3. MINUTEUR -->
+            <rect x="218" y="74" width="58" height="32" rx="3" fill="rgba(184,148,60,.09)" stroke="rgba(184,148,60,.5)" stroke-width="1.8"/>
+            <text x="247" y="85" fill="#b8943c" text-anchor="middle" font-size="7.5" font-weight="bold">MINUTEUR</text>
+            <text x="247" y="95" fill="#b8943c" text-anchor="middle" font-size="7">20–40 min</text>
+            <!-- icône horloge minimaliste -->
+            <circle cx="224" cy="88" r="5" fill="none" stroke="#b8943c" stroke-width="1"/>
+            <line x1="224" y1="88" x2="224" y2="84" stroke="#b8943c" stroke-width="1"/>
+            <line x1="224" y1="88" x2="227" y2="90" stroke="#b8943c" stroke-width="1"/>
+            <line x1="276" y1="90" x2="298" y2="90" stroke="#c04040" stroke-width="2"/>
+
+            <!-- 4. INTERLOCK CELLULE CÉRAMIQUE -->
+            <!-- contact normalement ouvert — fermé seulement si couvercle en place -->
+            <rect x="298" y="74" width="66" height="32" rx="3" fill="rgba(46,158,120,.08)" stroke="rgba(46,158,120,.5)" stroke-width="1.8"/>
+            <text x="331" y="84" fill="#2e9e78" text-anchor="middle" font-size="7.5" font-weight="bold">INTERLOCK</text>
+            <text x="331" y="94" fill="#2e9e78" text-anchor="middle" font-size="7">COUVERCLE</text>
+            <text x="331" y="103" fill="#2e9e78" text-anchor="middle" font-size="6.5">céramique fermé</text>
+            <!-- symbole contact NO -->
+            <line x1="303" y1="88" x2="310" y2="88" stroke="#2e9e78" stroke-width="1.2"/>
+            <line x1="310" y1="84" x2="315" y2="92" stroke="#2e9e78" stroke-width="1.2"/>
+            <line x1="315" y1="88" x2="320" y2="88" stroke="#2e9e78" stroke-width="1.2"/>
+            <line x1="364" y1="90" x2="386" y2="90" stroke="#c04040" stroke-width="2"/>
+
+            <!-- 5. CONDENSATEURS CIRE -->
+            <rect x="386" y="74" width="60" height="38" rx="3" fill="rgba(30,139,195,.07)" stroke="rgba(30,139,195,.35)" stroke-width="1.5"/>
+            <text x="416" y="87" fill="#1e8bc3" text-anchor="middle" font-size="7.5">COND.</text>
+            <text x="416" y="97" fill="#1e8bc3" text-anchor="middle" font-size="7">CIRE</text>
+            <text x="416" y="107" fill="#5a8fa8" text-anchor="middle" font-size="6.5">3 × 27 sp.</text>
+            <line x1="446" y1="90" x2="470" y2="90" stroke="#3aadda" stroke-width="2"/>
+
+            <!-- ══════════════════════════════════════════
+                 DISTRIBUTION 3 ÉTAGES
+                 ══════════════════════════════════════════ -->
+            <line x1="470" y1="50" x2="470" y2="310" stroke="#3aadda" stroke-width="1.5"/>
+
+            <!-- Étage 1 -->
+            <line x1="470" y1="60" x2="500" y2="60" stroke="#3aadda" stroke-width="1.4"/>
+            <rect x="500" y="46" width="88" height="28" rx="3" fill="rgba(160,96,40,.07)" stroke="rgba(160,96,40,.35)" stroke-width="1.5"/>
+            <text x="544" y="58" fill="#a06028" text-anchor="middle" font-size="7.5">ÉTAGE 1</text>
+            <text x="544" y="68" fill="#c07832" text-anchor="middle" font-size="6.5">144+144+72+72 sp.</text>
+            <line x1="588" y1="60" x2="610" y2="60" stroke="#5a8fa8" stroke-width="1.4"/>
+
+            <!-- Étage 2 -->
+            <line x1="470" y1="155" x2="500" y2="155" stroke="#3aadda" stroke-width="1.4"/>
+            <rect x="500" y="141" width="88" height="28" rx="3" fill="rgba(160,96,40,.07)" stroke="rgba(160,96,40,.35)" stroke-width="1.5"/>
+            <text x="544" y="153" fill="#a06028" text-anchor="middle" font-size="7.5">ÉTAGE 2</text>
+            <text x="544" y="163" fill="#c07832" text-anchor="middle" font-size="6.5">144+144+72+72 sp.</text>
+            <line x1="588" y1="155" x2="610" y2="155" stroke="#5a8fa8" stroke-width="1.4"/>
+
+            <!-- Étage 3 -->
+            <line x1="470" y1="250" x2="500" y2="250" stroke="#3aadda" stroke-width="1.4"/>
+            <rect x="500" y="236" width="88" height="28" rx="3" fill="rgba(160,96,40,.07)" stroke="rgba(160,96,40,.35)" stroke-width="1.5"/>
+            <text x="544" y="248" fill="#a06028" text-anchor="middle" font-size="7.5">ÉTAGE 3</text>
+            <text x="544" y="258" fill="#c07832" text-anchor="middle" font-size="6.5">144+144+72+72 sp.</text>
+            <line x1="588" y1="250" x2="610" y2="250" stroke="#5a8fa8" stroke-width="1.4"/>
+
+            <!-- jonction sortie étages -->
+            <line x1="610" y1="60" x2="610" y2="250" stroke="#5a8fa8" stroke-width="1.4"/>
+            <line x1="610" y1="155" x2="635" y2="155" stroke="#9bbfd4" stroke-width="2.5"/>
+
+            <!-- ══════════════════════════════════════════
+                 TIGE ARGENT
+                 ══════════════════════════════════════════ -->
+            <rect x="635" y="143" width="46" height="24" rx="3" fill="rgba(155,191,212,.1)" stroke="rgba(155,191,212,.5)" stroke-width="1.5"/>
+            <text x="658" y="153" fill="#5a8fa8" text-anchor="middle" font-size="7.5">TIGE</text>
+            <text x="658" y="163" fill="#5a8fa8" text-anchor="middle" font-size="7">ARGENT</text>
+
+            <!-- ══════════════════════════════════════════
+                 CELLULE CÉRAMIQUE / GRÈS
+                 ══════════════════════════════════════════ -->
+            <!-- contour cellule -->
+            <rect x="628" y="120" width="64" height="120" rx="8" fill="rgba(184,148,60,.04)" stroke="rgba(184,148,60,.5)" stroke-width="2" stroke-dasharray="5,3"/>
+            <!-- fond bouteille eau -->
+            <rect x="641" y="176" width="38" height="52" rx="6" fill="rgba(30,139,195,.08)" stroke="rgba(30,139,195,.3)" stroke-width="1.5"/>
+            <text x="660" y="198" fill="#1e8bc3" text-anchor="middle" font-size="7">EAU</text>
+            <text x="660" y="210" fill="#1e8bc3" text-anchor="middle" font-size="6.5">distillée</text>
+            <!-- couvercle céramique -->
+            <rect x="633" y="122" width="54" height="12" rx="3" fill="rgba(184,148,60,.2)" stroke="rgba(184,148,60,.6)" stroke-width="1.5"/>
+            <text x="660" y="131" fill="#b8943c" text-anchor="middle" font-size="7" font-weight="bold">COUVERCLE</text>
+            <!-- label cellule -->
+            <text x="660" y="248" fill="#b8943c" text-anchor="middle" font-size="6.5">CELLULE</text>
+            <text x="660" y="257" fill="#b8943c" text-anchor="middle" font-size="6.5">CÉRAMIQUE</text>
+            <!-- champ rayonné (pointillés) -->
+            <ellipse cx="660" cy="200" rx="24" ry="28" fill="none" stroke="rgba(30,139,195,.15)" stroke-width="1" stroke-dasharray="3,3"/>
+            <ellipse cx="660" cy="200" rx="34" ry="40" fill="none" stroke="rgba(30,139,195,.07)" stroke-width="1" stroke-dasharray="2,4"/>
+
+            <!-- ══════════════════════════════════════════
+                 NEUTRE — retour bas
+                 ══════════════════════════════════════════ -->
+            <line x1="38" y1="100" x2="38" y2="370" stroke="#9bbfd4" stroke-width="1.5"/>
+            <line x1="38" y1="370" x2="386" y2="370" stroke="#9bbfd4" stroke-width="1.5"/>
+            <line x1="386" y1="370" x2="386" y2="112" stroke="#9bbfd4" stroke-width="1.5"/>
+            <text x="210" y="383" fill="#9bbfd4" text-anchor="middle" font-size="7">NEUTRE — retour condensateur</text>
+
+            <!-- ══════════════════════════════════════════
+                 NUMÉROS DE SÉQUENCE
+                 ══════════════════════════════════════════ -->
+            <circle cx="85" cy="65" r="7" fill="#c04040"/><text x="85" y="68" fill="#fff" text-anchor="middle" font-size="7" font-weight="bold">①</text>
+            <circle cx="165" cy="65" r="7" fill="#c04040"/><text x="165" y="68" fill="#fff" text-anchor="middle" font-size="7" font-weight="bold">②</text>
+            <circle cx="247" cy="65" r="7" fill="#b8943c"/><text x="247" y="68" fill="#fff" text-anchor="middle" font-size="7" font-weight="bold">③</text>
+            <circle cx="331" cy="65" r="7" fill="#2e9e78"/><text x="331" y="68" fill="#fff" text-anchor="middle" font-size="7" font-weight="bold">④</text>
+            <circle cx="416" cy="65" r="7" fill="#1e8bc3"/><text x="416" y="68" fill="#fff" text-anchor="middle" font-size="7" font-weight="bold">⑤</text>
+            <circle cx="544" cy="38" r="7" fill="#a06028"/><text x="544" y="41" fill="#fff" text-anchor="middle" font-size="7" font-weight="bold">⑥</text>
+            <circle cx="658" cy="112" r="7" fill="#b8943c"/><text x="658" y="115" fill="#fff" text-anchor="middle" font-size="7" font-weight="bold">⑦</text>
+
           </svg>
         </div>
-        <div class="wb"><span style="color:#c04040;flex-shrink:0">!</span><div class="wt"><strong>S&eacute;curit&eacute; 230V :</strong> Interrupteur bipolaire obligatoire. Ne jamais toucher l&rsquo;eau ni la tige argent pendant le fonctionnement.</div></div>
+
+        <!-- LÉGENDE NUMÉROTÉE -->
+        <div style="margin-top:.9rem;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.9rem 1rem">
+          <div style="font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem">Séquence de montage sécurisé</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.3rem .8rem">
+            <div style="font-size:.76rem;color:var(--ink2);line-height:1.5"><span style="color:#c04040;font-weight:700">① Disjoncteur 10A</span> — protection thermomagnétique, coupe si surintensité ou court-circuit</div>
+            <div style="font-size:.76rem;color:var(--ink2);line-height:1.5"><span style="color:#c04040;font-weight:700">② Interrupteur bipolaire</span> — coupe Phase ET Neutre simultanément</div>
+            <div style="font-size:.76rem;color:var(--ink2);line-height:1.5"><span style="color:#b8943c;font-weight:700">③ Minuteur mécanique</span> — coupe la Phase après 20–40 min, évite toute surchauffe ou oubli</div>
+            <div style="font-size:.76rem;color:var(--ink2);line-height:1.5"><span style="color:#2e9e78;font-weight:700">④ Interlock couvercle</span> — contact NO : la phase ne passe QUE si la cellule céramique est fermée</div>
+            <div style="font-size:.76rem;color:var(--ink2);line-height:1.5"><span style="color:#1e8bc3;font-weight:700">⑤ Condensateurs cire</span> — 3 bobines 27 sp. dans cire d'abeille, résonnance grass-harmonics (Violet)</div>
+            <div style="font-size:.76rem;color:var(--ink2);line-height:1.5"><span style="color:#a06028;font-weight:700">⑥ 3 étages plasmatiques</span> — 4 bobines/étage, torsion toroïdale 144+144+72+72 sp.</div>
+            <div style="font-size:.76rem;color:var(--ink2);line-height:1.5;grid-column:1/-1"><span style="color:#b8943c;font-weight:700">⑦ Cellule céramique / grès</span> — cylindre fermé isolant la bouteille d'eau + tige argent. Champ par induction, aucun contact galvanique.</div>
+          </div>
+        </div>
+
+        <!-- BLOCS AVERTISSEMENT -->
+        <div class="wb" style="margin-top:.75rem"><span style="color:#c04040;font-size:1.1rem;flex-shrink:0">⚡</span><div class="wt"><strong>Danger électrique 230V :</strong> Interrupteur bipolaire + disjoncteur 10A obligatoires avant toute intervention. Ne jamais ouvrir la cellule céramique sous tension. Mise à la terre recommandée sur le boîtier métallique.</div></div>
+
+        <div style="background:rgba(46,158,120,.05);border:1px solid rgba(46,158,120,.25);border-radius:6px;padding:.85rem 1rem;margin-top:.6rem;display:flex;gap:.7rem;align-items:flex-start">
+          <span style="color:#2e9e78;font-size:1.1rem;flex-shrink:0">🔒</span>
+          <div style="font-size:.78rem;color:#1a5c45;line-height:1.6"><strong style="color:#2e9e78">Interlock céramique :</strong> Le circuit ne peut être mis sous tension que couvercle posé et verrouillé. Cette sécurité mécanique prévient tout contact accidentel avec la tige d'argent ou l'eau pendant la session.</div>
+        </div>
+
+        <div style="background:rgba(184,148,60,.05);border:1px solid rgba(184,148,60,.25);border-radius:6px;padding:.85rem 1rem;margin-top:.6rem;display:flex;gap:.7rem;align-items:flex-start">
+          <span style="color:#b8943c;font-size:1.1rem;flex-shrink:0">⏱</span>
+          <div style="font-size:.78rem;color:#6b4e1a;line-height:1.6"><strong style="color:#b8943c">Minuteur mécanique :</strong> Régler sur 20 à 40 minutes selon le protocole. Le minuteur coupe automatiquement la Phase en fin de cycle — aucun oubli possible. Utiliser de préférence un minuteur mécanique (sans électronique) pour ne pas parasiter le champ.</div>
+        </div>
+
+        <!-- PRÉCAUTIONS D'USAGE -->
+        <div style="margin-top:1.2rem;background:var(--panel);border:1px solid var(--border);border-top:3px solid #c04040;border-radius:6px;padding:1rem 1.25rem">
+          <div style="font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#c04040;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem">⚠️ Précautions d'usage &amp; risques</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem .9rem">
+            <div style="font-size:.77rem;color:var(--ink2);line-height:1.6;display:flex;gap:.5rem"><span style="color:#c04040;flex-shrink:0">✗</span><span>Ne <strong>jamais ouvrir</strong> la cellule céramique quand l'appareil est sous tension.</span></div>
+            <div style="font-size:.77rem;color:var(--ink2);line-height:1.6;display:flex;gap:.5rem"><span style="color:#c04040;flex-shrink:0">✗</span><span>Ne <strong>jamais toucher</strong> la tige argent, l'eau, ou les bornes des bobines pendant le fonctionnement.</span></div>
+            <div style="font-size:.77rem;color:var(--ink2);line-height:1.6;display:flex;gap:.5rem"><span style="color:#c04040;flex-shrink:0">✗</span><span>Ne <strong>jamais démarrer</strong> sans avoir vérifié que le couvercle céramique est en place et l'interlock activé.</span></div>
+            <div style="font-size:.77rem;color:var(--ink2);line-height:1.6;display:flex;gap:.5rem"><span style="color:#c04040;flex-shrink:0">✗</span><span>Ne pas laisser fonctionner <strong>sans surveillance</strong> ni au-delà de la durée programmée sur le minuteur.</span></div>
+            <div style="font-size:.77rem;color:var(--ink2);line-height:1.6;display:flex;gap:.5rem"><span style="color:#c04040;flex-shrink:0">✗</span><span>Éviter tout <strong>liquide à proximité</strong> du boîtier électrique et des connexions 230V.</span></div>
+            <div style="font-size:.77rem;color:var(--ink2);line-height:1.6;display:flex;gap:.5rem"><span style="color:#c04040;flex-shrink:0">✗</span><span>Ne pas utiliser avec des <strong>mains mouillées</strong> ou dans un espace humide non protégé.</span></div>
+            <div style="font-size:.77rem;color:var(--ink2);line-height:1.6;display:flex;gap:.5rem;grid-column:1/-1"><span style="color:#2e9e78;flex-shrink:0">✓</span><span>En cas de doute sur l'état du câblage ou d'une anomalie sonore/olfactive, couper immédiatement l'alimentation via le disjoncteur et vérifier avant toute remise sous tension.</span></div>
+          </div>
+          <div style="margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border);font-size:.74rem;color:var(--muted);line-height:1.65">
+            <strong style="color:var(--ink)">Note sur la cellule céramique / grès :</strong> Le cylindre isolant (céramique émaillée ou grès) entoure <em>intégralement</em> la bouteille d'eau et la tige d'argent. Il constitue une double protection : isolation galvanique complète et confinement mécanique. Toute utilisation sans ce cylindre est <strong style="color:#c04040">formellement interdite</strong>.
+          </div>
+        </div>
+
       </div>
       <div>
         <div style="margin-bottom:1.8rem;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(30,139,195,.12);border:1px solid var(--border)">
@@ -458,10 +605,13 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
         </div>
         <h3 style="font-family:serif;font-size:1.3rem;color:var(--ink);margin-bottom:1.4rem">Principe de fonctionnement</h3>
         <div>
-          <div class="ms"><div class="mn" style="--c:#c04040">1</div><div><div class="mt">Phase &rarr; Interrupteur</div><div class="md">Activation consciente du champ. Dans la logique plasma KESH, le moment d&rsquo;intention est fondateur.</div></div></div>
-          <div class="ms"><div class="mn" style="--c:var(--crystal)">2</div><div><div class="mt">Condensateurs cire d&rsquo;abeille</div><div class="md">3 bobines 27 spires isol&eacute;es dans la cire. R&eacute;sonnent avec les rayonnements cosmiques &mdash; grass-harmonics de Violet.</div><div class="mn2" style="--c:var(--crystal)">R&eacute;sistance aux bornes = infinie</div></div></div>
-          <div class="ms"><div class="mn" style="--c:var(--copper)">3</div><div><div class="mt">3 &eacute;tages plasmatiques</div><div class="md">4 bobines par &eacute;tage, fil 2,5mm&sup2; nano-rev&ecirc;tu. Bobines externes horaire, internes antihoraire &mdash; torsion toro&iuml;dale amplificatrice.</div><div class="mn2" style="--c:var(--copper)">Neutre : retour direct condensateur</div></div></div>
-          <div class="ms"><div class="mn" style="--c:var(--teal)">4</div><div><div class="mt">Tige argent &rarr; champ rayonn&eacute;</div><div class="md">L&rsquo;eau est dans le champ rayonn&eacute;, pas dans le circuit galvanique. Principe Violet : induction de champ.</div><div class="mn2" style="--c:var(--teal)">Dur&eacute;e recommand&eacute;e : 20 &agrave; 40 min</div></div></div>
+          <div class="ms"><div class="mn" style="--c:#c04040">1</div><div><div class="mt">Disjoncteur 10A — protection amont</div><div class="md">Protection thermomagnétique : coupe instantanément en cas de court-circuit ou de surintensité. Premier maillon de la chaîne de sécurité, à installer en tableau ou en boîtier dédié.</div><div class="mn2" style="--c:#c04040">Réarmement manuel uniquement après diagnostic</div></div></div>
+          <div class="ms"><div class="mn" style="--c:#c04040">2</div><div><div class="mt">Interrupteur bipolaire — coupure principale</div><div class="md">Coupe simultanément la Phase ET le Neutre. Activation consciente du champ — dans la logique plasma KESH, le moment d'intention est fondateur.</div><div class="mn2" style="--c:#c04040">Position OFF obligatoire pour toute maintenance</div></div></div>
+          <div class="ms"><div class="mn" style="--c:var(--gold)">3</div><div><div class="mt">Minuteur mécanique — coupure temporelle</div><div class="md">Régler sur 20 à 40 minutes selon le protocole. Coupe automatiquement la Phase en fin de session. Utiliser un minuteur mécanique (sans électronique) pour ne pas parasiter le champ plasmatique.</div><div class="mn2" style="--c:var(--gold)">Durée recommandée : 20 à 40 min</div></div></div>
+          <div class="ms"><div class="mn" style="--c:var(--green)">4</div><div><div class="mt">Interlock couvercle céramique — sécurité physique</div><div class="md">Contact normalement ouvert (NO) : la Phase ne passe que lorsque le couvercle de la cellule céramique est posé et verrouillé. Rend impossible toute mise sous tension avec la cellule ouverte.</div><div class="mn2" style="--c:var(--green)">Cellule fermée = condition sine qua non</div></div></div>
+          <div class="ms"><div class="mn" style="--c:var(--crystal)">5</div><div><div class="mt">Condensateurs cire d&rsquo;abeille</div><div class="md">3 bobines 27 spires isol&eacute;es dans la cire. R&eacute;sonnent avec les rayonnements cosmiques &mdash; grass-harmonics de Violet.</div><div class="mn2" style="--c:var(--crystal)">R&eacute;sistance aux bornes = infinie</div></div></div>
+          <div class="ms"><div class="mn" style="--c:var(--copper)">6</div><div><div class="mt">3 &eacute;tages plasmatiques</div><div class="md">4 bobines par &eacute;tage, fil 2,5mm&sup2; nano-rev&ecirc;tu. Bobines externes horaire, internes antihoraire &mdash; torsion toro&iuml;dale amplificatrice.</div><div class="mn2" style="--c:var(--copper)">Neutre : retour direct condensateur</div></div></div>
+          <div class="ms"><div class="mn" style="--c:var(--teal)">7</div><div><div class="mt">Tige argent &rarr; cellule c&eacute;ramique / gr&egrave;s</div><div class="md">La bouteille d'eau + tige argent sont confinées dans un cylindre de céramique émaillée ou de grès. L'eau est dans le champ rayonné, pas dans le circuit galvanique — principe Violet : induction pure. Le cylindre assure l'isolation électrique totale.</div><div class="mn2" style="--c:var(--teal)">Zéro contact galvanique — induction de champ uniquement</div></div></div>
         </div>
         <h3 style="font-family:serif;font-size:1.05rem;color:var(--copper);margin-top:2rem;margin-bottom:.9rem">Bobines par &eacute;tage (&times; 3)</h3>
         <div class="bg2g">
