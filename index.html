@@ -411,189 +411,28 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
     <div class="ml">
       <div>
         <div class="cb">
-          <div class="cl">Sch&eacute;ma &eacute;lectrique s&eacute;curis&eacute; &mdash; v2.0</div>
-
-          <!-- Légende -->
-          <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.75rem">
-            <span style="font-size:.67rem;background:rgba(192,64,64,.08);border:1px solid rgba(192,64,64,.3);color:#c04040;padding:.15rem .55rem;border-radius:10px">■ 230V Phase</span>
-            <span style="font-size:.67rem;background:rgba(155,191,212,.1);border:1px solid rgba(155,191,212,.4);color:#5a8fa8;padding:.15rem .55rem;border-radius:10px">■ Neutre</span>
-            <span style="font-size:.67rem;background:rgba(30,139,195,.08);border:1px solid rgba(30,139,195,.3);color:#1e8bc3;padding:.15rem .55rem;border-radius:10px">■ Signal plasma</span>
-            <span style="font-size:.67rem;background:rgba(46,158,120,.1);border:1px solid rgba(46,158,120,.35);color:#2e9e78;padding:.15rem .55rem;border-radius:10px">■ Interlock sécurité</span>
+          <div class="cl">Biodynamiseur Plasmatique &mdash; Architecture g&eacute;n&eacute;rale</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0">
+            <div style="background:rgba(30,139,195,.05);border:1px solid rgba(30,139,195,.2);border-radius:8px;padding:1.2rem 1rem;display:flex;gap:.8rem;align-items:flex-start">
+              <span style="font-size:1.5rem;flex-shrink:0">&#x2B23;</span>
+              <div><div style="font-size:.85rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">Condensateurs cire d&rsquo;abeille</div><div style="font-size:.78rem;color:var(--ink2);line-height:1.6">Filtrage cosmique &mdash; protocole Violet</div></div>
+            </div>
+            <div style="background:rgba(184,148,60,.05);border:1px solid rgba(184,148,60,.2);border-radius:8px;padding:1.2rem 1rem;display:flex;gap:.8rem;align-items:flex-start">
+              <span style="font-size:1.5rem;flex-shrink:0">&#x2B23;</span>
+              <div><div style="font-size:.85rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">Bobinage toro&iuml;dal nano-rev&ecirc;tu</div><div style="font-size:.78rem;color:var(--ink2);line-height:1.6">Coh&eacute;rence &phi; &mdash; g&eacute;om&eacute;trie du vivant</div></div>
+            </div>
+            <div style="background:rgba(155,191,212,.05);border:1px solid rgba(155,191,212,.2);border-radius:8px;padding:1.2rem 1rem;display:flex;gap:.8rem;align-items:flex-start">
+              <span style="font-size:1.5rem;flex-shrink:0">&#x2B23;</span>
+              <div><div style="font-size:.85rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">Tige argent</div><div style="font-size:.78rem;color:var(--ink2);line-height:1.6">Transmission par induction &mdash; z&eacute;ro contact galvanique</div></div>
+            </div>
+            <div style="background:rgba(184,148,60,.05);border:1px solid rgba(184,148,60,.2);border-radius:8px;padding:1.2rem 1rem;display:flex;gap:.8rem;align-items:flex-start">
+              <span style="font-size:1.5rem;flex-shrink:0">&#x2B23;</span>
+              <div><div style="font-size:.85rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">Cellule c&eacute;ramique</div><div style="font-size:.78rem;color:var(--ink2);line-height:1.6">Isolation &eacute;lectrique et confinement</div></div>
+            </div>
           </div>
-
-          <svg width="100%" viewBox="0 0 700 420" font-family="monospace" font-size="8" xmlns="http://www.w3.org/2000/svg">
-
-            <!-- ══════════════════════════════════════════
-                 LIGNE PHASE (rouge) — de gauche à droite
-                 ══════════════════════════════════════════ -->
-            <text x="8" y="80" fill="#c04040" font-size="7.5">230V~</text>
-            <text x="8" y="89" fill="#c04040" font-size="7.5">PHASE</text>
-
-            <!-- Phase entrée -->
-            <line x1="38" y1="90" x2="58" y2="90" stroke="#c04040" stroke-width="2"/>
-
-            <!-- 1. DISJONCTEUR (10A) -->
-            <rect x="58" y="76" width="54" height="28" rx="3" fill="rgba(192,64,64,.09)" stroke="#c04040" stroke-width="1.8"/>
-            <text x="85" y="87" fill="#c04040" text-anchor="middle" font-size="7.5" font-weight="bold">DISJ.</text>
-            <text x="85" y="97" fill="#c04040" text-anchor="middle" font-size="7">10A</text>
-            <!-- symbole zigzag disjoncteur -->
-            <polyline points="64,86 68,82 72,90 76,82 80,90" fill="none" stroke="#c04040" stroke-width="1.2"/>
-            <line x1="112" y1="90" x2="136" y2="90" stroke="#c04040" stroke-width="2"/>
-
-            <!-- 2. INTERRUPTEUR BIPOLAIRE -->
-            <rect x="136" y="76" width="58" height="28" rx="3" fill="rgba(192,64,64,.07)" stroke="rgba(192,64,64,.35)" stroke-width="1.5"/>
-            <text x="165" y="87" fill="#c04040" text-anchor="middle" font-size="7.5">INTER-</text>
-            <text x="165" y="97" fill="#c04040" text-anchor="middle" font-size="7">RUPTEUR</text>
-            <line x1="194" y1="90" x2="218" y2="90" stroke="#c04040" stroke-width="2"/>
-
-            <!-- 3. MINUTEUR -->
-            <rect x="218" y="74" width="58" height="32" rx="3" fill="rgba(184,148,60,.09)" stroke="rgba(184,148,60,.5)" stroke-width="1.8"/>
-            <text x="247" y="85" fill="#b8943c" text-anchor="middle" font-size="7.5" font-weight="bold">MINUTEUR</text>
-            <text x="247" y="95" fill="#b8943c" text-anchor="middle" font-size="7">20–40 min</text>
-            <!-- icône horloge minimaliste -->
-            <circle cx="224" cy="88" r="5" fill="none" stroke="#b8943c" stroke-width="1"/>
-            <line x1="224" y1="88" x2="224" y2="84" stroke="#b8943c" stroke-width="1"/>
-            <line x1="224" y1="88" x2="227" y2="90" stroke="#b8943c" stroke-width="1"/>
-            <line x1="276" y1="90" x2="298" y2="90" stroke="#c04040" stroke-width="2"/>
-
-            <!-- 4. INTERLOCK CELLULE CÉRAMIQUE -->
-            <!-- contact normalement ouvert — fermé seulement si couvercle en place -->
-            <rect x="298" y="74" width="66" height="32" rx="3" fill="rgba(46,158,120,.08)" stroke="rgba(46,158,120,.5)" stroke-width="1.8"/>
-            <text x="331" y="84" fill="#2e9e78" text-anchor="middle" font-size="7.5" font-weight="bold">INTERLOCK</text>
-            <text x="331" y="94" fill="#2e9e78" text-anchor="middle" font-size="7">COUVERCLE</text>
-            <text x="331" y="103" fill="#2e9e78" text-anchor="middle" font-size="6.5">céramique fermé</text>
-            <!-- symbole contact NO -->
-            <line x1="303" y1="88" x2="310" y2="88" stroke="#2e9e78" stroke-width="1.2"/>
-            <line x1="310" y1="84" x2="315" y2="92" stroke="#2e9e78" stroke-width="1.2"/>
-            <line x1="315" y1="88" x2="320" y2="88" stroke="#2e9e78" stroke-width="1.2"/>
-            <line x1="364" y1="90" x2="386" y2="90" stroke="#c04040" stroke-width="2"/>
-
-            <!-- 5. CONDENSATEURS CIRE -->
-            <rect x="386" y="74" width="60" height="38" rx="3" fill="rgba(30,139,195,.07)" stroke="rgba(30,139,195,.35)" stroke-width="1.5"/>
-            <text x="416" y="87" fill="#1e8bc3" text-anchor="middle" font-size="7.5">COND.</text>
-            <text x="416" y="97" fill="#1e8bc3" text-anchor="middle" font-size="7">CIRE</text>
-            <text x="416" y="107" fill="#5a8fa8" text-anchor="middle" font-size="6.5">3 × 27 sp.</text>
-            <line x1="446" y1="90" x2="470" y2="90" stroke="#3aadda" stroke-width="2"/>
-
-            <!-- ══════════════════════════════════════════
-                 DISTRIBUTION 3 ÉTAGES
-                 ══════════════════════════════════════════ -->
-            <line x1="470" y1="50" x2="470" y2="310" stroke="#3aadda" stroke-width="1.5"/>
-
-            <!-- Étage 1 -->
-            <line x1="470" y1="60" x2="500" y2="60" stroke="#3aadda" stroke-width="1.4"/>
-            <rect x="500" y="46" width="88" height="28" rx="3" fill="rgba(160,96,40,.07)" stroke="rgba(160,96,40,.35)" stroke-width="1.5"/>
-            <text x="544" y="58" fill="#a06028" text-anchor="middle" font-size="7.5">ÉTAGE 1</text>
-            <text x="544" y="68" fill="#c07832" text-anchor="middle" font-size="6.5">144+144+72+72 sp.</text>
-            <line x1="588" y1="60" x2="610" y2="60" stroke="#5a8fa8" stroke-width="1.4"/>
-
-            <!-- Étage 2 -->
-            <line x1="470" y1="155" x2="500" y2="155" stroke="#3aadda" stroke-width="1.4"/>
-            <rect x="500" y="141" width="88" height="28" rx="3" fill="rgba(160,96,40,.07)" stroke="rgba(160,96,40,.35)" stroke-width="1.5"/>
-            <text x="544" y="153" fill="#a06028" text-anchor="middle" font-size="7.5">ÉTAGE 2</text>
-            <text x="544" y="163" fill="#c07832" text-anchor="middle" font-size="6.5">144+144+72+72 sp.</text>
-            <line x1="588" y1="155" x2="610" y2="155" stroke="#5a8fa8" stroke-width="1.4"/>
-
-            <!-- Étage 3 -->
-            <line x1="470" y1="250" x2="500" y2="250" stroke="#3aadda" stroke-width="1.4"/>
-            <rect x="500" y="236" width="88" height="28" rx="3" fill="rgba(160,96,40,.07)" stroke="rgba(160,96,40,.35)" stroke-width="1.5"/>
-            <text x="544" y="248" fill="#a06028" text-anchor="middle" font-size="7.5">ÉTAGE 3</text>
-            <text x="544" y="258" fill="#c07832" text-anchor="middle" font-size="6.5">144+144+72+72 sp.</text>
-            <line x1="588" y1="250" x2="610" y2="250" stroke="#5a8fa8" stroke-width="1.4"/>
-
-            <!-- jonction sortie étages -->
-            <line x1="610" y1="60" x2="610" y2="250" stroke="#5a8fa8" stroke-width="1.4"/>
-            <line x1="610" y1="155" x2="635" y2="155" stroke="#9bbfd4" stroke-width="2.5"/>
-
-            <!-- ══════════════════════════════════════════
-                 TIGE ARGENT
-                 ══════════════════════════════════════════ -->
-            <rect x="635" y="143" width="46" height="24" rx="3" fill="rgba(155,191,212,.1)" stroke="rgba(155,191,212,.5)" stroke-width="1.5"/>
-            <text x="658" y="153" fill="#5a8fa8" text-anchor="middle" font-size="7.5">TIGE</text>
-            <text x="658" y="163" fill="#5a8fa8" text-anchor="middle" font-size="7">ARGENT</text>
-
-            <!-- ══════════════════════════════════════════
-                 CELLULE CÉRAMIQUE / GRÈS
-                 ══════════════════════════════════════════ -->
-            <!-- contour cellule -->
-            <rect x="628" y="120" width="64" height="120" rx="8" fill="rgba(184,148,60,.04)" stroke="rgba(184,148,60,.5)" stroke-width="2" stroke-dasharray="5,3"/>
-            <!-- fond bouteille eau -->
-            <rect x="641" y="176" width="38" height="52" rx="6" fill="rgba(30,139,195,.08)" stroke="rgba(30,139,195,.3)" stroke-width="1.5"/>
-            <text x="660" y="198" fill="#1e8bc3" text-anchor="middle" font-size="7">EAU</text>
-            <text x="660" y="210" fill="#1e8bc3" text-anchor="middle" font-size="6.5">distillée</text>
-            <!-- couvercle céramique -->
-            <rect x="633" y="122" width="54" height="12" rx="3" fill="rgba(184,148,60,.2)" stroke="rgba(184,148,60,.6)" stroke-width="1.5"/>
-            <text x="660" y="131" fill="#b8943c" text-anchor="middle" font-size="7" font-weight="bold">COUVERCLE</text>
-            <!-- label cellule -->
-            <text x="660" y="248" fill="#b8943c" text-anchor="middle" font-size="6.5">CELLULE</text>
-            <text x="660" y="257" fill="#b8943c" text-anchor="middle" font-size="6.5">CÉRAMIQUE</text>
-            <!-- champ rayonné (pointillés) -->
-            <ellipse cx="660" cy="200" rx="24" ry="28" fill="none" stroke="rgba(30,139,195,.15)" stroke-width="1" stroke-dasharray="3,3"/>
-            <ellipse cx="660" cy="200" rx="34" ry="40" fill="none" stroke="rgba(30,139,195,.07)" stroke-width="1" stroke-dasharray="2,4"/>
-
-            <!-- ══════════════════════════════════════════
-                 NEUTRE — retour bas
-                 ══════════════════════════════════════════ -->
-            <line x1="38" y1="100" x2="38" y2="370" stroke="#9bbfd4" stroke-width="1.5"/>
-            <line x1="38" y1="370" x2="386" y2="370" stroke="#9bbfd4" stroke-width="1.5"/>
-            <line x1="386" y1="370" x2="386" y2="112" stroke="#9bbfd4" stroke-width="1.5"/>
-            <text x="210" y="383" fill="#9bbfd4" text-anchor="middle" font-size="7">NEUTRE — retour condensateur</text>
-
-            <!-- ══════════════════════════════════════════
-                 NUMÉROS DE SÉQUENCE
-                 ══════════════════════════════════════════ -->
-            <circle cx="85" cy="65" r="7" fill="#c04040"/><text x="85" y="68" fill="#fff" text-anchor="middle" font-size="7" font-weight="bold">①</text>
-            <circle cx="165" cy="65" r="7" fill="#c04040"/><text x="165" y="68" fill="#fff" text-anchor="middle" font-size="7" font-weight="bold">②</text>
-            <circle cx="247" cy="65" r="7" fill="#b8943c"/><text x="247" y="68" fill="#fff" text-anchor="middle" font-size="7" font-weight="bold">③</text>
-            <circle cx="331" cy="65" r="7" fill="#2e9e78"/><text x="331" y="68" fill="#fff" text-anchor="middle" font-size="7" font-weight="bold">④</text>
-            <circle cx="416" cy="65" r="7" fill="#1e8bc3"/><text x="416" y="68" fill="#fff" text-anchor="middle" font-size="7" font-weight="bold">⑤</text>
-            <circle cx="544" cy="38" r="7" fill="#a06028"/><text x="544" y="41" fill="#fff" text-anchor="middle" font-size="7" font-weight="bold">⑥</text>
-            <circle cx="658" cy="112" r="7" fill="#b8943c"/><text x="658" y="115" fill="#fff" text-anchor="middle" font-size="7" font-weight="bold">⑦</text>
-
-          </svg>
-        </div>
-
-        <!-- LÉGENDE NUMÉROTÉE -->
-        <div style="margin-top:.9rem;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.9rem 1rem">
-          <div style="font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem">Séquence de montage sécurisé</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.3rem .8rem">
-            <div style="font-size:.76rem;color:var(--ink2);line-height:1.5"><span style="color:#c04040;font-weight:700">① Disjoncteur 10A</span> — protection thermomagnétique, coupe si surintensité ou court-circuit</div>
-            <div style="font-size:.76rem;color:var(--ink2);line-height:1.5"><span style="color:#c04040;font-weight:700">② Interrupteur bipolaire</span> — coupe Phase ET Neutre simultanément</div>
-            <div style="font-size:.76rem;color:var(--ink2);line-height:1.5"><span style="color:#b8943c;font-weight:700">③ Minuteur mécanique</span> — coupe la Phase après 20–40 min, évite toute surchauffe ou oubli</div>
-            <div style="font-size:.76rem;color:var(--ink2);line-height:1.5"><span style="color:#2e9e78;font-weight:700">④ Interlock couvercle</span> — contact NO : la phase ne passe QUE si la cellule céramique est fermée</div>
-            <div style="font-size:.76rem;color:var(--ink2);line-height:1.5"><span style="color:#1e8bc3;font-weight:700">⑤ Condensateurs cire</span> — 3 bobines 27 sp. dans cire d'abeille, résonnance grass-harmonics (Violet)</div>
-            <div style="font-size:.76rem;color:var(--ink2);line-height:1.5"><span style="color:#a06028;font-weight:700">⑥ 3 étages plasmatiques</span> — 4 bobines/étage, torsion toroïdale 144+144+72+72 sp.</div>
-            <div style="font-size:.76rem;color:var(--ink2);line-height:1.5;grid-column:1/-1"><span style="color:#b8943c;font-weight:700">⑦ Cellule céramique / grès</span> — cylindre fermé isolant la bouteille d'eau + tige argent. Champ par induction, aucun contact galvanique.</div>
-          </div>
-        </div>
-
-        <!-- BLOCS AVERTISSEMENT -->
-        <div class="wb" style="margin-top:.75rem"><span style="color:#c04040;font-size:1.1rem;flex-shrink:0">⚡</span><div class="wt"><strong>Danger électrique 230V :</strong> Interrupteur bipolaire + disjoncteur 10A obligatoires avant toute intervention. Ne jamais ouvrir la cellule céramique sous tension. Mise à la terre recommandée sur le boîtier métallique.</div></div>
-
-        <div style="background:rgba(46,158,120,.05);border:1px solid rgba(46,158,120,.25);border-radius:6px;padding:.85rem 1rem;margin-top:.6rem;display:flex;gap:.7rem;align-items:flex-start">
-          <span style="color:#2e9e78;font-size:1.1rem;flex-shrink:0">🔒</span>
-          <div style="font-size:.78rem;color:#1a5c45;line-height:1.6"><strong style="color:#2e9e78">Interlock céramique :</strong> Le circuit ne peut être mis sous tension que couvercle posé et verrouillé. Cette sécurité mécanique prévient tout contact accidentel avec la tige d'argent ou l'eau pendant la session.</div>
-        </div>
-
-        <div style="background:rgba(184,148,60,.05);border:1px solid rgba(184,148,60,.25);border-radius:6px;padding:.85rem 1rem;margin-top:.6rem;display:flex;gap:.7rem;align-items:flex-start">
-          <span style="color:#b8943c;font-size:1.1rem;flex-shrink:0">⏱</span>
-          <div style="font-size:.78rem;color:#6b4e1a;line-height:1.6"><strong style="color:#b8943c">Minuteur mécanique :</strong> Régler sur 20 à 40 minutes selon le protocole. Le minuteur coupe automatiquement la Phase en fin de cycle — aucun oubli possible. Utiliser de préférence un minuteur mécanique (sans électronique) pour ne pas parasiter le champ.</div>
-        </div>
-
-        <!-- PRÉCAUTIONS D'USAGE -->
-        <div style="margin-top:1.2rem;background:var(--panel);border:1px solid var(--border);border-top:3px solid #c04040;border-radius:6px;padding:1rem 1.25rem">
-          <div style="font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#c04040;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem">⚠️ Précautions d'usage &amp; risques</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem .9rem">
-            <div style="font-size:.77rem;color:var(--ink2);line-height:1.6;display:flex;gap:.5rem"><span style="color:#c04040;flex-shrink:0">✗</span><span>Ne <strong>jamais ouvrir</strong> la cellule céramique quand l'appareil est sous tension.</span></div>
-            <div style="font-size:.77rem;color:var(--ink2);line-height:1.6;display:flex;gap:.5rem"><span style="color:#c04040;flex-shrink:0">✗</span><span>Ne <strong>jamais toucher</strong> la tige argent, l'eau, ou les bornes des bobines pendant le fonctionnement.</span></div>
-            <div style="font-size:.77rem;color:var(--ink2);line-height:1.6;display:flex;gap:.5rem"><span style="color:#c04040;flex-shrink:0">✗</span><span>Ne <strong>jamais démarrer</strong> sans avoir vérifié que le couvercle céramique est en place et l'interlock activé.</span></div>
-            <div style="font-size:.77rem;color:var(--ink2);line-height:1.6;display:flex;gap:.5rem"><span style="color:#c04040;flex-shrink:0">✗</span><span>Ne pas laisser fonctionner <strong>sans surveillance</strong> ni au-delà de la durée programmée sur le minuteur.</span></div>
-            <div style="font-size:.77rem;color:var(--ink2);line-height:1.6;display:flex;gap:.5rem"><span style="color:#c04040;flex-shrink:0">✗</span><span>Éviter tout <strong>liquide à proximité</strong> du boîtier électrique et des connexions 230V.</span></div>
-            <div style="font-size:.77rem;color:var(--ink2);line-height:1.6;display:flex;gap:.5rem"><span style="color:#c04040;flex-shrink:0">✗</span><span>Ne pas utiliser avec des <strong>mains mouillées</strong> ou dans un espace humide non protégé.</span></div>
-            <div style="font-size:.77rem;color:var(--ink2);line-height:1.6;display:flex;gap:.5rem;grid-column:1/-1"><span style="color:#2e9e78;flex-shrink:0">✓</span><span>En cas de doute sur l'état du câblage ou d'une anomalie sonore/olfactive, couper immédiatement l'alimentation via le disjoncteur et vérifier avant toute remise sous tension.</span></div>
-          </div>
-          <div style="margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border);font-size:.74rem;color:var(--muted);line-height:1.65">
-            <strong style="color:var(--ink)">Note sur la cellule céramique / grès :</strong> Le cylindre isolant (céramique émaillée ou grès) entoure <em>intégralement</em> la bouteille d'eau et la tige d'argent. Il constitue une double protection : isolation galvanique complète et confinement mécanique. Toute utilisation sans ce cylindre est <strong style="color:#c04040">formellement interdite</strong>.
+          <div style="background:rgba(30,139,195,.06);border:1px solid rgba(30,139,195,.2);border-left:3px solid var(--crystal);border-radius:6px;padding:1rem 1.25rem;display:flex;gap:.7rem;align-items:flex-start;margin-top:.5rem">
+            <span style="color:var(--crystal);font-size:1rem;flex-shrink:0">&#x1F512;</span>
+            <div style="font-size:.82rem;color:var(--ink2);line-height:1.7"><strong style="color:var(--crystal)">R&eacute;serv&eacute; aux participants&nbsp;:</strong> Les sp&eacute;cifications compl&egrave;tes &mdash; bobinage, s&eacute;quence d&rsquo;assemblage, sch&eacute;ma &eacute;lectrique &mdash; sont transmises dans le cadre de la <strong>formation certifiante Axis Lumen</strong>.</div>
           </div>
         </div>
 
@@ -605,25 +444,13 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
         </div>
         <h3 style="font-family:serif;font-size:1.3rem;color:var(--ink);margin-bottom:1.4rem">Principe de fonctionnement</h3>
         <div>
-          <div class="ms"><div class="mn" style="--c:#c04040">1</div><div><div class="mt">Disjoncteur 10A — protection amont</div><div class="md">Protection thermomagnétique : coupe instantanément en cas de court-circuit ou de surintensité. Premier maillon de la chaîne de sécurité, à installer en tableau ou en boîtier dédié.</div><div class="mn2" style="--c:#c04040">Réarmement manuel uniquement après diagnostic</div></div></div>
-          <div class="ms"><div class="mn" style="--c:#c04040">2</div><div><div class="mt">Interrupteur bipolaire — coupure principale</div><div class="md">Coupe simultanément la Phase ET le Neutre. Activation consciente du champ — dans la logique plasma KESH, le moment d'intention est fondateur.</div><div class="mn2" style="--c:#c04040">Position OFF obligatoire pour toute maintenance</div></div></div>
-          <div class="ms"><div class="mn" style="--c:var(--gold)">3</div><div><div class="mt">Minuteur mécanique — coupure temporelle</div><div class="md">Régler sur 20 à 40 minutes selon le protocole. Coupe automatiquement la Phase en fin de session. Utiliser un minuteur mécanique (sans électronique) pour ne pas parasiter le champ plasmatique.</div><div class="mn2" style="--c:var(--gold)">Durée recommandée : 20 à 40 min</div></div></div>
-          <div class="ms"><div class="mn" style="--c:var(--green)">4</div><div><div class="mt">Interlock couvercle céramique — sécurité physique</div><div class="md">Contact normalement ouvert (NO) : la Phase ne passe que lorsque le couvercle de la cellule céramique est posé et verrouillé. Rend impossible toute mise sous tension avec la cellule ouverte.</div><div class="mn2" style="--c:var(--green)">Cellule fermée = condition sine qua non</div></div></div>
-          <div class="ms"><div class="mn" style="--c:var(--crystal)">5</div><div><div class="mt">Condensateurs cire d&rsquo;abeille</div><div class="md">3 bobines 27 spires isol&eacute;es dans la cire. R&eacute;sonnent avec les rayonnements cosmiques &mdash; grass-harmonics de Violet.</div><div class="mn2" style="--c:var(--crystal)">R&eacute;sistance aux bornes = infinie</div></div></div>
-          <div class="ms"><div class="mn" style="--c:var(--copper)">6</div><div><div class="mt">3 &eacute;tages plasmatiques</div><div class="md">4 bobines par &eacute;tage, fil 2,5mm&sup2; nano-rev&ecirc;tu. Bobines externes horaire, internes antihoraire &mdash; torsion toro&iuml;dale amplificatrice.</div><div class="mn2" style="--c:var(--copper)">Neutre : retour direct condensateur</div></div></div>
-          <div class="ms"><div class="mn" style="--c:var(--teal)">7</div><div><div class="mt">Tige argent &rarr; cellule c&eacute;ramique / gr&egrave;s</div><div class="md">La bouteille d'eau + tige argent sont confinées dans un cylindre de céramique émaillée ou de grès. L'eau est dans le champ rayonné, pas dans le circuit galvanique — principe Violet : induction pure. Le cylindre assure l'isolation électrique totale.</div><div class="mn2" style="--c:var(--teal)">Zéro contact galvanique — induction de champ uniquement</div></div></div>
-        </div>
-        <h3 style="font-family:serif;font-size:1.05rem;color:var(--copper);margin-top:2rem;margin-bottom:.9rem">Bobines par &eacute;tage (&times; 3)</h3>
-        <div class="bg2g">
-          <div class="bc"><div class="bn">Bobine A &mdash; 144 sp.</div><div class="bs">Tube &oslash;12mm &middot; 2,5mm&sup2;</div><div class="br">Magn&eacute;tique principale</div></div>
-          <div class="bc"><div class="bn">Bobine B &mdash; 144 sp.</div><div class="bs">Tube &oslash;8mm &middot; 2,5mm&sup2;</div><div class="br">Magn&eacute;tique secondaire</div></div>
-          <div class="bc"><div class="bn">Bobine C &mdash; 72 sp.</div><div class="bs">Tube &oslash;12mm &middot; 2,5mm&sup2;</div><div class="br">Gravitationnelle princ.</div></div>
-          <div class="bc"><div class="bn">Bobine D &mdash; 72 sp.</div><div class="bs">Tube &oslash;8mm &middot; 2,5mm&sup2;</div><div class="br">Gravitationnelle sec.</div></div>
-        </div>
-        <div style="margin-top:1.5rem;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.25rem">
-          <div style="font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem">Cohérence φ — même constante, hardware &amp; formule</div>
-          <p style="font-size:.82rem;color:var(--ink2);line-height:1.75;margin-bottom:.5rem"><strong>144 est le 12e nombre de Fibonacci</strong> (suite : …89, 144, 233…). 72 = 144 &divide; 2. Ces nombres ne sont pas choisis arbitrairement : ils appartiennent à la géométrie du nombre d&rsquo;or &phi; qui structure les systèmes vivants — spirales de Nautilus, phyllotaxies, proportions corporelles.</p>
-          <p style="font-size:.82rem;color:var(--ink2);line-height:1.75">La formule Axis Lumen utilise <strong>&phi;&sup2;&deg; = 6765</strong> (le 20e nombre de Fibonacci) comme facteur de transposition d&rsquo;octave. Le bobinage physique à 144 et 72 spires repose sur la même racine. <strong>C&rsquo;est une cohérence intentionnelle</strong> : le hardware et les calculs fréquentiels partagent la même ossature géométrique.</p>
+          <div class="ms"><div class="mn" style="--c:#c04040">1</div><div><div class="mt">Disjoncteur 10A &mdash; s&eacute;curit&eacute; amont</div><div class="md">Protection thermomagnÃ©tique â€” premier maillon obligatoire de la chaÃ®ne de sÃ©curitÃ©.</div></div></div>
+          <div class="ms"><div class="mn" style="--c:#c04040">2</div><div><div class="mt">Interrupteur bipolaire &mdash; coupure principale</div><div class="md">Coupe Phase ET Neutre simultanÃ©ment â€” activation consciente du champ.</div></div></div>
+          <div class="ms"><div class="mn" style="--c:var(--gold)">3</div><div><div class="mt">Minuteur m&eacute;canique &mdash; gestion temporelle</div><div class="md">Limite la dur&eacute;e de chaque session selon le protocole Axis Lumen.</div></div></div>
+          <div class="ms"><div class="mn" style="--c:var(--green)">4</div><div><div class="mt">Interlock couvercle c&eacute;ramique &mdash; s&eacute;curit&eacute; physique</div><div class="md">La mise sous tension est impossible cellule ouverte â€” protection mÃ©canique intÃ©grÃ©e.</div></div></div>
+          <div class="ms"><div class="mn" style="--c:var(--crystal)">5</div><div><div class="mt">Condensateurs cire d&rsquo;abeille &mdash; filtrage cosmique</div><div class="md">Le filtre Violet entre en rÃ©sonance avec les rayonnements de haute frÃ©quence â€” <em>grass-harmonics</em>.</div></div></div>
+          <div class="ms"><div class="mn" style="--c:var(--copper)">6</div><div><div class="mt">3 &eacute;tages plasmatiques &mdash; torsion toro&iuml;dale</div><div class="md">Bobines nano-rev&ecirc;tues en configuration &phi; &mdash; <span style="font-size:.75rem;color:var(--muted);font-style:italic">DÃ©tails transmis en formation.</span></div></div></div>
+          <div class="ms"><div class="mn" style="--c:var(--teal)">7</div><div><div class="mt">Tige argent &rarr; cellule c&eacute;ramique</div><div class="md">L&rsquo;eau reÃ§oit le champ rayonnÃ© â€” transmission par induction pure, sans contact galvanique.</div></div></div>
         </div>
         <div style="margin-top:2rem">
           <div style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem">Bobines nano-rev&ecirc;tues &middot; Cuivre graphite (soude caustique)</div>
@@ -706,36 +533,18 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
     <div class="fh">
       <div class="eyebrow">Formule officielle Axis Lumen</div>
       <div class="fd">f = <span class="vc">c&sup2;</span> / (1000 &times; <span class="vc">N&#x2090;</span> &times; <span class="vc">h</span> &times; <span class="vp">&phi;&sup2;&deg;</span>) &times; <span class="vc">M</span></div>
-      <div class="fc">&#x2713; V&eacute;rification : Eau (M = 18,015 Da) &rarr; f &asymp; 7,938 &times; 10&sup2;&deg; Hz</div>
-    </div>
-    <div class="cg">
-      <div class="cc"><div class="cs">c&sup2;</div><div class="cn2">Vitesse de la lumi&egrave;re au carr&eacute;</div><div class="cv">299 792 458&sup2; m&sup2;/s&sup2;</div><div class="cw">Einstein : E = mc&sup2;. On part de l&rsquo;&eacute;nergie pure de l&rsquo;univers avant de la convertir en vibration.</div></div>
-      <div class="cc"><div class="cs">N&#x2090;</div><div class="cn2">Nombre d&rsquo;Avogadro</div><div class="cv">6,022 &times; 10&sup2;&#x00B3; mol&sup1;</div><div class="cw">Permet de passer du monde des grammes &agrave; celui d&rsquo;une seule mol&eacute;cule.</div></div>
-      <div class="cc"><div class="cs">h</div><div class="cn2">Constante de Planck</div><div class="cv">6,626 &times; 10&#x207B;&sup3;&#x2074; J&middot;s</div><div class="cw">Le quantum minimum d&rsquo;&eacute;nergie.</div></div>
-      <div class="cc" style="border-top:2.5px solid var(--gold)"><div class="cs" style="color:var(--gold)">&phi;&sup2;&deg;</div><div class="cn2">Nombre d&rsquo;or &#x00B2;&#x2070; &mdash; filtre Axis Lumen</div><div class="cv">1,618&hellip;&sup2;&deg; &asymp; 6765 (Fibonacci)</div><div class="cw">Pr&eacute;sent dans les coquillages, l&rsquo;ADN, les galaxies. Ce filtre accorde les fr&eacute;quences &agrave; la g&eacute;om&eacute;trie du vivant.</div><div class="cwo">Signature Axis Lumen &mdash; ce qui distingue cette formule.</div></div>
     </div>
     <div class="cw2">
-      <div class="ct">Calculatrice mol&eacute;culaire &phi;&sup2;&deg;</div>
-      <div class="cst2">Entrez une masse molaire ou choisissez une mol&eacute;cule</div>
-      <div class="cg3">
-        <div class="cfl"><label>Nom de la mol&eacute;cule</label><input type="text" id="mol-name" placeholder="ex: Magnesium"></div>
-        <div class="cfl"><label>Masse molaire (Daltons)</label><input type="number" id="mol-mass" placeholder="ex: 24.305" step="0.001"></div>
+      <div class="ct">Exemple de r&eacute;sultat &mdash; Eau (H&#x2082;O)</div>
+      <div class="cst2">Calcul pr&eacute;-&eacute;tabli par la formule &phi;&sup2;&deg; Axis Lumen</div>
+      <div class="cr" style="display:block;margin:1.5rem 0">
+        <div class="crn">Eau &mdash; H&#x2082;O (M = 18,015 Da)</div>
+        <div class="crv">f = 7,938 &times; 10<sup>20</sup> Hz</div>
+        <div class="crs">Calibr&eacute;e par &phi;&sup2;&deg; = 6765 (Fibonacci &mdash; 20e terme)</div>
       </div>
-      <div class="mg">
-        <button class="mb" onclick="setMol('Eau',18.015)"><strong>H&#x2082;O</strong>18.015 Da</button>
-        <button class="mb" onclick="setMol('Argent',107.868)"><strong>Ag</strong>107.868 Da</button>
-        <button class="mb" onclick="setMol('CO&#x2082;',44.009)"><strong>CO&#x2082;</strong>44.009 Da</button>
-        <button class="mb" onclick="setMol('Magn&eacute;sium',24.305)"><strong>Mg</strong>24.305 Da</button>
-        <button class="mb" onclick="setMol('Chlore',35.453)"><strong>Cl</strong>35.453 Da</button>
-        <button class="mb" onclick="setMol('Sodium',22.990)"><strong>Na</strong>22.990 Da</button>
-        <button class="mb" onclick="setMol('Potassium',39.098)"><strong>K</strong>39.098 Da</button>
-        <button class="mb" onclick="setMol('Calcium',40.078)"><strong>Ca</strong>40.078 Da</button>
-      </div>
-      <button class="cbtn" onclick="calcFreq()">Calculer la fr&eacute;quence &phi;&sup2;&deg; &rarr;</button>
-      <div id="freq-result" class="cr" style="display:none">
-        <div class="crn" id="freq-name"></div>
-        <div class="crv" id="freq-val"></div>
-        <div class="crs" id="freq-note"></div>
+      <div style="background:rgba(184,148,60,.06);border:1px solid rgba(184,148,60,.2);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.25rem;display:flex;gap:.7rem;align-items:flex-start">
+        <span style="color:var(--gold);font-size:1rem;flex-shrink:0">&#x1F4CB;</span>
+        <div style="font-size:.82rem;color:var(--ink2);line-height:1.7"><strong style="color:var(--gold)">Transmis en formation&nbsp;:</strong> La table compl&egrave;te des 47 mol&eacute;cules th&eacute;rapeutiques est disponible dans le cadre de <strong>l&rsquo;atelier certifiant Axis Lumen</strong>. <a href="#stage" style="color:var(--crystal);text-decoration:none">Voir les dates &rarr;</a></div>
       </div>
     </div>
   </div>
@@ -843,16 +652,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
           </div>
         </div>
         <div class="stage-day-steps">
-          <div class="stage-step"><div class="stage-t">09h00</div><div class="stage-c"><strong>Accueil &amp; pr&eacute;sentation</strong><br>Tour de table, intentions de chacun, vision globale des 3 jours</div></div>
-          <div class="stage-step"><div class="stage-t">09h30</div><div class="stage-c"><strong>Mesures Biowell initiales</strong><br>Capture GDV de chaque participant &mdash; &eacute;tat de r&eacute;f&eacute;rence avant toute intervention</div></div>
-          <div class="stage-step"><div class="stage-t">10h15</div><div class="stage-c"><strong>Bio&eacute;lectronique de Vincent</strong><br>Triangle pH / rH2 / r&eacute;sistivit&eacute; &mdash; ce que ces mesures r&eacute;v&egrave;lent sur la vitalit&eacute; de l&rsquo;eau</div></div>
-          <div class="stage-step"><div class="stage-t">11h00</div><div class="stage-c"><strong>Les pionniers de l&rsquo;eau vivante</strong><br>Schauberger, Keshe, Violet &mdash; histoire, d&eacute;couvertes, h&eacute;ritage scientifique</div></div>
-          <div class="stage-step"><div class="stage-t">12h00</div><div class="stage-c"><strong>Distillation &amp; analyse compar&eacute;e</strong><br>Eau du robinet, eau distill&eacute;e, eau structur&eacute;e &mdash; lecture et interpr&eacute;tation des param&egrave;tres</div></div>
-          <div class="stage-step"><div class="stage-t">13h00</div><div class="stage-c"><strong>Repas collectif</strong><br>Eau vivante au menu &mdash; temps d&rsquo;&eacute;changes libres</div></div>
-          <div class="stage-step"><div class="stage-t">14h30</div><div class="stage-c"><strong>Formule &phi;&sup2;&deg;</strong><br>Calcul des fr&eacute;quences mol&eacute;culaires selon le nombre d&rsquo;or &mdash; logique et application</div></div>
-          <div class="stage-step"><div class="stage-t">15h30</div><div class="stage-c"><strong>Vortex, magn&eacute;tisation &amp; m&eacute;moire de l&rsquo;eau</strong><br>Principes de structuration &mdash; d&eacute;monstration en direct, observation des effets</div></div>
-          <div class="stage-step"><div class="stage-t">16h30</div><div class="stage-c"><strong>Introduction au Biodynamiseur Plasmatique</strong><br>Pr&eacute;sentation de l&rsquo;appareil, r&ocirc;le de chaque composant, logique de la conception</div></div>
-          <div class="stage-step"><div class="stage-t">17h30</div><div class="stage-c"><strong>Bilan du jour &amp; questions</strong><br>Ancrage des notions, pr&eacute;paration mentale au montage du lendemain</div></div>
+          <div style="padding:1rem 0;border-bottom:1px solid var(--border)"><div style="font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">Bio&eacute;lectronique &amp; mesures Biowell initiales</div><div style="font-size:.82rem;color:var(--ink2)">Prise de r&eacute;f&eacute;rence GDV &mdash; votre &eacute;tat avant toute intervention.</div></div>
+          <div style="padding:1rem 0;border-bottom:1px solid var(--border)"><div style="font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">Les pionniers de l&rsquo;eau vivante</div><div style="font-size:.82rem;color:var(--ink2)">Plongeon dans les travaux de Schauberger, Violet, Keshe &mdash; l&rsquo;h&eacute;ritage scientifique.</div></div>
+          <div style="padding:1rem 0;border-bottom:1px solid var(--border)"><div style="font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">Formule &phi;&sup2;&deg; &amp; g&eacute;om&eacute;trie du vivant</div><div style="font-size:.82rem;color:var(--ink2)">La logique math&eacute;matique qui relie le nombre d&rsquo;or aux fr&eacute;quences mol&eacute;culaires.</div></div>
+          <div style="padding:1rem 0"><div style="font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">Introduction au Biodynamiseur &mdash; logique et architecture</div><div style="font-size:.82rem;color:var(--ink2)">Pr&eacute;sentation de l&rsquo;appareil avant l&rsquo;assemblage du lendemain.</div></div>
+          <div style="margin-top:.8rem;font-size:.76rem;color:var(--muted);font-style:italic;border-top:1px solid var(--border);padding-top:.75rem">Le programme d&eacute;taill&eacute; est envoy&eacute; aux participants confirm&eacute;s.</div>
         </div>
       </div>
 
@@ -865,14 +669,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
           </div>
         </div>
         <div class="stage-day-steps">
-          <div class="stage-step"><div class="stage-t">09h00</div><div class="stage-c"><strong>Pr&eacute;paration &amp; v&eacute;rification</strong><br>Installation de l&rsquo;espace de travail &mdash; identification et v&eacute;rification de toutes les pi&egrave;ces pr&eacute;par&eacute;es</div></div>
-          <div class="stage-step"><div class="stage-t">09h30</div><div class="stage-c"><strong>Assemblage des bobines nano-rev&ecirc;tues</strong><br>Positionnement, orientation, fixation selon le protocole Axis Lumen</div></div>
-          <div class="stage-step"><div class="stage-t">11h00</div><div class="stage-c"><strong>Condensateurs en cire d&rsquo;abeille</strong><br>Installation et isolation &mdash; gestes pr&eacute;cis, v&eacute;rifications &eacute;tape par &eacute;tape</div></div>
-          <div class="stage-step"><div class="stage-t">12h30</div><div class="stage-c"><strong>Repas collectif</strong><br>Pause bien m&eacute;rit&eacute;e &mdash; l&rsquo;appareil prend forme</div></div>
-          <div class="stage-step"><div class="stage-t">14h00</div><div class="stage-c"><strong>Tige argent &amp; c&acirc;blage</strong><br>Int&eacute;gration de l&rsquo;&eacute;l&eacute;ment conducteur &mdash; raccordements et s&eacute;curisation &eacute;lectrique</div></div>
-          <div class="stage-step"><div class="stage-t">15h30</div><div class="stage-c"><strong>Premi&egrave;re activation</strong><br>Mise sous tension, tests de continuit&eacute;, v&eacute;rifications et premiers ajustements</div></div>
-          <div class="stage-step"><div class="stage-t">16h30</div><div class="stage-c"><strong>Mise en eau &amp; premi&egrave;res mesures</strong><br>L&rsquo;appareil entre en contact avec l&rsquo;eau &mdash; observation des effets imm&eacute;diats</div></div>
-          <div class="stage-step"><div class="stage-t">17h30</div><div class="stage-c"><strong>Bilan du jour</strong><br>Partage des ressentis, r&eacute;glages individuels, pr&eacute;paration de la calibration finale</div></div>
+          <div style="padding:1rem 0;border-bottom:1px solid var(--border)"><div style="font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">Pr&eacute;paration &amp; v&eacute;rification des pi&egrave;ces</div><div style="font-size:.82rem;color:var(--ink2)">Identification de chaque composant &mdash; vous saurez ce que vous assemblez et pourquoi.</div></div>
+          <div style="padding:1rem 0;border-bottom:1px solid var(--border)"><div style="font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">Assemblage guid&eacute; &mdash; bobines, condensateurs, tige argent</div><div style="font-size:.82rem;color:var(--ink2)">Montage complet avec accompagnement individuel &mdash; <em>D&eacute;couvert en formation.</em></div></div>
+          <div style="padding:1rem 0;border-bottom:1px solid var(--border)"><div style="font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">Premi&egrave;re activation &amp; tests</div><div style="font-size:.82rem;color:var(--ink2)">Votre appareil entre en vie &mdash; mise sous tension, v&eacute;rifications, premiers ajustements.</div></div>
+          <div style="padding:1rem 0"><div style="font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">Mise en eau &amp; premi&egrave;res mesures</div><div style="font-size:.82rem;color:var(--ink2)">L&rsquo;appareil rencontre l&rsquo;eau &mdash; observation des effets imm&eacute;diats.</div></div>
+          <div style="margin-top:.8rem;font-size:.76rem;color:var(--muted);font-style:italic;border-top:1px solid var(--border);padding-top:.75rem">Le programme d&eacute;taill&eacute; est envoy&eacute; aux participants confirm&eacute;s.</div>
         </div>
       </div>
 
@@ -885,14 +686,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
           </div>
         </div>
         <div class="stage-day-steps">
-          <div class="stage-step"><div class="stage-t">09h00</div><div class="stage-c"><strong>Calibration finale</strong><br>Optimisation individuelle de chaque Biodynamiseur &mdash; mesures de contr&ocirc;le</div></div>
-          <div class="stage-step"><div class="stage-t">10h00</div><div class="stage-c"><strong>Diffusion fr&eacute;quentielle</strong><br>Mise en route de l&rsquo;antenne scalaire ou PEMF &mdash; application de la formule &phi;&sup2;&deg;</div></div>
-          <div class="stage-step"><div class="stage-t">11h00</div><div class="stage-c"><strong>Mesures Biowell finales</strong><br>Capture GDV de chaque participant &mdash; comparaison avant/apr&egrave;s sur 3 jours</div></div>
-          <div class="stage-step"><div class="stage-t">12h00</div><div class="stage-c"><strong>Interpr&eacute;tation collective</strong><br>Lecture des captures &mdash; ce que les mesures racontent de chacun</div></div>
-          <div class="stage-step"><div class="stage-t">13h00</div><div class="stage-c"><strong>Repas collectif</strong><br>Derni&egrave;re table commune &mdash; partage des exp&eacute;riences et des &eacute;motions</div></div>
-          <div class="stage-step"><div class="stage-t">14h30</div><div class="stage-c"><strong>Protocole complet &amp; kit de maintenance</strong><br>Remise du document &eacute;crit &mdash; tout ce qu&rsquo;il faut pour utiliser et entretenir l&rsquo;appareil seul</div></div>
-          <div class="stage-step"><div class="stage-t">15h30</div><div class="stage-c"><strong>C&eacute;r&eacute;monie de certification</strong><br>D&eacute;livrance du certificat Axis Lumen &mdash; autorisation officielle de transmission</div></div>
-          <div class="stage-step"><div class="stage-t">16h30</div><div class="stage-c"><strong>D&eacute;part</strong><br>Vous repartez avec votre Biodynamiseur Plasmatique, calibr&eacute;, op&eacute;rationnel &mdash; pr&ecirc;t &agrave; transformer votre eau</div></div>
+          <div style="padding:1rem 0;border-bottom:1px solid var(--border)"><div style="font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">Calibration finale individuelle</div><div style="font-size:.82rem;color:var(--ink2)">Optimisation de chaque appareil &mdash; votre Biodynamiseur ajust&eacute; &agrave; votre contexte.</div></div>
+          <div style="padding:1rem 0;border-bottom:1px solid var(--border)"><div style="font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">Application de la formule &phi;&sup2;&deg; &mdash; diffusion fr&eacute;quentielle</div><div style="font-size:.82rem;color:var(--ink2)">Mise en route de l&rsquo;antenne scalaire ou PEMF sur l&rsquo;eau structur&eacute;e.</div></div>
+          <div style="padding:1rem 0;border-bottom:1px solid var(--border)"><div style="font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">Mesures Biowell finales &amp; interpr&eacute;tation collective</div><div style="font-size:.82rem;color:var(--ink2)">Comparaison avant/apr&egrave;s sur 3 jours &mdash; ce que les captures racontent de chacun.</div></div>
+          <div style="padding:1rem 0"><div style="font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.2rem">C&eacute;r&eacute;monie de certification Axis Lumen &amp; d&eacute;part</div><div style="font-size:.82rem;color:var(--ink2)">Vous repartez avec votre appareil calibr&eacute; et l&rsquo;autorisation officielle de transmission.</div></div>
+          <div style="margin-top:.8rem;font-size:.76rem;color:var(--muted);font-style:italic;border-top:1px solid var(--border);padding-top:.75rem">Le programme d&eacute;taill&eacute; est envoy&eacute; aux participants confirm&eacute;s.</div>
         </div>
       </div>
     </div>
@@ -1526,10 +1324,8 @@ function handleContactSubmit(e) {
   <div class="auth-box">
     <h3>Acc&egrave;s Galerie Biowell</h3>
     <p>Zone priv&eacute;e &mdash; r&eacute;serv&eacute;e aux praticiens Axis Lumen</p>
-    <input type="password" class="auth-input" id="auth-code" placeholder="Code d&rsquo;acc&egrave;s" onkeydown="if(event.key==='Enter')checkAuth()">
-    <div class="auth-err" id="auth-error">Code incorrect. Contactez Axis Lumen.</div>
-    <button class="auth-submit" onclick="checkAuth()">Acc&eacute;der</button>
-    <button class="auth-cancel" onclick="closeAuthModal()">Annuler</button>
+    <div class="auth-err" id="auth-error" style="display:block;font-size:.84rem;color:var(--ink2);padding:.6rem;border-radius:4px;background:var(--bg2);border:1px solid var(--border)">Acc&egrave;s r&eacute;serv&eacute; aux participants certifi&eacute;s. Contactez&nbsp;: <a href="mailto:chauvetmichael@livre.fr" style="color:var(--crystal)">chauvetmichael@livre.fr</a></div>
+    <button class="auth-cancel" style="margin-top:1rem" onclick="closeAuthModal()">Fermer</button>
   </div>
 </div>
 
@@ -1661,14 +1457,14 @@ window.addEventListener('scroll',()=>{let cur='';navSecs.forEach(id=>{const el=d
     }
   });
 })();
-function openAxisLumen(){const w=window.open('file:///C:/Users/chauv/Documents/axis-lumen-deploy/index.html','_blank');if(!w||w.closed){const d=document.createElement('div');d.style.cssText='position:fixed;top:70px;right:1.5rem;background:var(--ink);color:white;padding:1rem 1.5rem;border-radius:8px;font-size:.8rem;z-index:500;max-width:320px;line-height:1.7;box-shadow:0 4px 20px rgba(0,0,0,.3)';d.innerHTML='<strong style="color:var(--crystal-p)">Axis Lumen</strong><br><code style="font-size:.72rem;color:var(--teal-l)">C:\\Users\\chauv\\Documents\\axis-lumen-deploy</code><br><button onclick="this.parentNode.remove()" style="margin-top:.5rem;background:transparent;border:1px solid rgba(255,255,255,.3);color:white;font-size:.7rem;padding:.2rem .6rem;cursor:pointer;border-radius:3px">Fermer</button>';document.body.appendChild(d);setTimeout(()=>{if(d.parentNode)d.remove();},6000);}}
-const AUTH_CODES={michael:btoa('Michael:AxisLumen2024!'),emmanuel:btoa('Emmanuel:PlasmaKesh2024!')};
+
+
 let currentUser=null;
 function openAuthModal(){document.getElementById('auth-code').value='';document.getElementById('auth-error').style.display='none';document.getElementById('auth-modal').classList.add('open');setTimeout(()=>document.getElementById('auth-code').focus(),100);}
 function closeAuthModal(){document.getElementById('auth-modal').classList.remove('open');}
 function closeAuthOut(e){if(e.target.id==='auth-modal')closeAuthModal();}
-function checkAuth(){const code=document.getElementById('auth-code').value.trim();if(btoa('Michael:'+code)===AUTH_CODES.michael){grantAccess('Michael');}else if(btoa('Emmanuel:'+code)===AUTH_CODES.emmanuel){grantAccess('Emmanuel Carrière');}else{document.getElementById('auth-error').style.display='block';document.getElementById('auth-code').value='';document.getElementById('auth-code').focus();}}
-function grantAccess(user){currentUser=user;closeAuthModal();document.getElementById('uz').style.display='block';const ab=document.getElementById('add-card-btn');if(ab)ab.style.display='';document.getElementById('auth-label').innerHTML='<span style="color:var(--green);font-weight:600">&#x2713; '+user+'</span>';document.getElementById('auth-btn').textContent='Déconnexion';document.getElementById('auth-btn').onclick=revokeAccess;document.getElementById('auth-btn').style.background='var(--muted)';}
+function checkAuth(){var er=document.getElementById("auth-error");er.textContent="AccÃ¨s rÃ©servÃ© â€” contactez chauvetmichael@livre.fr";er.style.display="block";}
+function grantAccess(user){}
 function revokeAccess(){currentUser=null;document.getElementById('uz').style.display='none';const ab=document.getElementById('add-card-btn');if(ab)ab.style.display='none';document.getElementById('auth-label').textContent='Non connecté';document.getElementById('auth-btn').textContent='Connexion';document.getElementById('auth-btn').onclick=openAuthModal;document.getElementById('auth-btn').style.background='var(--crystal)';}
 document.addEventListener('DOMContentLoaded',function(){
   const hi=document.getElementById('hero-img');if(hi)hi.src=IMG.axisLogo;
