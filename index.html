@@ -544,7 +544,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
       </div>
       <div style="background:rgba(184,148,60,.06);border:1px solid rgba(184,148,60,.2);border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.25rem;display:flex;gap:.7rem;align-items:flex-start">
         <span style="color:var(--gold);font-size:1rem;flex-shrink:0">&#x1F4CB;</span>
-        <div style="font-size:.82rem;color:var(--ink2);line-height:1.7"><strong style="color:var(--gold)">Transmis en formation&nbsp;:</strong> La table compl&egrave;te des 47 mol&eacute;cules th&eacute;rapeutiques est disponible dans le cadre de <strong>l&rsquo;atelier certifiant Axis Lumen</strong>. <a href="#stage" style="color:var(--crystal);text-decoration:none">Voir les dates &rarr;</a></div>
+        <div style="font-size:.82rem;color:var(--ink2);line-height:1.7"><strong style="color:var(--gold)">Transmis en formation&nbsp;:</strong> La table compl&egrave;te des 47 mol&eacute;cules th&eacute;rapeutiques est disponible dans le cadre de <strong>l&rsquo;atelier certifiant Axis Lumen</strong>. <a href="#contact" style="color:var(--crystal);text-decoration:none">Nous contacter &rarr;</a></div>
       </div>
     </div>
   </div>
@@ -695,36 +695,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
       </div>
     </div>
 
-    <div class="stage-dates-title">Sessions disponibles 2026</div>
-    <div class="stage-dates">
-      <div class="stage-date-card">
-        <div class="sdc-month">Septembre</div>
-        <div class="sdc-days">25&thinsp;&ndash;&thinsp;27</div>
-        <div class="sdc-year">2026</div>
-        <div class="sdc-badge">Places disponibles</div>
-        <a class="sdc-btn" href="javascript:void(0)" onclick="preselectSession('session-sept')">R&eacute;server ma place</a>
-      </div>
-      <div class="stage-date-card">
-        <div class="sdc-month">Octobre</div>
-        <div class="sdc-days">3&thinsp;&ndash;&thinsp;5</div>
-        <div class="sdc-year">2026</div>
-        <div class="sdc-badge">Places disponibles</div>
-        <a class="sdc-btn" href="javascript:void(0)" onclick="preselectSession('session-oct')">R&eacute;server ma place</a>
-      </div>
-      <div class="stage-date-card">
-        <div class="sdc-month">Novembre</div>
-        <div class="sdc-days">20&thinsp;&ndash;&thinsp;22</div>
-        <div class="sdc-year">2026</div>
-        <div class="sdc-badge">Places disponibles</div>
-        <a class="sdc-btn" href="javascript:void(0)" onclick="preselectSession('session-nov')">R&eacute;server ma place</a>
-      </div>
-      <div class="stage-date-card">
-        <div class="sdc-month">D&eacute;cembre</div>
-        <div class="sdc-days">11&thinsp;&ndash;&thinsp;13</div>
-        <div class="sdc-year">2026</div>
-        <div class="sdc-badge">Places disponibles</div>
-        <a class="sdc-btn" href="javascript:void(0)" onclick="preselectSession('session-dec')">R&eacute;server ma place</a>
-      </div>
+    <div style="background:var(--panel);border:1.5px solid var(--border);border-radius:10px;padding:2rem;text-align:center;margin-bottom:2rem">
+      <div style="font-size:1.1rem;color:var(--ink);font-family:'Cormorant Garamond',serif;margin-bottom:.5rem">Les prochaines sessions seront annonc&eacute;es ult&eacute;rieurement.</div>
+      <div style="font-size:.82rem;color:var(--muted);line-height:1.6">Pour &ecirc;tre inform&eacute; de la reprise des ateliers, utilisez le formulaire de contact ci-dessous.</div>
     </div>
 
     <div class="stage-includes-wrap">
@@ -742,87 +715,13 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;paddin
       </div>
     </div>
 
-    <div class="stage-form-wrap">
-      <div class="stage-form-title">Formulaire d&rsquo;inscription</div>
-      <p class="stage-form-sub">Places limit&eacute;es &mdash; merci d&rsquo;indiquer vos coordonn&eacute;es et la session souhait&eacute;e. Je reviendrai vers vous dans les 48h avec toutes les informations pratiques et le tarif.</p>
-      <form class="stage-form" id="stage-inscription-form" onsubmit="return handleStageSubmit(event)">
-        <div class="sf-row">
-          <div class="sf-field">
-            <label for="sf-prenom">Pr&eacute;nom</label>
-            <input type="text" id="sf-prenom" name="Prenom" placeholder="Votre pr&eacute;nom" required>
-          </div>
-          <div class="sf-field">
-            <label for="sf-nom">Nom</label>
-            <input type="text" id="sf-nom" name="Nom" placeholder="Votre nom" required>
-          </div>
-        </div>
-        <div class="sf-row">
-          <div class="sf-field">
-            <label for="sf-email">Email</label>
-            <input type="email" id="sf-email" name="Email" placeholder="votre@email.fr" required>
-          </div>
-          <div class="sf-field">
-            <label for="sf-tel">T&eacute;l&eacute;phone</label>
-            <input type="tel" id="sf-tel" name="Telephone" placeholder="06 XX XX XX XX">
-          </div>
-        </div>
-        <div class="sf-field">
-          <label for="sf-session">Session souhait&eacute;e</label>
-          <select id="sf-session" name="Session" required>
-            <option value="" disabled selected>Choisissez une date</option>
-            <option value="session-sept">25&ndash;27 septembre 2026</option>
-            <option value="session-oct">3&ndash;5 octobre 2026</option>
-            <option value="session-nov">20&ndash;22 novembre 2026</option>
-            <option value="session-dec">11&ndash;13 d&eacute;cembre 2026</option>
-          </select>
-        </div>
-        <div class="sf-field">
-          <label for="sf-message">Votre message &amp; motivations</label>
-          <textarea id="sf-message" name="Message" placeholder="Parlez-moi un peu de vous et de ce qui vous attire dans ce stage..."></textarea>
-        </div>
-        <div style="margin-top:.5rem;padding-top:1.2rem;border-top:1px solid var(--border)">
-          <button type="submit" class="sf-submit">Continuer vers le paiement s&eacute;curis&eacute; Stripe &rarr;</button>
-          <p class="sf-note" style="margin-top:.8rem">10 places maximum par session &middot; Paiement s&eacute;curis&eacute; via Stripe &middot; Vous serez redirig&eacute; vers la page de r&egrave;glement</p>
-        </div>
-      </form>
-
       <script>
 
-      function preselectSession(sessionKey) {
+      function preselectSession(sessionKey) {}
 
-        var sel = document.getElementById('sf-session');
+      var STRIPE_LINKS = {};
 
-        if (sel) sel.value = sessionKey;
-
-        var form = document.getElementById('stage-inscription-form');
-
-        if (form) form.scrollIntoView({behavior:'smooth', block:'start'});
-
-      }
-
-      var STRIPE_LINKS = {
-
-        'session-sept': 'https://buy.stripe.com/28EbJ11phdUY4PX6KA0Jq0i',
-
-        'session-oct':  'https://buy.stripe.com/00w8wP2tleZ23LT6KA0Jq0n',
-
-        'session-nov':  'https://buy.stripe.com/cNidR99VNaIM3LT8SI0Jq0o',
-
-        'session-dec':  'https://buy.stripe.com/3cI5kDgkb7wAgyFgla0Jq0p'
-
-      };
-
-      var SESSION_LABELS = {
-
-        'session-sept': '25-27 septembre 2026',
-
-        'session-oct':  '3-5 octobre 2026',
-
-        'session-nov':  '20-22 novembre 2026',
-
-        'session-dec':  '11-13 décembre 2026'
-
-      };
+      var SESSION_LABELS = {};
 
       function addContactToBrevo(email, prenom, nom, tel, session, message) {
 
